@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {fonts, colors, images} from '../constants/index.js'
 
 function Welcome(props){
     return(
         <View style={styles.container}>
             <View  style={styles.top}>
-                <Text style={{ marginTop: 80, fontWeight: '500',  fontSize: fonts.h2, textAlign: 'center',}}>
-                    Welcome to <Text style={{fontWeight: 'bold', color: colors.primary, fontSize: fonts.h1,}}>HNFOOD</Text>
+                <View style={{flex:1}}/>
+                <Text style={{fontWeight: '500',  fontSize: 26, textAlign: 'center',}}>
+                    Welcome to <Text style={{fontWeight: 'bold', color: colors.primary, fontSize: 30,}}>HNFOOD</Text> <Icon name='food' size={40} color={colors.primary}/>
                 </Text>
             </View>
             <ImageBackground  style={styles.mid} source={images.welcome_image2} resizeMode={'contain'}>
@@ -15,20 +16,19 @@ function Welcome(props){
             </ImageBackground>
             <View  style={styles.bottom}>
                 <View style={{paddingStart: 40, paddingTop: 60, width: '70%'}}>
-                    <Text style={{fontSize: fonts.h4, fontWeight: '500',}}>Đồ ăn nhanh ngon miệng</Text>
+                    <Text style={{fontSize: fonts.h4, fontWeight: '500',}}>ĐỒ ĂN NGON</Text>
                     <View style={{height: 5}} />
-                    <Text style={{fontSize: fonts.h5, fontWeight: '300'}}>Đăng nhập ngay!</Text>
+                    <Text style={{fontSize: fonts.h5, fontWeight: '300'}}>Đăng nhập!</Text>
                 </View>
-                
-                <View style={{paddingTop: 60, width: '30%', alignItems: 'flex-end'}}>
-                    <Text style={{fontSize: fonts.h4, fontWeight: '500',}}>Đồ</Text>
+                <View style={{paddingTop: 60, width: '30%', alignItems: 'flex-end', }}>
+                    <View style={{ width : '100%', height:120, position : 'absolute', left:60, borderTopLeftRadius:150, borderBottomLeftRadius:150, backgroundColor:colors.primary, justifyContent: 'center'}}>
+                        <Icon name='arrow-right' style={{textAlign: 'left', marginStart: '10%' }} size={30} />
+                    </View>
                 </View>
             </View>
         </View>
     )
 }
-
-
 
 const styles = StyleSheet.create({
     container: {
