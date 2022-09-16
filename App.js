@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar} from 'react-native';
-import { Welcome, Intro } from './screens/index.js'
+import { Welcome, Intro, Login } from './screens/index.js'
 import colors from './constants/colors.js';
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
         barStyle={'light-content'}
         showHideTransition={'fade'}
         hidden={false}/>
-      <Intro/>
+      <Login/>
     </SafeAreaView>
   )
 }
