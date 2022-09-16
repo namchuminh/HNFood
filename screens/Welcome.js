@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground } from 'react-native'
+import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {fonts, colors, images} from '../constants/index.js'
 
@@ -22,9 +23,14 @@ function Welcome(props){
                 </View>
                 <View style={{paddingTop: 60, width: '30%', alignItems: 'flex-end', }}>
                     <View style={{ width : '100%', height:120, position : 'absolute', left:60, borderTopLeftRadius:150, borderBottomLeftRadius:150, backgroundColor:colors.primary, justifyContent: 'center'}}>
-                        <Icon name='arrow-right' style={{textAlign: 'left', marginStart: '10%' }} size={30} />
+                        <Icon name='arrow-right' style={{textAlign: 'left', marginStart: '10%' }} size={30} color={'#f2f2f2'}/>
                     </View>
                 </View>
+            </View>
+            <View style={styles.footer}>
+                <Octicons name="dot-fill" size={19} color={colors.primary}/>
+                <View style={{flex: 1}} />
+                <Octicons name="dot" size={19} color={colors.inactive}/>
             </View>
         </View>
     )
@@ -45,8 +51,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     bottom: {
-        flex: 40,
+        flex: 30,
         flexDirection: 'row'
+    },
+    footer: {
+        flex: 10,
+        flexDirection: 'row',
+        paddingHorizontal: '45%'
     }
 })
 
