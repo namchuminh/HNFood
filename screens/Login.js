@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -6,12 +6,12 @@ import {fonts, colors, images} from '../constants/index.js'
 
 function Login(props){
     return(
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View  style={styles.top}>
-                <Image source={images.logo_food} style={{width: 100, height: 100, alignSelf: 'center'}}/>
+                <Image source={images.logo_food} style={{width: 100, height: 100, alignSelf: 'center'}} resizeMode={'contain'} />
                 <View style={{paddingBottom: 30}} />
-                <View style={{alignSelf: 'flex-end'}}>
-                    <Text style={{fontWeight: '600', fontSize: fonts.h3, color: 'white'}}>Đăng Nhập</Text>
+                <View style={{alignSelf: 'flex-end', paddingBottom: 30}}>
+                    <Text style={{fontWeight: '600', fontSize: fonts.h3, color: 'white'}}><Icon name='login' size={17}/> Đăng Nhập</Text>
                 </View>
             </View>
             <View  style={styles.mid}>
@@ -27,12 +27,12 @@ function Login(props){
                     <TextInput
                         style={styles.input}
                         placeholder="Mật khẩu"
+                        secureTextEntry={true}
                     />
                 </View>
                 <View style={{marginTop: 20, alignSelf: 'flex-end'}}>
                     <Text style={{ color: '#9c9c9c', fontSize: fonts.h5, fontWeight: '400'}}>Quên mật khẩu ?</Text>
                 </View>
-                
             </View>
             <View style={styles.bottom}>
                 <View>
@@ -40,12 +40,13 @@ function Login(props){
                         <Text style={{color: 'white', fontSize: fonts.h2, fontWeight: 'bold', alignSelf: 'center'}}>ĐĂNG NHẬP</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={{flex: 1}}/>
-                <View style={{marginBottom: 35, alignSelf: 'center'}}>
+                <View style={{flex: 1}} />
+                <View style={{alignSelf: 'center', paddingVertical: 80}}>
+                    <View style={{flex: 1}} />
                     <Text style={{color: '#9c9c9c', fontSize: fonts.h5, fontWeight: '400'}}>Bạn chưa có tài khoản? <Text style={{color: colors.primary, fontWeight: 'bold'}}>Đăng ký ngay!</Text></Text>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -55,21 +56,22 @@ const styles = StyleSheet.create({
       backgroundColor: '#f2f2f2',
     },
     top: {
-        flex: 30,
+        height: '30%',
         backgroundColor: colors.primary,
         borderBottomLeftRadius: 100,
         paddingHorizontal: 20,
         justifyContent: 'center',
     }, 
     mid: {
-        flex: 40,
+        height: '30%',
         backgroundColor: '#f2f2f2',
         paddingHorizontal: 40,
     },
     bottom: {
-        flex: 30,
+        height: '40%',
         backgroundColor: '#f2f2f2',
         paddingHorizontal: 40,
+        paddingVertical: 40,
     },
     searchSection: {
         height: 50,
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 10,
         backgroundColor: '#fff',
-        color: '#424242',
+        color: '#9c9c9c',
     },
 })
 
