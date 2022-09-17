@@ -73,6 +73,8 @@ function Search(props){
                         renderItem={renderItem}
                         keyExtractor={(item) => item.id}
                         horizontal
+                        showsVerticalScrollIndicator={false} 
+                        showsHorizontalScrollIndicator={false}
                     />
                 </View>
                 <Text style = {{fontSize: 20, top: 40}}><Ionicons name='fast-food' size={20}/> Sản phẩm nổi bật</Text>
@@ -82,6 +84,8 @@ function Search(props){
                         renderItem={renderItem}
                         keyExtractor={(item) => item.id}
                         horizontal
+                        showsVerticalScrollIndicator={false} 
+                        showsHorizontalScrollIndicator={false}
                     />
                 </View>
                 <Text style = {{fontSize: 20, top: 70}}><Icon name='star' size={20} /> Đánh giá tốt</Text>
@@ -92,6 +96,8 @@ function Search(props){
                         keyExtractor={(item) => item.id}
                         horizontal
                         style={{marginTop: 100, marginBottom: 100, flexDirection: 'row'}}
+                        showsVerticalScrollIndicator={false} 
+                        showsHorizontalScrollIndicator={false}
                     />
                 </View>
                     
