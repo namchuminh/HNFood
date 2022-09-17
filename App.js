@@ -9,7 +9,7 @@ export default function App() {
         barStyle={'light-content'}
         showHideTransition={'fade'}
         hidden={false}/>
-      <Register/>
+      <Login/>
     </SafeAreaView>
   )
 }

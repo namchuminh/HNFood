@@ -1,13 +1,17 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView, Keyboard } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {fonts, colors, images} from '../constants/index.js'
 
+
 function Register(props){
+    const handleScroll = (event) => {
+        Keyboard.dismiss()
+    }
     return(
-        <ScrollView style={styles.container} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+        <ScrollView style={styles.container} showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} onScroll={(event) => handleScroll(event)}>
             <View  style={styles.top}>
                 <TouchableOpacity>
                     <Icon name='arrow-left'  size={27}  style={{paddingTop: 15}}/>
@@ -23,13 +27,6 @@ function Register(props){
                 <View>
                     <Text style={{color: 'black', fontSize: fonts.h1, fontWeight: 'bold', alignSelf: 'center', paddingVertical: 25}}>Tạo Tài Khoản Mới</Text>
                 </View>
-                    <View style={styles.searchSection}>
-                        <Octicons name='pencil' size={18} color={'black'} style={{paddingStart: 15}}/>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Nhập họ tên"
-                        />
-                    </View>
                     <View style={styles.searchSection}>
                         <FontAwesome name='user' size={18} color={'black'} style={{paddingStart: 15}}/>
                         <TextInput
@@ -61,7 +58,7 @@ function Register(props){
                             <Icon name='arrow-right' style={{textAlign: 'center', alignSelf: 'center' }} size={30} color={'#f2f2f2'}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={{paddingVertical: 30}}>
+                    <View style={{paddingVertical: 60}}>
                         <Text style={{textAlign: 'center', fontWeight: '500',}}>Bạn đã có tài khoản? <Text style={{fontWeight: 'bold'}}>Đăng nhập ngay!</Text> </Text>
                     </View>
                 </View>

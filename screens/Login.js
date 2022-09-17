@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView, Keyboard } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {fonts, colors, images} from '../constants/index.js'
 
 function Login(props){
+    const handleScroll = (event) => {
+        Keyboard.dismiss()
+    }
     return(
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} onScroll={(event) => handleScroll(event)}>
             <View  style={styles.top}>
                 <Image source={images.logo_food} style={{width: 100, height: 100, alignSelf: 'center'}} resizeMode={'contain'} />
                 <View style={{paddingBottom: 30}} />
