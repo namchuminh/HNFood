@@ -3,6 +3,7 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {fonts, colors, images} from '../constants/index.js'
+import {TopSearch} from '../components/index.js'
 const {width} = Dimensions.get('screen');
 
 const DATA = [
@@ -51,21 +52,7 @@ function Search(props){
     return(
         <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} onScroll={(event) => handleScroll(event)}>
         <View style={styles.container}>
-            <View  style={styles.top}>
-                <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: '8%'}}>
-                    <Text style={{fontSize: 22, fontWeight: '500', color: 'black'}}>Tìm Kiếm</Text>
-                    <View style={{flexDirection: 'row'}}>
-                        <Ionicons name="notifications" size ={22} style={{paddingEnd: 5,}}/>
-                        <Ionicons name="ios-cart" size ={22} style={{paddingStart: 5,}}/>
-                    </View>
-                </View>
-            </View>
-            <View  style={styles.search}>
-                <View style={{backgroundColor: 'white', justifyContent: 'flex-start', top: -25, flexDirection: 'row', paddingStart: 20, borderRadius: 30, borderWidth: 1, borderColor: colors.inactive, elevation: 15,}}>
-                    <Ionicons name='search-outline' size={18} style={{alignSelf: 'center',}} />
-                    <TextInput style={{borderRadius: 30, paddingStart: 5, fontSize: fonts.h4, fontWeight: '400', width: '100%', height: 50, }} placeholder='Tìm kiếm'/>
-                </View>
-            </View>
+            <TopSearch title={'Tìm Kiếm'} />
             <View  style={styles.mid}>
                 <View style={{alignSelf: 'center', width: '100%', top: 20, justifyContent: 'space-between', flexDirection: 'row',}}>
                     <FlatList
@@ -111,17 +98,6 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-    },
-    top: {
-        height: '10%',
-        backgroundColor: colors.primary,
-        paddingHorizontal: 20,
-    }, 
-    search:{
-        height: '10%',
-        backgroundColor: 'white',
-        paddingHorizontal: 20,
-        marginBottom: -20
     },
     mid: {
         height: '80%',
