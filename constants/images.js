@@ -9,6 +9,12 @@ const suachua =  require('../assets/suachua.jpg')
 const kem =  require('../assets/kem.png')
 const mochi =  require('../assets/mochi.jpg')
 const chocolate =  require('../assets/chocolate.jpg')
+const cakes =  require('../assets/cakes.png')
+const drinks =  require('../assets/drinks.jpg')
+const foods =  require('../assets/foods.jpg')
+const fruits =  require('../assets/fruits.jpg')
+const vegetables =  require('../assets/vegetables.jpg')
+const banner =  require('../assets/banner.jpg')
 
 export default {
     welcome_image,
@@ -22,4 +28,10 @@ export default {
     kem,
     mochi,
     chocolate,
+    cakes,
+    drinks,
+    foods,
+    fruits,
+    vegetables,
+    banner,
 }
