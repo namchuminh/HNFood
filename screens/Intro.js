@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {fonts, colors, images} from '../constants/index.js'
 
-function Intro(props){
+function Intro({ navigation }){
     return(
         <View style={styles.container}>
             <View  style={styles.top}>
@@ -22,11 +22,11 @@ function Intro(props){
             </View>
             <View  style={styles.mid}>
                 <View style={{alignSelf: 'center', width: '100%'}}>
-                    <TouchableOpacity style={{backgroundColor: 'white', width: '100%', height: 50, borderRadius: 30, justifyContent: 'center', alignSelf: 'center'}}>
+                    <TouchableOpacity style={{backgroundColor: 'white', width: '100%', height: 50, borderRadius: 30, justifyContent: 'center', alignSelf: 'center'}} onPress={() => navigation.navigate('Login')}>
                         <Text style={{paddingStart: 15, fontSize: fonts.h5, fontWeight: '400'}}><Ionicons name='person-outline' size={18} /> Đăng Nhập</Text>
                     </TouchableOpacity>
                     <View style={{marginVertical: 15}}/>
-                    <TouchableOpacity style={{backgroundColor: 'white', width: '100%', height: 50, borderRadius: 30, justifyContent: 'center', alignSelf: 'center'}}>
+                    <TouchableOpacity style={{backgroundColor: 'white', width: '100%', height: 50, borderRadius: 30, justifyContent: 'center', alignSelf: 'center'}} onPress={() => navigation.navigate('Register') }>
                         <Text style={{paddingStart: 15, fontSize: fonts.h5, fontWeight: '400'}}><Ionicons name='person-add-outline' size={18} /> Đăng Ký</Text>
                     </TouchableOpacity>
                     <View style={{marginVertical: 25}}/>

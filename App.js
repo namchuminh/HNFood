@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar} from 'react-native';
-import { Welcome, Intro, Login, Register, Search, Category } from './screens/index.js'
 import colors from './constants/colors.js';
+import Navigator from './navigation/Navigator.js';
 export default function App() {
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -9,7 +9,7 @@ export default function App() {
         barStyle={'light-content'}
         showHideTransition={'fade'}
         hidden={false}/>
-      <Category/>
+      <Navigator/>
     </SafeAreaView>
   )
 }

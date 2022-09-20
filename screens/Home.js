@@ -30,7 +30,7 @@ const DATA = [
   ];
 
 
-function Category(props){
+function Home(props){
 
     const renderItem = ({ item }) => {
         return (
@@ -112,5 +112,5 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Category
+export default Home
   

@@ -3,7 +3,7 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {fonts, colors, images} from '../constants/index.js'
 
-function Welcome(props){
+function Welcome({ navigation }){
     return(
         <View style={styles.container}>
             <View  style={styles.top}>
@@ -23,7 +23,9 @@ function Welcome(props){
                 </View>
                 <View style={{paddingTop: 60, width: '30%', alignItems: 'flex-end', }}>
                     <View style={{ width : '100%', height:120, position : 'absolute', left:60, borderTopLeftRadius:150, borderBottomLeftRadius:150, backgroundColor:colors.primary, justifyContent: 'center'}}>
-                        <Icon name='arrow-right' style={{textAlign: 'left', marginStart: '10%' }} size={30} color={'#f2f2f2'}/>
+                        <TouchableOpacity onPress={() => navigation.navigate('Intro') }>
+                            <Icon name='arrow-right' style={{textAlign: 'left', marginStart: '10%' }} size={30} color={'#f2f2f2'}/>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
