@@ -3,7 +3,7 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {fonts, colors, images} from '../constants/index.js'
-import {TopSearch} from '../components/index.js'
+import {TopSearch, CategoryHome} from '../components/index.js'
 const {width} = Dimensions.get('screen');
 
 const DATA = [
@@ -20,9 +20,13 @@ const DATA = [
     {
         id: '3',
         title: 'juice',
-        price: 50.000,
-        image: images.juices,
-      },
+        image: images.kem,
+    },
+    {
+        id: '4',
+        title: 'abc',
+        image: images.suachua,
+    },
   ];
 
 
@@ -30,15 +34,16 @@ function Category(props){
 
     const renderItem = ({ item }) => {
         return (
-            <View style={styles.product}>
-                <TouchableOpacity>
-                    <Image source={images.drinks} style = {styles.cardImages}/>
-                    <Text style={{ fontSize: 14, alignSelf: 'center', fontWeight: 'bold'}}>Vegetables</Text>
-                    <View style={{paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
-                    </View>
-                </TouchableOpacity>
-            </View>
+            <CategoryHome image={item.image} title={item.title} />
         )
+    };
+
+    const renderItem2 = ({ item }) => {
+        if(item.id % 2 == 0) {
+            return (
+                <CategoryHome image={item.image} title={item.title} />
+            )
+        }
     };
 
     const handleScroll = (event) => {
@@ -51,30 +56,43 @@ function Category(props){
             <TopSearch title={'Tìm Kiếm'} />
             <View  style={styles.mid}>
                 <Image source={images.banner} style={{width: '100%', height: 160, borderRadius: 10}}/>
+                <View>
                     <Text style = {{fontSize: 20, top: 10}}> Stay home food</Text> 
-                <View style={{alignSelf: 'center', width: '100%', top: 20, justifyContent: 'space-between', flexDirection: 'row',}}>
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.id}
-                        horizontal
-                        showsVerticalScrollIndicator={false} 
-                        showsHorizontalScrollIndicator={false}
-                    />
+                    <View style={{alignSelf: 'center', width: '100%', top: 20, justifyContent: 'space-between', flexDirection: 'row',}}>
+                        <FlatList
+                            data={DATA}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => item.id}
+                            horizontal
+                            showsVerticalScrollIndicator={false} 
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    </View>
+                    <View style={{alignSelf: 'center', width: '100%', top: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
+                        <FlatList
+                            data={DATA}
+                            renderItem={renderItem2}
+                            keyExtractor={(item) => item.id}
+                            horizontal
+                            style={{marginBottom: 70, flexDirection: 'row'}}
+                            showsVerticalScrollIndicator={false} 
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    </View>
                 </View>
-                <View style={{alignSelf: 'center', width: '100%', top: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.id}
-                        horizontal
-                        style={{marginBottom: 70, flexDirection: 'row'}}
-                        showsVerticalScrollIndicator={false} 
-                        showsHorizontalScrollIndicator={false}
-                    />
+                <View style={{height: 200}}>
+                    <Text style = {{fontSize: 20, top: 10}}> Stay home food</Text> 
+                    <View style={{alignSelf: 'center', width: '100%', top: 20, justifyContent: 'space-between', flexDirection: 'row',}}>
+                        <FlatList
+                            data={DATA}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => item.id}
+                            horizontal
+                            showsVerticalScrollIndicator={false} 
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    </View>
                 </View>
-
-                    
             </View>
         </View>   
         </ScrollView>
@@ -92,23 +110,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         justifyContent: 'center',
     },
-    product: {
-        height: 90,
-        width: width / 3 - 20,
-        elevation: 5,
-        backgroundColor: 'white',
-        borderRadius: 10,
-        margin: 5,
-        paddingHorizontal: 5,
-        borderWidth: 1,
-        borderColor: colors.inactive
-    },
-    cardImages: {
-        height: 60,
-        borderRadius: 10,
-        width: '100%',
-    },
-
 })
 
 export default Category
