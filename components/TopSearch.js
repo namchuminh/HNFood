@@ -28,7 +28,7 @@ function TopSearch(props){
 
 const styles = StyleSheet.create({
     top: {
-        height: 100,
+        height: '25%',
         backgroundColor: colors.primary,
         paddingHorizontal: 20,
     }, 

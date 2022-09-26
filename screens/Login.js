@@ -4,11 +4,37 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {fonts, colors, images} from '../constants/index.js'
+import React, { useState, useEffect } from 'react'; 
+const axios = require('axios').default;
 
 function Login({navigation}){
+    const [userName, setUserName] = useState("")
+    const [passWord, setPassWord] = useState("")
+
     const handleScroll = (event) => {
         Keyboard.dismiss()
     }
+
+
+    const handleLogin = () => {
+
+        const headers = {
+            "Content-Type": "application/json",
+        };
+        const url = "http://10.0.2.2:8000/api/token/";
+
+        axios.post(url, {
+            username: 'chuminhnam',
+            password: 'chuminhnam'
+        })
+        .then(function (response) {
+            console.log(response.status);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
     return(
         <KeyboardAwareScrollView  onScroll={(event)=> handleScroll(event)} showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
@@ -29,6 +55,7 @@ function Login({navigation}){
                             <TextInput
                                 style={styles.input}
                                 placeholder="Tài khoản"
+                                onChangeText={setUserName}
                             />
                         </View>
                         <View style={{paddingTop: 25}}/>
@@ -38,6 +65,7 @@ function Login({navigation}){
                                 style={styles.input}
                                 placeholder="Mật khẩu"
                                 secureTextEntry={true}
+                                onChangeText={setPassWord}
                             />
                         </View>
                     </View>
@@ -48,7 +76,7 @@ function Login({navigation}){
                 <View style={styles.bottom}>
                     <View style={{paddingTop: 25}}>
                         <TouchableOpacity style={{backgroundColor: colors.primary, height: 50, borderRadius: 35, justifyContent: 'center'}}>
-                            <Text style={{color: 'white', fontSize: fonts.h2, fontWeight: 'bold', alignSelf: 'center'}}>ĐĂNG NHẬP</Text>
+                            <Text style={{color: 'white', fontSize: fonts.h2, fontWeight: 'bold', alignSelf: 'center'}} onPress={() => handleLogin()}>ĐĂNG NHẬP</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{paddingTop: 25}} />

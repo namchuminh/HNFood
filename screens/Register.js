@@ -9,16 +9,20 @@ import {fonts, colors, images} from '../constants/index.js'
 function Register({navigation}){
     
     return(
-        <KeyboardAwareScrollView style={styles.container} showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
-            <View style={styles.container}>
+        <KeyboardAwareScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} contentContainerStyle={{flex:1}}>
+        <View style={styles.container} >
+            <View style={styles.header}>
+                <View style={{flexDirection: 'row', paddingHorizontal: 20, justifyContent: 'space-between', alignItems: 'center', width: '100%', height: '100%'}}>
                     <TouchableOpacity onPress={()=> navigation.goBack() }>
-                        <Icon name='arrow-left'  size={27}  style={{paddingTop: 15}}/>
+                        <Icon name='arrow-left'  size={27} />
                     </TouchableOpacity>
-                    <View style={{justifyContent: 'center'}}>
-                        <View style={{paddingVertical: 35}}>
-                                <Text style={{color: 'black', fontSize: fonts.h1, fontWeight: 'bold', alignSelf: 'center'}}>Tạo Tài Khoản</Text>
-                        </View>
+                    <Text style={{color: 'black', fontSize: fonts.h1, fontWeight: 'bold', alignSelf: 'center'}}>Tạo Tài Khoản</Text>
+                <View/>
+            </View>
+            </View>
+            <View style={styles.body}>
+                
+                    <View style={{justifyContent: 'center', paddingTop: 50}}>
                         <View style={styles.searchSection}>
                                 <FontAwesome name='phone' size={18} color={'black'} style={{paddingStart: 15}}/>
                                 <TextInput
@@ -46,26 +50,31 @@ function Register({navigation}){
                                     <Icon name='arrow-right' style={{textAlign: 'center', alignSelf: 'center' }} size={25} color={'#f2f2f2'}/>
                                 </TouchableOpacity>
                             </View>
-                        </View>
+                        </View>     
                     </View>   
-                    
             </View>
-        </KeyboardAwareScrollView>
-            
+        </View>
+        </KeyboardAwareScrollView>    
     )
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: colors.primary,
-      paddingHorizontal: 10,
+      backgroundColor: 'white',
     },
- 
+    header: {
+        height: '10%',
+        backgroundColor: colors.primary,
+    },
+    body: {
+        height: '90%',
+        paddingHorizontal: 25,
+    },
     searchSection: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#f2f2f2',
         borderRadius: 30, 
         marginBottom: 20,
     },
@@ -77,7 +86,7 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         paddingBottom: 10,
         paddingLeft: 10,
-        backgroundColor: '#fff',
+        backgroundColor: '#f2f2f2',
         color: '#424242',
     },
 })
