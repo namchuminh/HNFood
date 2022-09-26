@@ -7,7 +7,7 @@ function CategoryHome(props){
         <View style={styles.product}>
             <TouchableOpacity>
                 <Image source={props.image} style = {styles.cardImages}/>
-                <Text style={{ fontSize: 14, alignSelf: 'center', fontWeight: 'bold'}}>{props.title}</Text>
+                <Text style={{ fontSize: 16, alignSelf: 'center', fontWeight: 'bold', marginTop: 20}}>{props.title}</Text>
                 <View style={{paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
                 </View>
             </TouchableOpacity>
@@ -17,8 +17,8 @@ function CategoryHome(props){
 
 const styles = StyleSheet.create({
     product: {
-        height: 90,
-        width: width / 3 - 20,
+        height: 210,
+        width: width / 2 - 30,
         elevation: 5,
         backgroundColor: 'white',
         borderRadius: 10,
@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
         borderColor: colors.inactive
     },
     cardImages: {
-        height: 60,
+        height: 140,
         borderRadius: 10,
+        marginTop: 5,
         width: '100%',
     },
 })

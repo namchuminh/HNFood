@@ -9,22 +9,22 @@ const {width} = Dimensions.get('screen');
 const DATA = [
     {
       id: '1',
-      title: 'Vegetables',
-      image: images.vegetables,
+      title: 'Sô cô la',
+      image: images.chocolate,
     },
     {
       id: '2',
-      title: 'Fruits',
-      image: images.fruits,
+      title: 'Kẹo',
+      image: images.keo,
     },
     {
         id: '3',
-        title: 'juice',
+        title: 'Kem',
         image: images.kem,
     },
     {
         id: '4',
-        title: 'abc',
+        title: 'Sữa chua mít',
         image: images.suachua,
     },
   ];
@@ -49,45 +49,35 @@ function Home(props){
     const handleScroll = (event) => {
         Keyboard.dismiss()
     }
+
       
     return(
         <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} onScroll={(event) => handleScroll(event)}>
         <View style={styles.container}>
             <TopSearch title={'Tìm Kiếm'} />
             <View  style={styles.mid}>
-                <Image source={images.banner} style={{width: '100%', height: 160, borderRadius: 10}}/>
+                <Image source={images.banner} style={{width: '100%', height: 200, borderRadius: 10}}/>
                 <View>
-                    <Text style = {{fontSize: 20, top: 10}}> Stay home food</Text> 
+                    <Text style = {{fontSize: 20, top: 10}}> Đồ ăn vặt</Text> 
                     <View style={{alignSelf: 'center', width: '100%', top: 20, justifyContent: 'space-between', flexDirection: 'row',}}>
                         <FlatList
                             data={DATA}
                             renderItem={renderItem}
                             keyExtractor={(item) => item.id}
                             horizontal
-                            showsVerticalScrollIndicator={false} 
-                            showsHorizontalScrollIndicator={false}
-                        />
-                    </View>
-                    <View style={{alignSelf: 'center', width: '100%', top: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                        <FlatList
-                            data={DATA}
-                            renderItem={renderItem2}
-                            keyExtractor={(item) => item.id}
-                            horizontal
-                            style={{marginBottom: 70, flexDirection: 'row'}}
                             showsVerticalScrollIndicator={false} 
                             showsHorizontalScrollIndicator={false}
                         />
                     </View>
                 </View>
-                <View style={{height: 200}}>
-                    <Text style = {{fontSize: 20, top: 10}}> Stay home food</Text> 
-                    <View style={{alignSelf: 'center', width: '100%', top: 20, justifyContent: 'space-between', flexDirection: 'row',}}>
+                <View style={{height: 350}}>
+                    <View style={{alignSelf: 'center', width: '100%', top: 40, justifyContent: 'space-between', flexDirection: 'row',}}>
                         <FlatList
                             data={DATA}
                             renderItem={renderItem}
                             keyExtractor={(item) => item.id}
                             horizontal
+                            style={{ marginBottom: 100, flexDirection: 'row'}}
                             showsVerticalScrollIndicator={false} 
                             showsHorizontalScrollIndicator={false}
                         />

@@ -3,15 +3,15 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {fonts, colors, images} from '../constants/index.js'
-import {TopSearch} from '../components/index.js'
+import {TopSearch, CategoryHome} from '../components/index.js'
 const {width} = Dimensions.get('screen');
 
 const DATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'Hamburger',
-      price: 50.000,
-      image: images.hamburger,
+      title: 'Bánh',
+      price: 70.000,
+      image: images.cakes,
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -20,10 +20,10 @@ const DATA = [
       image: images.hamburger,
     },
     {
-        id: '3ac68afc-c695-48d3-a4f8-fbd91aa97f63',
-        title: 'Hamburger',
-        price: 50.000,
-        image: images.hamburger,
+        id: '3ac68afc-c695-48d3-a4f8-fbd91aa97f53',
+        title: 'Pizza',
+        price: 150.000,
+        image: images.pizza,
       },
   ];
 

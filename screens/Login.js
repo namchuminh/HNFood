@@ -43,9 +43,9 @@ function Login({navigation}){
                     <View>
                         <Image source={images.logo_food} style={{width: 100, height: 100, alignSelf: 'center'}} resizeMode={'contain'} />
                     </View>
-                    <View style={{alignSelf: 'flex-end', paddingVertical: 25}}>
+                    <TouchableOpacity style={{alignSelf: 'flex-end', paddingVertical: 25}}>
                         <Text style={{fontWeight: '600', fontSize: fonts.h3, color: 'white'}}><Icon name='login' size={17}/> Đăng Nhập</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 
                 <View  style={styles.mid}>

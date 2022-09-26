@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         height: '10%',
         backgroundColor: 'white',
         paddingHorizontal: 20,
-        marginBottom: -20
+        marginBottom: -50
     },
 })
 

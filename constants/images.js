@@ -15,6 +15,11 @@ const foods =  require('../assets/foods.jpg')
 const fruits =  require('../assets/fruits.jpg')
 const vegetables =  require('../assets/vegetables.jpg')
 const banner =  require('../assets/banner.jpg')
+const keo =  require('../assets/keo.jpg')
+const noodles =  require('../assets/noodles.jpg')
+const noodles2 =  require('../assets/noodles2.png')
+const noodles3 =  require('../assets/noodles3.jpg')
+const avatar =  require('../assets/avatar.png')
 
 export default {
     welcome_image,
@@ -34,4 +39,9 @@ export default {
     fruits,
     vegetables,
     banner,
+    keo,
+    noodles,
+    noodles2,
+    noodles3,
+    avatar,
 }
