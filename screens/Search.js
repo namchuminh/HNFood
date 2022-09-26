@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
     },
     mid: {
-        height: '80%',
+        flex: 70,
         paddingHorizontal: 20,
         backgroundColor: 'white',
         justifyContent: 'center',

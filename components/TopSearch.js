@@ -6,8 +6,8 @@ import {fonts, colors, images} from '../constants/index.js'
 
 function TopSearch(props){
     return (
-        <View>
-            <View  style={styles.top}>
+        <View style={styles.top}>
+            <View >
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingTop: '8%'}}>
                     <Text style={{fontSize: 22, fontWeight: '500', color: 'black'}}>{props.title}</Text>
                     <View style={{flexDirection: 'row'}}>
@@ -28,15 +28,14 @@ function TopSearch(props){
 
 const styles = StyleSheet.create({
     top: {
-        height: '25%',
+        flex: 30,
         backgroundColor: colors.primary,
         paddingHorizontal: 20,
     }, 
     search:{
-        height: '10%',
         backgroundColor: 'white',
         paddingHorizontal: 20,
-        marginBottom: -50
+        marginBottom: 10
     },
 })
 
