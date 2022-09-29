@@ -4,7 +4,7 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
-import { TopSearch, CategoryProduct} from '../components/index.js'
+import { TopSearch, CategoryDetailsProduct } from '../components/index.js'
 const { width } = Dimensions.get('screen');
 
 
@@ -12,19 +12,20 @@ const { width } = Dimensions.get('screen');
 
 const DATA = [
     {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb1',
-        title: 'Nước giải khát',
-        image: images.drinks,
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb245',
+        title: 'Nước ép cam',
+        price: 15000,
+        image: images.nuoccam,
     },
 ];
 
 
-function Category(props) {
+function Product(props) {
 
 
     const renderItem = ({ item }) => {
         return (
-            <CategoryProduct image={item.image} title={item.title} describe={item.describe} />
+            <CategoryDetailsProduct image={item.image} title={item.title} price={item.price} />
         )
 
     };
@@ -41,7 +42,7 @@ function Category(props) {
                         <TouchableOpacity style={{ paddingRight: 20 }}>
                             <Ionicons name="arrow-back-outline" size={25} />
                         </TouchableOpacity>
-                        <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Danh mục sản phẩm</Text>
+                        <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Nước giải khát</Text>
                         <View style={{ flex: 1 }} />
                         <TouchableOpacity>
                             <Ionicons name="notifications" size={22} style={{ paddingEnd: 5, }} />
@@ -64,13 +65,14 @@ function Category(props) {
                             data={DATA}
                             renderItem={renderItem}
                             keyExtractor={(item) => item.id}
-                            style={{ marginBottom: 100 }}
                             showsVerticalScrollIndicator={false}
                             showsHorizontalScrollIndicator={false}
                         />
                     </View>
 
-                </View></ScrollView>
+                </View>
+                
+            </ScrollView>
         </View>
 
 
@@ -94,8 +96,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingTop: 20,
         paddingBottom: 30
+    },
+
+    order: {
+        flex: 1,
+        borderWidth: 1,
+        color: 'white',
+        backgroundColor: colors.primary,
+        borderWidth: 1,
+        borderColor: colors.primary,
+        borderRadius: 10,
+        paddingHorizontal: 100,
+        paddingVertical: 20,
+        marginBottom: 100
+
     }
 })
 
-export default Category
+export default Product
 

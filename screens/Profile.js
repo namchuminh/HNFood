@@ -33,8 +33,8 @@ function Profile(props) {
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: '8%', marginHorizontal: 10 }}>
                         <Image source={images.avatar} style={{ width: 80, height: 80, borderRadius: 40 }} />
                         <View>
-                            <Text style={{ fontSize: 20, paddingHorizontal: 20, paddingTop: 25 }}>Nam Ngu Óc</Text>
-                            <Text style={{ fontSize: 14, paddingHorizontal: 20, color: 'grey' }}>namngu@gmail.com</Text>
+                            <Text style={{ fontSize: 20, paddingHorizontal: 20, paddingTop: 25 }}>Nguyễn Văn A</Text>
+                            <Text style={{ fontSize: 14, paddingHorizontal: 20, color: 'grey' }}>nguyenvana@gmail.com</Text>
                         </View>
 
                     </View>
@@ -59,7 +59,7 @@ function Profile(props) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Họ tên</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>Nam Ngu Óc</Text>
+                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>Nguyễn Văn A</Text>
                         </View>
                         <TouchableOpacity>
                             <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />
@@ -81,7 +81,7 @@ function Profile(props) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Địa chỉ Email</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>namngu@gmail</Text>
+                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>nguyenvana@gmail.com</Text>
                         </View>
                         <TouchableOpacity>
                             <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />

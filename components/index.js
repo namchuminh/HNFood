@@ -1,10 +1,14 @@
 import TopSearch from "./TopSearch"
 import CategoryHome from "./CategoryHome"
-import CategoryProduct from "./CategoryProduct"
+import CartProduct from "./CartProduct"
 import CategoryDetails from "./CategoryDetails"
+import CategoryProduct from "./CategoryProduct"
+import CategoryDetailsProduct from "./CategoryDetailsProduct"
 export{
     TopSearch,
     CategoryHome,
-    CategoryProduct,
+    CartProduct,
     CategoryDetails,
+    CategoryProduct,
+    CategoryDetailsProduct,
 }

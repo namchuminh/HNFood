@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar} from 'react-native';
 import colors from './constants/colors.js';
 import Navigator from './navigation/Navigator.js';
-import {Welcome, Home, Intro, Login, Register, Search, Category, Details, Profile, Password} from './screens/index.js';
+import {Welcome, Home, Intro, Login, Register, Search, Category, Details, Profile, Password, Cart, Product} from './screens/index.js';
 export default function App() {
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -10,7 +10,7 @@ export default function App() {
         barStyle={'light-content'}
         showHideTransition={'fade'}
         hidden={false}/>
-      <Home/>
+      <Product/>
     </SafeAreaView>
   )
 }

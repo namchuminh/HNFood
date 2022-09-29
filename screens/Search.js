@@ -2,43 +2,43 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextI
 import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import {fonts, colors, images} from '../constants/index.js'
-import {TopSearch, CategoryHome} from '../components/index.js'
-const {width} = Dimensions.get('screen');
+import { fonts, colors, images } from '../constants/index.js'
+import { TopSearch, CategoryHome } from '../components/index.js'
+const { width } = Dimensions.get('screen');
 
 const DATA = [
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'Bánh',
-      price: 70.000,
-      image: images.cakes,
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'Bánh',
+        price: 70.000,
+        image: images.cakes,
     },
     {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Hamburger',
-      price: 50.000,
-      image: images.hamburger,
+        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+        title: 'Hamburger',
+        price: 50.000,
+        image: images.hamburger,
     },
     {
         id: '3ac68afc-c695-48d3-a4f8-fbd91aa97f53',
         title: 'Pizza',
         price: 150.000,
         image: images.pizza,
-      },
-  ];
+    },
+];
 
 
-function Search(props){
+function Search(props) {
 
     const renderItem = ({ item }) => {
         return (
             <View style={styles.product}>
-                <Image source={images.hamburger} style = {styles.cardImages}/>
-                <Text style={{ fontSize: 14, alignSelf: 'center', fontWeight: 'bold'}}>Hamburger</Text>
-                <View style={{paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text style={{ fontSize: 14, fontWeight: 'bold', color: colors.primary}}>50.000đ</Text>
-                    <TouchableOpacity style={{alignSelf: 'flex-end',backgroundColor: colors.primary, width: 30, height: 30, borderTopLeftRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center'}}>
-                        <Icon name='plus-circle' style={{textAlign: 'center', alignSelf: 'center' }} size={20} color={'white'}/>
+                <Image source={images.hamburger} style={styles.cardImages} />
+                <Text style={{ fontSize: 14, alignSelf: 'center', fontWeight: 'bold' }}>Hamburger</Text>
+                <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={{ fontSize: 14, fontWeight: 'bold', color: colors.primary }}>50.000đ</Text>
+                    <TouchableOpacity style={{ alignSelf: 'flex-end', backgroundColor: colors.primary, width: 30, height: 30, borderTopLeftRadius: 10, borderBottomRightRadius: 10, justifyContent: 'center' }}>
+                        <Icon name='plus-circle' style={{ textAlign: 'center', alignSelf: 'center' }} size={20} color={'white'} />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -48,56 +48,74 @@ function Search(props){
     const handleScroll = (event) => {
         Keyboard.dismiss()
     }
-      
-    return(
+
+    return (
         <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} onScroll={(event) => handleScroll(event)}>
-        <View style={styles.container}>
-            <TopSearch title={'Tìm Kiếm'} />
-            <View  style={styles.mid}>
-                <View style={{alignSelf: 'center', width: '100%', top: 20, justifyContent: 'space-between', flexDirection: 'row',}}>
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.id}
-                        horizontal
-                        showsVerticalScrollIndicator={false} 
-                        showsHorizontalScrollIndicator={false}
-                    />
+            <View style={styles.container}>
+                <View style={styles.top}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
+                        <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Trang Chủ</Text>
+                        <View style={{ flex: 1 }} />
+                        <Ionicons name="notifications" size={22} style={{ paddingEnd: 5, }} />
+                        <Ionicons name="ios-cart" size={22} style={{ paddingStart: 5, }} />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                        <View style={{ backgroundColor: 'white', justifyContent: 'flex-start', flexDirection: 'row', paddingStart: 20, borderRadius: 30, borderWidth: 1, borderColor: colors.inactive, marginBottom: 10 }}>
+                            <Ionicons name='search-outline' size={18} style={{ alignSelf: 'center', }} />
+                            <TextInput style={{ borderRadius: 30, paddingStart: 5, fontSize: fonts.h4, fontWeight: '400', width: '100%', height: 50, }} placeholder='Tìm kiếm' />
+                        </View>
+                    </View>
                 </View>
-                <Text style = {{fontSize: 20, top: 40}}><Ionicons name='fast-food' size={20}/> Sản phẩm nổi bật</Text>
-                <View style={{alignSelf: 'center', width: '100%', top: 50, justifyContent: 'space-between', flexDirection: 'row', }}>
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.id}
-                        horizontal
-                        showsVerticalScrollIndicator={false} 
-                        showsHorizontalScrollIndicator={false}
-                    />
+                <View style={styles.mid}>
+                    <View style={{ alignSelf: 'center', width: '100%', top: 20, justifyContent: 'space-between', flexDirection: 'row', }}>
+                        <FlatList
+                            data={DATA}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => item.id}
+                            horizontal
+                            showsVerticalScrollIndicator={false}
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    </View>
+                    <Text style={{ fontSize: 20, top: 40 }}><Ionicons name='fast-food' size={20} /> Sản phẩm nổi bật</Text>
+                    <View style={{ alignSelf: 'center', width: '100%', top: 50, justifyContent: 'space-between', flexDirection: 'row', }}>
+                        <FlatList
+                            data={DATA}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => item.id}
+                            horizontal
+                            showsVerticalScrollIndicator={false}
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    </View>
+                    <Text style={{ fontSize: 20, top: 70 }}><Icon name='star' size={20} /> Đánh giá tốt</Text>
+                    <View>
+                        <FlatList
+                            data={DATA}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => item.id}
+                            horizontal
+                            style={{ marginTop: 100, marginBottom: 100, flexDirection: 'row' }}
+                            showsVerticalScrollIndicator={false}
+                            showsHorizontalScrollIndicator={false}
+                        />
+                    </View>
+
                 </View>
-                <Text style = {{fontSize: 20, top: 70}}><Icon name='star' size={20} /> Đánh giá tốt</Text>
-                <View>
-                    <FlatList
-                        data={DATA}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.id}
-                        horizontal
-                        style={{marginTop: 100, marginBottom: 100, flexDirection: 'row'}}
-                        showsVerticalScrollIndicator={false} 
-                        showsHorizontalScrollIndicator={false}
-                    />
-                </View>
-                    
             </View>
-        </View>   
         </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    top: {
+        flex: 30,
+        backgroundColor: colors.primary,
+        paddingHorizontal: 20
     },
     mid: {
         flex: 70,
@@ -125,4 +143,4 @@ const styles = StyleSheet.create({
 })
 
 export default Search
-  
+

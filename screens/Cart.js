@@ -4,7 +4,7 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
-import { TopSearch, CategoryProduct} from '../components/index.js'
+import { TopSearch, CartProduct } from '../components/index.js'
 const { width } = Dimensions.get('screen');
 
 
@@ -12,19 +12,50 @@ const { width } = Dimensions.get('screen');
 
 const DATA = [
     {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb1',
-        title: 'Nước giải khát',
-        image: images.drinks,
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+        title: 'Sữa chua mít',
+        price: 25000,
+        image: images.suachua,
+    },
+    {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bc',
+        title: 'Kẹo mút',
+        price: 2000,
+        image: images.keo,
+    },
+    {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28be',
+        title: 'Pizza',
+        price: 149000,
+        image: images.pizza,
+    },
+    {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bq',
+        title: 'Sô cô la',
+        price: 39000,
+        image: images.chocolate,
+    },
+    {
+        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bt',
+        title: 'Kem',
+        price: 10000,
+        image: images.kem,
+    },
+    {
+        id: 'bd7acbea-c1b1-42g2-aed5-3ad53abb28bc',
+        title: 'Bánh mochi',
+        price: 169000,
+        image: images.mochi,
     },
 ];
 
 
-function Category(props) {
+function Cart(props) {
 
 
     const renderItem = ({ item }) => {
         return (
-            <CategoryProduct image={item.image} title={item.title} describe={item.describe} />
+            <CartProduct image={item.image} title={item.title} price={item.price} />
         )
 
     };
@@ -41,7 +72,7 @@ function Category(props) {
                         <TouchableOpacity style={{ paddingRight: 20 }}>
                             <Ionicons name="arrow-back-outline" size={25} />
                         </TouchableOpacity>
-                        <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Danh mục sản phẩm</Text>
+                        <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Giỏ hàng</Text>
                         <View style={{ flex: 1 }} />
                         <TouchableOpacity>
                             <Ionicons name="notifications" size={22} style={{ paddingEnd: 5, }} />
@@ -64,13 +95,19 @@ function Category(props) {
                             data={DATA}
                             renderItem={renderItem}
                             keyExtractor={(item) => item.id}
-                            style={{ marginBottom: 100 }}
                             showsVerticalScrollIndicator={false}
                             showsHorizontalScrollIndicator={false}
                         />
                     </View>
 
-                </View></ScrollView>
+                </View>
+                <View style={styles.bottom}>
+                    <TouchableOpacity style={{ alignSelf: 'center' }}>
+
+                        <Text style={styles.order}>Thanh toán</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
         </View>
 
 
@@ -89,13 +126,29 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
     mid: {
-        flex: 70,
+        flex: 60,
         backgroundColor: 'white',
         justifyContent: 'center',
         paddingTop: 20,
         paddingBottom: 30
+    },
+    bottom: {
+        flex: 10
+    },
+    order: {
+        flex: 1,
+        borderWidth: 1,
+        color: 'white',
+        backgroundColor: colors.primary,
+        borderWidth: 1,
+        borderColor: colors.primary,
+        borderRadius: 10,
+        paddingHorizontal: 100,
+        paddingVertical: 20,
+        marginBottom: 100
+
     }
 })
 
-export default Category
+export default Cart
 

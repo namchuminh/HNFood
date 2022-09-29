@@ -51,7 +51,7 @@ function Details(props) {
                     </View>
                 </View>
                 <View style={styles.mid}>
-                    <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column', paddingTop: 10 }}>
+                    <View style={{ alignSelf: 'center', width: '100%', justifyContent: 'space-between'}}>
                         <FlatList
                             data={DATA}
                             renderItem={renderItem}
@@ -62,6 +62,8 @@ function Details(props) {
                             showsHorizontalScrollIndicator={false}
                         />
                     </View>
+                </View>
+                <View style={styles.bottom}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, marginBottom: 20 }}>
                         <Text style={{ fontSize: 24 }}>Mỳ Quảng</Text>
                         <Text style={{ fontSize: 24, marginRight: 20 }}>50.000đ</Text>
@@ -126,6 +128,19 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
+    top: {
+        flex: 20,
+        backgroundColor: 'white',
+        paddingHorizontal: 10
+    },
+    mid: {
+        flex: 80,
+        backgroundColor: 'white',
+        paddingHorizontal: 10
+    },
+    bottom: {
+        paddingHorizontal: 10
+    }
 })
 
 export default Details

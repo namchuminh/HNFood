@@ -20,6 +20,7 @@ const noodles =  require('../assets/noodles.jpg')
 const noodles2 =  require('../assets/noodles2.png')
 const noodles3 =  require('../assets/noodles3.jpg')
 const avatar =  require('../assets/avatar.png')
+const nuoccam =  require('../assets/nuoccam.jpg')
 
 export default {
     welcome_image,
@@ -44,4 +45,5 @@ export default {
     noodles2,
     noodles3,
     avatar,
+    nuoccam,
 }

@@ -8,6 +8,8 @@ import Category from "./Category.js"
 import Details from "./Details.js"
 import Profile from "./Profile.js"
 import Password from "./Password"
+import Cart from "./Cart"
+import Product from "./Product"
 export{
     Welcome,
     Intro,
@@ -19,4 +21,6 @@ export{
     Details,
     Profile,
     Password,
+    Cart,
+    Product,
 }
