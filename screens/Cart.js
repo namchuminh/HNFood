@@ -69,9 +69,6 @@ function Cart(props) {
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} onScroll={(event) => handleScroll(event)}>
                 <View style={styles.top}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
-                        <TouchableOpacity style={{ paddingRight: 20 }}>
-                            <Ionicons name="arrow-back-outline" size={25} />
-                        </TouchableOpacity>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Giỏ hàng</Text>
                         <View style={{ flex: 1 }} />
                         <TouchableOpacity>

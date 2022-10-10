@@ -6,8 +6,8 @@ function CategoryHome(props){
     return(
         <View style={styles.product}>
             <TouchableOpacity>
-                <Image source={props.image} style = {styles.cardImages}/>
-                <Text style={{ fontSize: 16, alignSelf: 'center', fontWeight: 'bold', marginTop: 20}}>{props.title}</Text>
+                <Image source={{uri: "http://10.0.2.2:8000" + props.image}} style = {styles.cardImages}/>
+                <Text style={{ fontSize: 16, alignSelf: 'center', fontWeight: 'bold', marginTop: 20}}>{props.name}</Text>
                 <View style={{paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
                 </View>
             </TouchableOpacity>

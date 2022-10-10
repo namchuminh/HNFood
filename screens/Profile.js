@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard, Picker } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -6,33 +6,44 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CategoryDetails } from '../components/index.js'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthContext } from "../context/AuthContext.js";
 const { width } = Dimensions.get('screen');
-
+const axios = require('axios').default;
 
 function Profile(props) {
+    const [data, setData] = useState({})
+    const {token} = useContext(AuthContext)
 
-    const handleScroll = (event) => {
-        Keyboard.dismiss()
-    }
-
+    useEffect(()=>{
+        axios.get("http://10.0.2.2:8000/api/user/",
+            {
+                headers: {
+                    Authorization : "Bearer " + token.access,
+                }
+            }
+        )
+            .then((response) => {
+                setData(response.data)
+            },
+            (error) => {
+                alert("Ket noi khong thanh cong!")
+            }
+        )
+    },[])
+    
     return (
 
         <View style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} onScroll={(event) => handleScroll(event)}>
+            <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
                 <View style={styles.top}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, backgroundColor: colors.primary, paddingVertical: 15 }}>
-                        <TouchableOpacity>
-                            <Ionicons name="arrow-back-outline" size={25} />
-                        </TouchableOpacity>
-                        <Text style={{ fontSize: 20 }}>Thông tin cá nhân</Text>
-                        <TouchableOpacity>
-                            <Ionicons name="cart-outline" size={30} />
-                        </TouchableOpacity>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: colors.primary, paddingVertical: 15 }}>
+                        <Text style={{ fontSize: 20, alignSelf: 'center' }}>Thông tin cá nhân</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: '8%', marginHorizontal: 10 }}>
-                        <Image source={images.avatar} style={{ width: 80, height: 80, borderRadius: 40 }} />
+                        <Image source={{uri: "http://10.0.2.2:8000"+data.avatar }} style={{ width: 80, height: 80, borderRadius: 40 }} />
                         <View>
-                            <Text style={{ fontSize: 20, paddingHorizontal: 20, paddingTop: 25 }}>Nguyễn Văn A</Text>
+                            <Text style={{ fontSize: 20, paddingHorizontal: 20, paddingTop: 25 }}>{data.first_name + " " + data.last_name}</Text>
                             <Text style={{ fontSize: 14, paddingHorizontal: 20, color: 'grey' }}>nguyenvana@gmail.com</Text>
                         </View>
 

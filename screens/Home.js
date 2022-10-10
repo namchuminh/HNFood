@@ -4,46 +4,35 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CategoryHome } from '../components/index.js'
+import { useEffect, useState } from 'react'
 const { width } = Dimensions.get('screen');
-
-const DATA = [
-    {
-        id: '1',
-        title: 'Sô cô la',
-        image: images.chocolate,
-    },
-    {
-        id: '2',
-        title: 'Kẹo',
-        image: images.keo,
-    },
-    {
-        id: '3',
-        title: 'Kem',
-        image: images.kem,
-    },
-    {
-        id: '4',
-        title: 'Sữa chua mít',
-        image: images.suachua,
-    },
-];
-
+const axios = require('axios').default;
 
 function Home(props) {
+    const [data, setData] = useState([]);
 
-    const renderItem = ({ item }) => {
-        return (
-            <CategoryHome image={item.image} title={item.title} />
-        )
-    };
+    useEffect(()=>{
+        axios.get('http://10.0.2.2:8000/api/food/')
+        .then(function (response) {
+            // handle success
+            setData(response.data)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+    }, [])
 
-    const renderItem2 = ({ item }) => {
-        if (item.id % 2 == 0) {
+
+    const renderItemDoAnNhanh = ({ item }) => item.category == 1 ? <CategoryHome image={item.image} name={item.name} /> : null
+  
+
+    const renderItemDoAnCom = ({ item }) => {
+        if(item.category == 3){
             return (
-                <CategoryHome image={item.image} title={item.title} />
+                <CategoryHome image={item.image} name={item.name} />
             )
-        }
+        } 
     };
 
     return (
@@ -66,26 +55,24 @@ function Home(props) {
                 <View style={styles.mid}>
                     <Image source={images.banner} style={{ width: '100%', height: 200, borderRadius: 10 }} />
                     <View>
-                        <Text style={{ fontSize: 20, top: 10 }}> Đồ ăn vặt</Text>
+                        <Text style={{ fontSize: 20, top: 10 }}> Đồ ăn nhanh</Text>
                         <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                             <FlatList
-                                data={DATA}
-                                renderItem={renderItem}
+                                data={data}
+                                renderItem={renderItemDoAnNhanh}
                                 keyExtractor={(item) => item.id}
                                 horizontal
                                 showsVerticalScrollIndicator={false}
                                 showsHorizontalScrollIndicator={false}
                             />
                         </View>
-                    </View>
-                    <View>
+                        <Text style={{ fontSize: 20, top: 10 }}> Đồ ăn cơm</Text>
                         <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                             <FlatList
-                                data={DATA}
-                                renderItem={renderItem}
+                                data={data}
+                                renderItem={renderItemDoAnCom}
                                 keyExtractor={(item) => item.id}
                                 horizontal
-                                style={{flexDirection: 'row' }}
                                 showsVerticalScrollIndicator={false}
                                 showsHorizontalScrollIndicator={false}
                             />

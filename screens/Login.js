@@ -12,16 +12,14 @@ function Login({ navigation }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleScroll = (event) => {
-        Keyboard.dismiss()
-    }
+  
 
     const {login, error} = useContext(AuthContext)
 
     
 
     return (
-        <KeyboardAwareScrollView onScroll={(event) => handleScroll(event)} showsVerticalScrollIndicator={false}
+        <KeyboardAwareScrollView showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}>
             <View style={styles.container}>
                 <View style={styles.top}>

@@ -33,7 +33,7 @@ export const AuthProvider = ({children}) => {
         })
         .then(function (response) {
             setToken(response.data)
-            storeData(response.data)
+            AsyncStorage.setItem('@token', JSON.stringify(token))
         })
         .catch(function (err) {
             setError("Sai tài khoản hoặc mật khẩu!")
