@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, StatusBar} from 'react-native';
 import colors from './constants/colors.js';
 import Navigator from './navigation/Navigator.js';
+import { AuthProvider } from './context/AuthContext.js';
 import {Welcome, Home, Intro, Login, Register, Search, Category, Details, Profile, Password, Cart, Product} from './screens/index.js';
 export default function App() {
   return (
@@ -10,7 +11,9 @@ export default function App() {
         barStyle={'light-content'}
         showHideTransition={'fade'}
         hidden={false}/>
-      <Product/>
+      <AuthProvider>
+        <Navigator/>
+      </AuthProvider>
     </SafeAreaView>
   )
 }

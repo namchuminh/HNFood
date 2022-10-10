@@ -20,16 +20,15 @@ function Profile(props) {
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} onScroll={(event) => handleScroll(event)}>
                 <View style={styles.top}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: '8%', marginHorizontal: 10 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, backgroundColor: colors.primary, paddingVertical: 15 }}>
                         <TouchableOpacity>
-                            <Ionicons name="arrow-back-outline" size={30} />
+                            <Ionicons name="arrow-back-outline" size={25} />
                         </TouchableOpacity>
                         <Text style={{ fontSize: 20 }}>Thông tin cá nhân</Text>
                         <TouchableOpacity>
                             <Ionicons name="cart-outline" size={30} />
                         </TouchableOpacity>
                     </View>
-                    <View style={{ borderBottomColor: 'grey', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10, paddingVertical: 5 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: '8%', marginHorizontal: 10 }}>
                         <Image source={images.avatar} style={{ width: 80, height: 80, borderRadius: 40 }} />
                         <View>

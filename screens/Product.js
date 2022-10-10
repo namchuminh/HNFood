@@ -61,13 +61,9 @@ function Product(props) {
                 </View>
                 <View style={styles.mid}>
                     <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column' }}>
-                        <FlatList
-                            data={DATA}
-                            renderItem={renderItem}
-                            keyExtractor={(item) => item.id}
-                            showsVerticalScrollIndicator={false}
-                            showsHorizontalScrollIndicator={false}
-                        />
+                        {
+                            DATA.map((item) => <CategoryDetailsProduct key={item.id} image={item.image} title={item.title} price={item.price} />)
+                        }
                     </View>
 
                 </View>

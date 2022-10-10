@@ -54,7 +54,7 @@ function Search(props) {
             <View style={styles.container}>
                 <View style={styles.top}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
-                        <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Trang Chủ</Text>
+                        <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Tìm Kiếm</Text>
                         <View style={{ flex: 1 }} />
                         <Ionicons name="notifications" size={22} style={{ paddingEnd: 5, }} />
                         <Ionicons name="ios-cart" size={22} style={{ paddingStart: 5, }} />

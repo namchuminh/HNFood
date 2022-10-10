@@ -9,7 +9,7 @@ function CategoryProduct(props) {
 
             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Image source={props.image} style={styles.cardImages} />
-                <Text style={{ fontSize: 20, paddingVertical: 30}}>{props.title}</Text>
+                <Text style={{ fontSize: 20, paddingVertical: 30}}>{props.name}</Text>
                 <TouchableOpacity style={{ alignSelf: 'center', marginBottom: 20, marginRight: 10, paddingTop: 15 }}>
                     <Ionicons name="arrow-forward-outline" size={25} style={{color: colors.primary}} />
                 </TouchableOpacity>
@@ -24,18 +24,16 @@ const styles = StyleSheet.create({
         height: 100,
         width: 100,
         borderRadius: 10
-
     },
     product: {
         height: 120,
-        width: 350,
         elevation: 5,
         backgroundColor: 'white',
         borderRadius: 10,
         margin: 5,
         paddingHorizontal: 5,
         borderWidth: 1,
-        marginLeft: 20,
+        marginHorizontal: 10,
         borderColor: colors.inactive
     },
 })

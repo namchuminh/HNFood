@@ -30,14 +30,13 @@ const styles = StyleSheet.create({
     },
     product: {
         height: 120,
-        width: 350,
         elevation: 5,
         backgroundColor: 'white',
         borderRadius: 10,
         margin: 5,
         paddingHorizontal: 5,
         borderWidth: 1,
-        marginLeft: 20,
+        marginHorizontal: 10,
         borderColor: colors.inactive
     },
 })

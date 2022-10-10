@@ -6,32 +6,31 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CategoryProduct} from '../components/index.js'
 const { width } = Dimensions.get('screen');
+const axios = require('axios').default;
 
 
 
-
-const DATA = [
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb1',
-        title: 'Nước giải khát',
-        image: images.drinks,
-    },
-];
 
 
 function Category(props) {
 
+    
+    const [data, setData] = useState([]);
 
-    const renderItem = ({ item }) => {
-        return (
-            <CategoryProduct image={item.image} title={item.title} describe={item.describe} />
-        )
+    axios.get('http://10.0.2.2:8000/api/food/category/')
+        .then(function (response) {
+            // handle success
+            setData(response.data)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
 
-    };
+
     const handleScroll = (event) => {
         Keyboard.dismiss()
     }
-
     return (
 
         <View style={styles.container}>
@@ -60,17 +59,12 @@ function Category(props) {
                 </View>
                 <View style={styles.mid}>
                     <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column' }}>
-                        <FlatList
-                            data={DATA}
-                            renderItem={renderItem}
-                            keyExtractor={(item) => item.id}
-                            style={{ marginBottom: 100 }}
-                            showsVerticalScrollIndicator={false}
-                            showsHorizontalScrollIndicator={false}
-                        />
+                        {
+                            data.map((item, index) => <CategoryProduct key={index} image={item.image} name={item.name}/>)
+                        }
                     </View>
-
-                </View></ScrollView>
+                </View>
+                </ScrollView>
         </View>
 
 

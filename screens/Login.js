@@ -4,40 +4,25 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { fonts, colors, images } from '../constants/index.js'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext.js'
 const axios = require('axios').default;
 
 function Login({ navigation }) {
-    const [userName, setUserName] = useState("")
-    const [passWord, setPassWord] = useState("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
     const handleScroll = (event) => {
         Keyboard.dismiss()
     }
 
+    const {login, error} = useContext(AuthContext)
 
-    const handleLogin = () => {
-
-        const headers = {
-            "Content-Type": "application/json",
-        };
-        const url = "http://10.0.2.2:8000/api/token/";
-
-        axios.post(url, {
-            username: 'chuminhnam',
-            password: 'chuminhnam'
-        })
-            .then(function (response) {
-                console.log(response.status);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+    
 
     return (
         <KeyboardAwareScrollView onScroll={(event) => handleScroll(event)} showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false} contentContainerStyle={{ flex: 1 }}>
+            showsHorizontalScrollIndicator={false}>
             <View style={styles.container}>
                 <View style={styles.top}>
                     <View>
@@ -55,7 +40,8 @@ function Login({ navigation }) {
                             <TextInput
                                 style={styles.input}
                                 placeholder="Tài khoản"
-                                onChangeText={setUserName}
+                                value={username}
+                                onChangeText={setUsername}
                             />
                         </View>
                         <View style={{ paddingTop: 25 }} />
@@ -65,7 +51,8 @@ function Login({ navigation }) {
                                 style={styles.input}
                                 placeholder="Mật khẩu"
                                 secureTextEntry={true}
-                                onChangeText={setPassWord}
+                                value={password}
+                                onChangeText={setPassword}
                             />
                         </View>
                     </View>
@@ -74,7 +61,7 @@ function Login({ navigation }) {
                     </View>
                     <View style={{ paddingTop: 25 }}>
                         <TouchableOpacity style={{ backgroundColor: colors.primary, height: 50, borderRadius: 35, justifyContent: 'center' }}>
-                            <Text style={{ color: 'white', fontSize: fonts.h2, fontWeight: 'bold', alignSelf: 'center' }} onPress={() => handleLogin()}>ĐĂNG NHẬP</Text>
+                            <Text style={{ color: 'white', fontSize: fonts.h2, fontWeight: 'bold', alignSelf: 'center' }} onPress={() => login(username, password)}>ĐĂNG NHẬP</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ paddingTop: 25 }} />
