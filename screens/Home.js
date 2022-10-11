@@ -4,14 +4,16 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CategoryHome } from '../components/index.js'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../context/AuthContext.js'
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
-function Home(props) {
-    const [data, setData] = useState([]);
+function Home({ navigation }) {
+    const [data, setData] = useState([])
+    const {token} = useContext(AuthContext)
 
-    useEffect(()=>{
+    const getDataFood = () => {
         axios.get('http://10.0.2.2:8000/api/food/')
         .then(function (response) {
             // handle success
@@ -21,19 +23,27 @@ function Home(props) {
             // handle error
             console.log(error);
         })
+    }
+
+    const getUserInfo = () => {
+        axios.get('http://10.0.2.2:8000/api/user/', {
+            headers: {
+                Authorization : "Bearer " + token.access,
+            }
+        })
+        .then(function (response) {
+            if (!response.data.first_name || !response.data.last_name || !response.data.address || !response.data.email){
+                alert("Vui lòng cập nhật thêm thông tin của bạn!")
+                navigation.navigate('Profile') 
+            }else{
+                getDataFood()
+            }
+        })
+    }
+
+    useEffect(()=>{
+        getUserInfo()
     }, [])
-
-
-    const renderItemDoAnNhanh = ({ item }) => item.category == 1 ? <CategoryHome image={item.image} name={item.name} /> : null
-  
-
-    const renderItemDoAnCom = ({ item }) => {
-        if(item.category == 3){
-            return (
-                <CategoryHome image={item.image} name={item.name} />
-            )
-        } 
-    };
 
     return (
         <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
@@ -53,29 +63,39 @@ function Home(props) {
                     </View>
                 </View>
                 <View style={styles.mid}>
-                    <Image source={images.banner} style={{ width: '100%', height: 200, borderRadius: 10 }} />
+                    <Image source={images.banner} style={{ width: '100%', height: 200, borderRadius: 10, marginBottom: 10 }} />
                     <View>
-                        <Text style={{ fontSize: 20, top: 10 }}> Đồ ăn nhanh</Text>
+                        <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ ăn nhanh</Text>
                         <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                            <FlatList
-                                data={data}
-                                renderItem={renderItemDoAnNhanh}
-                                keyExtractor={(item) => item.id}
-                                horizontal
-                                showsVerticalScrollIndicator={false}
-                                showsHorizontalScrollIndicator={false}
-                            />
+                        <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                            {
+                                data.map((item, index) => item.category == 1 ? <CategoryHome key={index} image={item.image} name={item.name} /> : null)
+                            }
+                        </ScrollView>
                         </View>
-                        <Text style={{ fontSize: 20, top: 10 }}> Đồ ăn cơm</Text>
+                        <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ ăn cơm</Text>
                         <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                            <FlatList
-                                data={data}
-                                renderItem={renderItemDoAnCom}
-                                keyExtractor={(item) => item.id}
-                                horizontal
-                                showsVerticalScrollIndicator={false}
-                                showsHorizontalScrollIndicator={false}
-                            />
+                        <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                            {
+                                data.map((item, index) => item.category == 3 ? <CategoryHome key={index} image={item.image} name={item.name} /> : null)
+                            }
+                        </ScrollView>
+                        </View>
+                        <Text style={{ fontSize: fonts.h3, top: 10 }}> Nước giải khát</Text>
+                        <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
+                        <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                            {
+                                data.map((item, index) => item.category == 4 ? <CategoryHome key={index} image={item.image} name={item.name} /> : null)
+                            }
+                        </ScrollView>
+                        </View>
+                        <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ tráng miệng</Text>
+                        <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
+                        <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                            {
+                                data.map((item, index) => item.category == 2 ? <CategoryHome key={index} image={item.image} name={item.name} /> : null)
+                            }
+                        </ScrollView>
                         </View>
                     </View>
                 </View>

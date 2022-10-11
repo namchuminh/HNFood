@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard } from 'react-native'
-import {colors} from '../constants/index.js'
+import {colors, fonts} from '../constants/index.js'
 const {width} = Dimensions.get('screen');
 
 function CategoryHome(props){
@@ -7,8 +7,9 @@ function CategoryHome(props){
         <View style={styles.product}>
             <TouchableOpacity>
                 <Image source={{uri: "http://10.0.2.2:8000" + props.image}} style = {styles.cardImages}/>
-                <Text style={{ fontSize: 16, alignSelf: 'center', fontWeight: 'bold', marginTop: 20}}>{props.name}</Text>
-                <View style={{paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text style={{ fontSize: fonts.h5, alignSelf: 'center', fontWeight: 'bold', marginTop: 5}}>{props.name}</Text>
+                <View style={{paddingBottom: 5, flexDirection: 'row', justifyContent: 'center'}}>
+                    <Text style={{color: colors.primary, alignSelf: 'center', }}>10.000đ</Text>
                 </View>
             </TouchableOpacity>
         </View>
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 10,
         margin: 5,
-        paddingHorizontal: 5,
+        paddingHorizontal: 2,
         borderWidth: 1,
         borderColor: colors.inactive
     },

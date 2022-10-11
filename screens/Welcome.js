@@ -2,8 +2,17 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground } from
 import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {fonts, colors, images} from '../constants/index.js'
+import { useContext, useEffect } from 'react'
+import { AuthContext } from '../context/AuthContext.js'
+
 
 function Welcome({ navigation }){
+    const {isLogout, token} = useContext(AuthContext)
+
+    useEffect(()=>{
+        isLogout == true && !token.access ? navigation.navigate('Login') : null
+    }, [])
+
     return(
         <View style={styles.container}>
             <View  style={styles.top}>

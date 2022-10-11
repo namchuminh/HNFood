@@ -11,9 +11,9 @@ import { AuthContext } from "../context/AuthContext.js";
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
-function Profile(props) {
+function Profile({ navigation }) {
     const [data, setData] = useState({})
-    const {token} = useContext(AuthContext)
+    const {token, logout} = useContext(AuthContext)
 
     useEffect(()=>{
         axios.get("http://10.0.2.2:8000/api/user/",
@@ -123,7 +123,7 @@ function Profile(props) {
                         </TouchableOpacity>
                     </View>
                     <View style={{ borderBottomColor: '#F6F7FC', borderBottomWidth: 10 }} />
-                    <TouchableOpacity style={{backgroundColor: 'white', paddingVertical: 10}}>
+                    <TouchableOpacity style={{backgroundColor: 'white', paddingVertical: 10}} onPress={() => logout() }>
                         <Text style={{ paddingHorizontal: 15, fontSize: 18, color: 'black', paddingVertical: 10, alignSelf: 'center' }}>Đăng xuất</Text>
                     </TouchableOpacity>
 

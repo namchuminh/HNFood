@@ -1,13 +1,17 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home, Profile, Search, Cart } from '../screens';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { colors } from '../constants';
 const Tab = createBottomTabNavigator()
 
 function Tabs() {
   return (
     <Tab.Navigator screenOptions={{
       headerShown: false,
-    }}>
+      tabBarActiveTintColor: colors.primary,
+      tabBarShowLabel: false,
+    }}
+    >
       <Tab.Screen name="Home" component={Home} 
         options={{
           tabBarLabel: 'Trang Chủ',

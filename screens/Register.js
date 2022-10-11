@@ -4,10 +4,17 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import {fonts, colors, images} from '../constants/index.js'
+import { useContext, useState } from 'react'
+import { AuthContext } from '../context/AuthContext.js'
 
 
 function Register({navigation}){
-    
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [phone, setPhone] = useState("")
+
+    const {register} = useContext(AuthContext)
+
     return(
         <KeyboardAwareScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} contentContainerStyle={{flex:1}}>
         <View style={styles.container} >
@@ -21,13 +28,15 @@ function Register({navigation}){
             </View>
             </View>
             <View style={styles.body}>
-                
                     <View style={{justifyContent: 'center', paddingTop: 50}}>
                         <View style={styles.searchSection}>
                                 <FontAwesome name='phone' size={18} color={'black'} style={{paddingStart: 15}}/>
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Nhập số điện thoại"
+                                    value={phone}
+                                    onChangeText={setPhone}
+                                    keyboardType = 'number-pad'
                                 />
                         </View>
                         <View style={styles.searchSection}>
@@ -35,18 +44,22 @@ function Register({navigation}){
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Nhập tài khoản"
+                                    value={username}
+                                    onChangeText={setUsername}
                                 />
                         </View><View style={styles.searchSection}>
                                 <FontAwesome name='key' size={18} color={'black'} style={{paddingStart: 15}}/>
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Nhập mật khẩu"
+                                    value={password}
+                                    onChangeText={setPassword}
                                 />
                         </View>
                         <View>
                             <View style={{flexDirection: 'row', justifyContent:'flex-end', paddingVertical: 20}}>
                                 <Text style={{alignSelf: 'center', marginEnd: 10, fontSize: fonts.h1, fontWeight: 'bold', color: 'black'}}>Đăng Ký</Text>
-                                <TouchableOpacity style={{alignSelf: 'flex-end', backgroundColor: 'black', width: 50, height: 35, borderRadius: 50, justifyContent: 'center'}}>
+                                <TouchableOpacity style={{alignSelf: 'flex-end', backgroundColor: 'black', width: 50, height: 35, borderRadius: 50, justifyContent: 'center'}} onPress={() => register(username, password, phone)}>
                                     <Icon name='arrow-right' style={{textAlign: 'center', alignSelf: 'center' }} size={25} color={'#f2f2f2'}/>
                                 </TouchableOpacity>
                             </View>
