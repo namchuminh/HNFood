@@ -18,6 +18,7 @@ function Navigator(props){
                 {token.access ? (
                     <>
                         <Stack.Screen name="Tabs" component={Tabs} />
+                        <Stack.Screen name="Details" component={Details}/>
                     </>
                     
                 ) : (

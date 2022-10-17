@@ -4,15 +4,13 @@ const {width} = Dimensions.get('screen');
 
 function CategoryHome(props){
     return(
-        <View style={styles.product}>
-            <TouchableOpacity>
+        <TouchableOpacity style={styles.product} onPress={props.onPress}>
                 <Image source={{uri: "http://10.0.2.2:8000" + props.image}} style = {styles.cardImages}/>
                 <Text style={{ fontSize: fonts.h5, alignSelf: 'center', fontWeight: 'bold', marginTop: 5}}>{props.name}</Text>
                 <View style={{paddingBottom: 5, flexDirection: 'row', justifyContent: 'center'}}>
                     <Text style={{color: colors.primary, alignSelf: 'center', }}>10.000đ</Text>
                 </View>
-            </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
     )
 }
 

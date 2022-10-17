@@ -69,7 +69,8 @@ function Home({ navigation }) {
                         <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                         <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                             {
-                                data.map((item, index) => item.category == 1 ? <CategoryHome key={index} image={item.image} name={item.name} /> : null)
+                                data.map((item, index) => item.category == 1 ? <CategoryHome key={index} image={item.image} name={item.name} onPress={()=>navigation.navigate('Details')}/> : null)
+                                
                             }
                         </ScrollView>
                         </View>

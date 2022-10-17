@@ -38,9 +38,9 @@ function Details(props) {
     return (
 
         <View style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} onScroll={(event) => handleScroll(event)}>
+            <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
                 <View style={styles.top}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: '8%', marginHorizontal: 20 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10, marginHorizontal: 10 }}>
                         <TouchableOpacity style={{ borderWidth: 1, borderColor: '#F1F1F1', borderRadius: 5 }}>
                             <Ionicons name="arrow-back-outline" size={22} style={{ paddingHorizontal: 5, paddingVertical: 5, color: colors.primary }} />
                         </TouchableOpacity>
@@ -68,14 +68,6 @@ function Details(props) {
                         <Text style={{ fontSize: 24 }}>Mỳ Quảng</Text>
                         <Text style={{ fontSize: 24, marginRight: 20 }}>50.000đ</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingHorizontal: 10, paddingRight: 20, paddingBottom: 20 }}>
-                        <Text style={{ fontSize: 14, paddingRight: 10 }}>Đánh giá</Text>
-                        <Ionicons name="star" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                        <Ionicons name="star" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                        <Ionicons name="star" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                        <Ionicons name="star" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                        <Ionicons name="star-half" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                    </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingHorizontal: 10, paddingRight: 20 }}>
                         <Ionicons name="timer-outline" size={14} style={{ paddingHorizontal: 5, paddingVertical: 5 }}> 10 phút</Ionicons>
                         <Ionicons name="star-outline" size={14} style={{ paddingHorizontal: 5, paddingVertical: 5 }}> 4.5</Ionicons>
@@ -88,31 +80,22 @@ function Details(props) {
                         <Text style={{ borderWidth: 1, paddingHorizontal: 10, paddingVertical: 3, borderRadius: 3, borderColor: '#FBF0D9', backgroundColor: '#FBF0D9', marginHorizontal: 10 }}>Quảng Nam</Text>
                     </View>
                     <View style={{ borderBottomColor: 'grey', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10, paddingVertical: 10 }} />
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, paddingRight: 20, paddingVertical: 20 }}>
-                        <Image source={images.noodles} style={{ width: 50, height: 50, borderRadius: 10 }} />
-                        <View style={{ justifyContent: 'flex-start', paddingTop: 5 }}>
-                            <Text>Mỳ Quảng</Text>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Ionicons name="star" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                                <Ionicons name="star" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                                <Ionicons name="star" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                                <Ionicons name="star" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                                <Ionicons name="star-half" size={14} style={{ color: colors.primary, paddingTop: 3 }} />
-                                <Text style={{ color: 'grey', paddingHorizontal: 10 }}>(431)</Text>
-                            </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, paddingVertical: 20 }}>
+                        
+                        <View style={{ justifyContent: 'center', paddingTop: 5, flexDirection: 'row' }}>
+                            <Image source={images.noodles} style={{ width: 50, height: 50, borderRadius: 10 }} />
+                            <Text style={{alignSelf: 'center', paddingStart: 20}}>Mỳ Quảng</Text>
+
                         </View>
                         <TouchableOpacity>
-                            <Text style={{ paddingVertical: 10, borderWidth: 1, paddingHorizontal: 10, marginTop: 10, borderRadius: 5 }}>+ Thêm vào giỏ hàng</Text>
+                            <Text style={{ paddingVertical: 10, borderWidth: 1, paddingHorizontal: 10, marginTop: 10, borderRadius: 5 }}>+ Thêm giỏ hàng</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ borderBottomColor: 'grey', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10, paddingVertical: 20 }}>
-                        <Ionicons name="restaurant-outline" size={20} style={{ paddingHorizontal: 5, paddingVertical: 5, paddingTop: 20, color: colors.primary }} />
-                        <Text style={{ paddingTop: 20, fontSize: 18 }}>50.000đ</Text>
-                        <TouchableOpacity style={{ flexDirection: 'row', borderWidth: 1, paddingHorizontal: 80, borderRadius: 5, paddingVertical: 20, borderColor: colors.primary, backgroundColor: colors.primary }}>
-                            <Text style={{fontSize: 18, color: 'white'}}>Đặt hàng</Text>
+                    <View style={{ paddingHorizontal: 10, paddingVertical: 20 }}>
+                        <TouchableOpacity style={{ borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, paddingVertical: 20, borderColor: colors.primary, backgroundColor: colors.primary }}>
+                            <Text style={{fontSize: fonts.h4, color: 'white', alignSelf: 'center'}}>Đặt hàng</Text>
                         </TouchableOpacity>
-
                     </View>
                 </View>
             </ScrollView>
@@ -136,7 +119,6 @@ const styles = StyleSheet.create({
     mid: {
         flex: 80,
         backgroundColor: 'white',
-        paddingHorizontal: 10
     },
     bottom: {
         paddingHorizontal: 10

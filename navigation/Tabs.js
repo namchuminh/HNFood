@@ -10,6 +10,7 @@ function Tabs() {
       headerShown: false,
       tabBarActiveTintColor: colors.primary,
       tabBarShowLabel: false,
+      tabBarHideOnKeyboard: true,
     }}
     >
       <Tab.Screen name="Home" component={Home} 

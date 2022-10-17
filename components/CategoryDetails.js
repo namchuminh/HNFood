@@ -14,10 +14,10 @@ function CategoryDetails(props) {
 const styles = StyleSheet.create({
     cardImages: {
         height: 230,
-        width: 370,
+        width: 300,
+        borderRadius: 5,
         marginHorizontal: 10,
-        borderRadius: 5
-
+        
     }
 
 })
