@@ -44,7 +44,7 @@ function Profile({ navigation }) {
                         <Image source={{uri: "http://10.0.2.2:8000"+data.avatar }} style={{ width: 80, height: 80, borderRadius: 40 }} />
                         <View>
                             <Text style={{ fontSize: 20, paddingHorizontal: 20, paddingTop: 25 }}>{data.first_name + " " + data.last_name}</Text>
-                            <Text style={{ fontSize: 14, paddingHorizontal: 20, color: 'grey' }}>nguyenvana@gmail.com</Text>
+                            <Text style={{ fontSize: 14, paddingHorizontal: 20, color: 'grey' }}>{data.email}</Text>
                         </View>
 
                     </View>
@@ -69,7 +69,7 @@ function Profile({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Họ tên</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>Nguyễn Văn A</Text>
+                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>{data.first_name + " " + data.last_name}</Text>
                         </View>
                         <TouchableOpacity>
                             <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />
@@ -80,7 +80,7 @@ function Profile({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Số điện thoại</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>0123456789</Text>
+                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>{data.phone}</Text>
                         </View>
                         <TouchableOpacity>
                             <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />
@@ -91,7 +91,7 @@ function Profile({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Địa chỉ Email</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>nguyenvana@gmail.com</Text>
+                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>{data.email}</Text>
                         </View>
                         <TouchableOpacity>
                             <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />
@@ -107,7 +107,7 @@ function Profile({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Địa chỉ</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>Xuân Đỉnh, Bắc Từ Liêm, Hà Nội</Text>
+                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>{data.address}</Text>
                         </View>
                         <TouchableOpacity>
                             <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />

@@ -79,12 +79,6 @@ function Cart(props) {
                         </TouchableOpacity>
 
                     </View>
-                    <View style={{ flex: 1 }}>
-                        <View style={{ backgroundColor: 'white', justifyContent: 'flex-start', flexDirection: 'row', paddingStart: 20, borderRadius: 30, borderWidth: 1, borderColor: colors.inactive, marginBottom: 10 }}>
-                            <Ionicons name='search-outline' size={18} style={{ alignSelf: 'center', }} />
-                            <TextInput style={{ borderRadius: 30, paddingStart: 5, fontSize: fonts.h4, fontWeight: '400', width: '100%', height: 50, }} placeholder='Tìm kiếm' />
-                        </View>
-                    </View>
                 </View>
                 <View style={styles.mid}>
                     <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column' }}>
