@@ -4,33 +4,32 @@ const { width } = Dimensions.get('screen');
 
 function CategoryDetailsProduct(props) {
     return (
-        <TouchableOpacity style={styles.product} onPress={props.onPress}>
+        <View style={styles.product} onPress={props.onPress}>
             <View>
-                <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ paddingVertical: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                     <Image source={{uri: "http://10.0.2.2:8000"+props.image}} style={styles.cardImages} />
-                    <View style={{ paddingTop: 10 }}>
-                        <Text style={{ fontSize: 16, width: "60%" }}>{props.name}</Text>
+                    <View style={{ paddingTop: 10, textAlign: 'left', alignSelf: 'flex-start'}}>
+                        <Text style={{ fontSize: 16, overflow: 'hidden',}}>{props.name}</Text>
                         <Text style={{ color: colors.primary }}>{props.price}</Text>
                     </View>
-                    <TouchableOpacity onPress={props.onPress} style={{ alignSelf: 'center', borderWidth: 1, borderRadius: 20, borderColor: colors.primary, paddingHorizontal: 20, paddingVertical: 5, marginBottom: 20, marginRight: 10 }}>
+                    <TouchableOpacity onPress={props.onPress} style={{borderWidth: 1, borderRadius: 10, borderColor: colors.primary, alignSelf: 'center', padding: 5, marginEnd: 5}} >
                         <Text style={{ color: colors.primary }}>Thêm</Text>
                     </TouchableOpacity>
                 </View>
             </View>
-        </TouchableOpacity>
+        </View>
             
     )
 }
 
 const styles = StyleSheet.create({
     cardImages: {
-        height: 100,
-        width: 100,
+        height: 70,
+        width: 70,
         borderRadius: 10
 
     },
     product: {
-        height: 120,
         elevation: 5,
         backgroundColor: 'white',
         borderRadius: 10,

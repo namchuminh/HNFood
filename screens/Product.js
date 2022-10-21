@@ -31,17 +31,14 @@ function Product({ navigation, route }) {
         axios.post('http://10.0.2.2:8000/api/cart/',
         {
             product: id,
-            user: 1
         },
         {
             headers: {
                 Authorization: "Bearer " + token.access,
-
             }
-
         })
         .then(function (response) {
-            console.log(response.data);
+            alert("Đã thêm sản phẩm vào giỏ hàng!")
          })
          .catch(function (error) {
            console.log(error);

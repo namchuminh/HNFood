@@ -44,13 +44,13 @@ function Details({ navigation, route }) {
                 <View style={styles.mid}>
                     <ScrollView style={{ alignSelf: 'center', width: '100%',}} horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                <Image source={{uri: "http://10.0.2.2:8000"+data.image1}} style={styles.cardImages} resizeMode={"center"} />
+                                <Image source={{uri: "http://10.0.2.2:8000"+data.image1}} style={styles.cardImages}  />
                             </View>
                             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }} >
-                                <Image source={{uri: "http://10.0.2.2:8000"+data.image2}} style={styles.cardImages} resizeMode={"center"}/>
+                                <Image source={{uri: "http://10.0.2.2:8000"+data.image2}} style={styles.cardImages} />
                             </View>
                             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                <Image source={{uri: "http://10.0.2.2:8000"+data.image3}} style={styles.cardImages} resizeMode={"center"}/>
+                                <Image source={{uri: "http://10.0.2.2:8000"+data.image3}} style={styles.cardImages} />
                             </View>
                     </ScrollView>
                 </View>
