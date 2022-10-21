@@ -13,7 +13,7 @@ function Details({ navigation, route }) {
     const { itemId } = route.params
 
     useEffect(()=>{
-        axios.get('http://10.0.2.2:8000/api/food/'+itemId)
+        axios.get('http://10.0.2.2:8000/api/food/'+itemId+'/')
         .then(function (response) {
             // handle success
             setData(response.data)
