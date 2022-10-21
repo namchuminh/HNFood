@@ -1,23 +1,24 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Home, Profile, Search, Cart } from '../screens';
+import { Home, Profile, Search, Cart, Category } from '../screens';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { colors } from '../constants';
 const Tab = createBottomTabNavigator()
 
 function Tabs() {
   return (
-    <Tab.Navigator screenOptions={{
+    <Tab.Navigator initialRouteName="Home" screenOptions={{
       headerShown: false,
       tabBarActiveTintColor: colors.primary,
       tabBarShowLabel: false,
       tabBarHideOnKeyboard: true,
-    }}
+      
+    } }
     >
-      <Tab.Screen name="Home" component={Home} 
+      <Tab.Screen name="Category" component={Category} 
         options={{
-          tabBarLabel: 'Trang Chủ',
+          tabBarLabel: 'Chuyên Mục',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <Ionicons name="cube-sharp" color={color} size={size} />
           ),
         }}/>
       <Tab.Screen name="Search" component={Search} 
@@ -25,6 +26,13 @@ function Tabs() {
           tabBarLabel: 'Tìm Kiếm',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search" color={color} size={size} />
+          ),
+        }}/>
+      <Tab.Screen name="Home" component={Home} 
+        options={{
+          tabBarLabel: 'Trang Chủ',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" color={color} size={size} />
           ),
         }}/>
       <Tab.Screen name="Cart" component={Cart} 

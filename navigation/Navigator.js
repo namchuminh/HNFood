@@ -19,6 +19,7 @@ function Navigator(props){
                     <>
                         <Stack.Screen name="Tabs" component={Tabs} />
                         <Stack.Screen name="Details" component={Details}/>
+                        <Stack.Screen name="Product" component={Product}/>
                     </>
                     
                 ) : (

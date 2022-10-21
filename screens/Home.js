@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     },
     mid: {
         flex: 70,
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         backgroundColor: 'white',
         justifyContent: 'center',
         paddingTop: 20,

@@ -5,17 +5,16 @@ const { width } = Dimensions.get('screen');
 
 function CategoryProduct(props) {
     return (
-        <View style={styles.product}>
-
+        <TouchableOpacity style={styles.product} onPress={props.onPress}>
             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Image source={props.image} style={styles.cardImages} />
+                <Image source={{uri: "http://10.0.2.2:8000"+props.image}} style={styles.cardImages} />
                 <Text style={{ fontSize: 20, paddingVertical: 30}}>{props.name}</Text>
                 <TouchableOpacity style={{ alignSelf: 'center', marginBottom: 20, marginRight: 10, paddingTop: 15 }}>
                     <Ionicons name="arrow-forward-outline" size={25} style={{color: colors.primary}} />
                 </TouchableOpacity>
 
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
