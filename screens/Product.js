@@ -5,15 +5,18 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CategoryDetailsProduct } from '../components/index.js'
+import { AuthContext } from "../context/AuthContext.js";
 const axios = require('axios').default;
 const { width } = Dimensions.get('screen');
 
 function Product({ navigation, route }) {
     const {itemId, titleCate} = route.params
     const [data, setData] = useState([])
-    
+    const {token} = useContext(AuthContext)
+
+
     useEffect(()=>{
-        axios.get('http://10.0.2.2:8000/api/food/category/'+itemId)
+        axios.get('http://10.0.2.2:8000/api/food/category/'+itemId+'/')
         .then(function (response) {
             // handle success
             setData(response.data)
@@ -25,7 +28,24 @@ function Product({ navigation, route }) {
     }, [])
 
     const addProductToCart = (id) => {
-        alert(id)
+        axios.post('http://10.0.2.2:8000/api/cart/',
+        {
+            product: id,
+            user: 1
+        },
+        {
+            headers: {
+                Authorization: "Bearer " + token.access,
+
+            }
+
+        })
+        .then(function (response) {
+            console.log(response.data);
+         })
+         .catch(function (error) {
+           console.log(error);
+         });
     }
 
     return (
