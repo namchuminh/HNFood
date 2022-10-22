@@ -7,9 +7,9 @@ function CartProduct(props) {
         <View style={styles.product}>
 
             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Image source={props.image} style={styles.cardImages} />
+                <Image source={{uri: "http://10.0.2.2:8000"+props.image}} style={styles.cardImages} />
                 <View style={{ paddingTop: 10 }}>
-                    <Text style={{ fontSize: 16 }}>{props.title}</Text>
+                    <Text style={{ fontSize: 16 }}>{props.name}</Text>
                     <Text style={{ color: colors.primary }}>{props.price}</Text>
                 </View>
                 <TouchableOpacity style={{ alignSelf: 'center', borderWidth: 1, borderRadius: 20, borderColor: colors.primary, paddingHorizontal: 20, paddingVertical: 5, marginBottom: 20, marginRight: 10 }}>

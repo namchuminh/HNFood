@@ -1,64 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard, Picker } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CartProduct } from '../components/index.js'
+import { AuthContext } from "../context/AuthContext.js";
 const { width } = Dimensions.get('screen');
+const axios = require('axios').default;
 
+function Cart(navigation, route) {
+    const [data, setData] = useState([])
+    const {token} = useContext(AuthContext)
 
-
-
-const DATA = [
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        title: 'Sữa chua mít',
-        price: 25000,
-        image: images.suachua,
-    },
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bc',
-        title: 'Kẹo mút',
-        price: 2000,
-        image: images.keo,
-    },
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28be',
-        title: 'Pizza',
-        price: 149000,
-        image: images.pizza,
-    },
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bq',
-        title: 'Sô cô la',
-        price: 39000,
-        image: images.chocolate,
-    },
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bt',
-        title: 'Kem',
-        price: 10000,
-        image: images.kem,
-    },
-    {
-        id: 'bd7acbea-c1b1-42g2-aed5-3ad53abb28bc',
-        title: 'Bánh mochi',
-        price: 169000,
-        image: images.mochi,
-    },
-];
-
-
-function Cart(props) {
-
-
-    const renderItem = ({ item }) => {
-        return (
-            <CartProduct image={item.image} title={item.title} price={item.price} />
+    useEffect(()=>{
+        axios.get('http://10.0.2.2:8000/api/cart/',
+            {
+                headers: {
+                    Authorization: "Bearer " + token.access
+                }
+            }
         )
+        .then(function (response) {
+            // handle success
+            setData(response.data)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+    }, [])
 
-    };
     const handleScroll = (event) => {
         Keyboard.dismiss()
     }
@@ -83,7 +55,9 @@ function Cart(props) {
                 <View style={styles.mid}>
                     <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column' }}>
                         { 
-                            DATA.map((item) => <CartProduct key={item.id} image={item.image} title={item.title} price={item.price} />) 
+                           data.map((item, index)=>{
+                            return <CartProduct key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Product', {itemId: item.id, titleCate: item.name})} />
+                        })
                         }
                     </View>
 
