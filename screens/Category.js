@@ -8,10 +8,6 @@ import { TopSearch, CategoryProduct} from '../components/index.js'
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
-
-
-
-
 function Category({ navigation }) {
     const [data, setData] = useState([])
     useEffect(()=>{

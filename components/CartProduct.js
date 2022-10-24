@@ -9,10 +9,10 @@ function CartProduct(props) {
             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Image source={props.image} style={styles.cardImages} />
                 <View style={{ paddingTop: 10 }}>
-                    <Text style={{ fontSize: 16 }}>{props.title}</Text>
+                    <Text style={{ fontSize: 16 }}>{props.name}</Text>
                     <Text style={{ color: colors.primary }}>{props.price}</Text>
                 </View>
-                <TouchableOpacity style={{ alignSelf: 'center', borderWidth: 1, borderRadius: 20, borderColor: colors.primary, paddingHorizontal: 20, paddingVertical: 5, marginBottom: 20, marginRight: 10 }}>
+                <TouchableOpacity onPress={props.onPress} style={{ alignSelf: 'center', borderWidth: 1, borderRadius: 20, borderColor: colors.primary, paddingHorizontal: 20, paddingVertical: 5, marginBottom: 20, marginRight: 10 }}>
                     <Text style={{ color: colors.primary }}>Xoá</Text>
                 </TouchableOpacity>
 
