@@ -8,8 +8,8 @@ function CartProduct(props) {
 
             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Image source={{uri: "http://10.0.2.2:8000"+props.image}} style={styles.cardImages} />
-                <View style={{ paddingTop: 10 }}>
-                    <Text style={{ fontSize: 16 }}>{props.name}</Text>
+                <View style={{ paddingTop: 10, width: '40%' }}>
+                    <Text style={{ fontSize: 16,  }}>{props.name}</Text>
                     <Text style={{ color: colors.primary }}>{props.price}</Text>
                 </View>
                 <TouchableOpacity style={{ alignSelf: 'center', borderWidth: 1, borderRadius: 20, borderColor: colors.primary, paddingHorizontal: 20, paddingVertical: 5, marginBottom: 20, marginRight: 10 }}>
@@ -23,13 +23,13 @@ function CartProduct(props) {
 
 const styles = StyleSheet.create({
     cardImages: {
-        height: 100,
-        width: 100,
+        height: 70,
+        width: 70,
         borderRadius: 10
 
     },
     product: {
-        height: 120,
+        height: 90,
         elevation: 5,
         backgroundColor: 'white',
         borderRadius: 10,
