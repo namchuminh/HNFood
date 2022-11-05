@@ -44,6 +44,7 @@ function Product({ navigation, route }) {
            console.log(error);
          });
     }
+    
 
     return (
         <View style={styles.container}>
@@ -67,7 +68,7 @@ function Product({ navigation, route }) {
                     <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column' }}>
                         {
                             data.map((item, index)=>{
-                                return <CategoryDetailsProduct key={index} image={item.image} name={item.name} price={item.price} onPress={() => addProductToCart(item.id)} />
+                                return <TouchableOpacity key={index} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}><CategoryDetailsProduct key={index} image={item.image} name={item.name} price={item.price} onPress={() => addProductToCart(item.id)} /></TouchableOpacity>
                             })
                         }
                         
