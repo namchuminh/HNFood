@@ -4,6 +4,7 @@ import CartProduct from "./CartProduct"
 import CategoryDetails from "./CategoryDetails"
 import CategoryProduct from "./CategoryProduct"
 import CategoryDetailsProduct from "./CategoryDetailsProduct"
+import SearchProduct from "./SearchProduct"
 export{
     TopSearch,
     CategoryHome,
@@ -11,4 +12,5 @@ export{
     CategoryDetails,
     CategoryProduct,
     CategoryDetailsProduct,
+    SearchProduct
 }
