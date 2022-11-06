@@ -1,36 +1,42 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard, Picker } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CartProduct } from '../components/index.js'
 import { AuthContext } from "../context/AuthContext.js";
+import { useIsFocused } from '@react-navigation/native'
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
-function Cart(navigation, route) {
+function Cart({navigation}) {
     const [data, setData] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    const isFocused = useIsFocused()
     const {token} = useContext(AuthContext)
 
-    useEffect(()=>{
-        axios.get('http://10.0.2.2:8000/api/cart/',
-            {
-                headers: {
-                    Authorization: "Bearer " + token.access
-                }
-            }
-        )
-        .then(function (response) {
-            // handle success
-            setData(response.data)
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-    }, [])
+    const getDataFood = async () => {
+        try{
+            const response = await axios.get('http://10.0.2.2:8000/api/cart/',{headers: {Authorization: "Bearer " + token.access}})
+            await setData(response.data)
+        }catch(ex){
+            console.log(ex)
+        }
+    }
 
+    useEffect(()=>{
+        getDataFood()
+    }, [isLoading,isFocused])
+
+    const deleteProductCart = async (itemId) => {
+        try{
+            const deleteFoodCart = await axios.delete('http://10.0.2.2:8000/api/cart/'+itemId, {headers: {Authorization: "Bearer " + token.access}})
+            await setIsLoading(!isLoading)
+        }catch (error) {
+            await setIsLoading(!isLoading)
+        }
+    }
     return (
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
@@ -50,18 +56,27 @@ function Cart(navigation, route) {
                 <View style={styles.mid}>
                     <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column' }}>
                         { 
-                           data.map((item, index)=>{
-                            return <CartProduct key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Product', {itemId: item.id, titleCate: item.name})} />
-                        })
+                            data.length  != 0 || data !== undefined ? 
+                                data.map((item, index)=>{
+                                    return <TouchableOpacity key={index} onPress={() => navigation.navigate('Details', {itemId: item.product,})}><CartProduct  onPress={() => deleteProductCart(item.id)} image={item.image} name={item.name} price={item.price}  /></TouchableOpacity>
+                                })
+                            : null
                         }
                     </View>
-
-                </View>
+                </View>           
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={{ alignSelf: 'center' }}>
-
-                        <Text style={styles.order}>Thanh toán</Text>
-                    </TouchableOpacity>
+                    {
+                        data.length  == 0 || data === undefined ? 
+                            <View style={{justifyContent: 'center'}}>
+                                <Icon name="cart-plus" size={100} color={'#f1f1f1'} style={{alignSelf: 'center'}}/>
+                                <View  style={{paddingVertical: 15}} />
+                                <Text style={{alignSelf: 'center', color: 'gray' }}>Giỏ hàng của bạn hiện đang trống!</Text>
+                            </View>
+                        :
+                            <TouchableOpacity style={{ alignSelf: 'center' }}>
+                                <Text style={styles.order}>Thanh toán</Text>
+                            </TouchableOpacity>
+                    }
                 </View>
             </ScrollView>
         </View>
@@ -89,7 +104,7 @@ const styles = StyleSheet.create({
         paddingBottom: 30
     },
     bottom: {
-        flex: 10
+        flex: 10,
     },
     order: {
         flex: 1,
