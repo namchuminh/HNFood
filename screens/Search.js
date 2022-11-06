@@ -4,12 +4,27 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CategoryHome, SearchProduct } from '../components/index.js'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 const axios = require('axios').default;
 const { width } = Dimensions.get('screen');
 let ScreenHeight = Dimensions.get("window").height;
 
 function Search(props) {
+
+    const [data, setData] = useState([])
+    const Search = (name_food) => {
+        axios.get('http://10.0.2.2:8000/api/food/?search='+name_food)
+        .then(function (response) {
+            // handle success
+            setData(response.data)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
@@ -23,13 +38,17 @@ function Search(props) {
                     <View style={{ flex: 1 }}>
                         <View style={{ backgroundColor: 'white', justifyContent: 'flex-start', flexDirection: 'row', paddingStart: 20, borderRadius: 30, borderWidth: 1, borderColor: colors.inactive, marginBottom: 10 }}>
                             <Ionicons name='search-outline' size={18} style={{ alignSelf: 'center', }} />
-                            <TextInput style={{ borderRadius: 30, paddingStart: 5, fontSize: fonts.h4, fontWeight: '400', width: '100%', height: 50, }} placeholder='Tìm kiếm' />
+                            <TextInput onChangeText={(name_food) => Search(name_food)} style={{ borderRadius: 30, paddingStart: 5, fontSize: fonts.h4, fontWeight: '400', width: '100%', height: 50, }} placeholder='Tìm kiếm' />
                         </View>
                     </View>
                 </View>
                 <View style={styles.mid}>
                     <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column' }}>
-                        {/* Looping data in here */}
+                        {
+                            data.map((item, index) => {
+                                return <SearchProduct key ={index} name={item.name} image={item.image} price={item.price}/>
+                            })
+                        }
                     </View>
                 </View>
             </ScrollView>
