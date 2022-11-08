@@ -4,15 +4,22 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
-import { TopSearch, CategoryDetails } from '../components/index.js'
+import { TopSearch, CategoryDetails, CategoryHome } from '../components/index.js'
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
 function Details({ navigation, route }) {
     const [data, setData] = useState({})
-    const { itemId } = route.params
-
-    useEffect(()=>{
+    const [dataRelated, setDataRelated] = useState([])
+    const { itemId, categoryId } = route.params
+    
+    dataRelated.sort(function(){
+        return 0.5 - Math.random()
+    })  
+    console.log(dataRelated)
+    dataRelated.length = 4
+    
+    const getDetailsData = (itemId) => {
         axios.get('http://10.0.2.2:8000/api/food/'+itemId+'/')
         .then(function (response) {
             // handle success
@@ -22,6 +29,24 @@ function Details({ navigation, route }) {
             // handle error
             console.log(error);
         })
+    }
+
+    const getRelativeProduct = (categoryId) => {
+        axios.get('http://10.0.2.2:8000/api/food/category/'+data.category+'/')
+        .then(function (response) {
+            // handle success
+            setDataRelated(response.data)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+    }
+
+    useEffect(()=>{
+        getDetailsData(itemId)
+        getRelativeProduct(categoryId)
+        
     }, [])
     
     
@@ -81,11 +106,23 @@ function Details({ navigation, route }) {
                         </TouchableOpacity>
                     </View>
                     <View style={{ borderBottomColor: 'grey', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
+                    <View>
+                        <Text style={{ fontSize: fonts.h3, top: 10, paddingBottom: 10 }}> Sản phẩm liên quan</Text>
+                        <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                            {
+                                dataRelated.map((item, index) => {
+                                    return <CategoryHome key={index} image={item.image} name={item.name} onPress={() => navigation.navigate('Product', {itemId: item.id, titleCate: item.name})} />
+                                })
+                            }
+                        </ScrollView>
+                    </View>
                     <View style={{ paddingHorizontal: 10, paddingVertical: 20 }}>
                         <TouchableOpacity style={{ borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, paddingVertical: 20, borderColor: colors.primary, backgroundColor: colors.primary }}>
                             <Text style={{fontSize: fonts.h4, color: 'white', alignSelf: 'center'}}>Đặt hàng</Text>
                         </TouchableOpacity>
+
                     </View>
+                    
                 </View>
             </ScrollView>
         </View>
