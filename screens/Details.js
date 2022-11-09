@@ -18,7 +18,7 @@ function Details({ navigation, route }) {
     })  
     dataRelated.length = 4
     
-    const getDetailsData = () => {
+    const getDetailsData = (itemId) => {
         axios.get('http://10.0.2.2:8000/api/food/'+itemId+'/')
         .then(function (response) {
             // handle success
@@ -43,9 +43,10 @@ function Details({ navigation, route }) {
     }
 
     useEffect(()=>{
-        getDetailsData()
+        getDetailsData(itemId)
     }, [])
     
+
     return (
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
@@ -105,7 +106,7 @@ function Details({ navigation, route }) {
                         <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                             {
                                 dataRelated.map((item, index) => {
-                                    return <CategoryHome key={index} image={item.image} name={item.name} onPress={() => navigation.navigate('Product', {itemId: item.id, titleCate: item.name})} />
+                                    return <CategoryHome key={index} image={item.image} name={item.name} onPress={() => getDetailsData(item.id)} />
                                 })
                             }
                         </ScrollView>
