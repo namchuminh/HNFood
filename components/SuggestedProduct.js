@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { fonts, colors, images } from '../constants/index.js'
 const { width } = Dimensions.get('screen');
 
-function SearchProduct(props) {
+function SuggestedProduct(props) {
     return (
         <View style={styles.product}>
             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default SearchProduct
+export default SuggestedProduct

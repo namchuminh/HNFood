@@ -5,6 +5,7 @@ import CategoryDetails from "./CategoryDetails"
 import CategoryProduct from "./CategoryProduct"
 import CategoryDetailsProduct from "./CategoryDetailsProduct"
 import SearchProduct from "./SearchProduct"
+import SuggestedProduct from "./SuggestedProduct"
 export{
     TopSearch,
     CategoryHome,
@@ -12,5 +13,6 @@ export{
     CategoryDetails,
     CategoryProduct,
     CategoryDetailsProduct,
-    SearchProduct
+    SearchProduct,
+    SuggestedProduct
 }

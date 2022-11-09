@@ -3,15 +3,24 @@ import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
-import { TopSearch, CategoryHome, SearchProduct } from '../components/index.js'
-import { useState, useEffect } from 'react'
+import { TopSearch, CategoryHome, SearchProduct, SuggestedProduct } from '../components/index.js'
+import { useState, useEffect, useContext  } from 'react'
+import { AuthContext } from "../context/AuthContext.js";
 const axios = require('axios').default;
 const { width } = Dimensions.get('screen');
 let ScreenHeight = Dimensions.get("window").height;
 
-function Search(props) {
-
+function Search(navigation) {
+    const [dataSearch, setDataSearch] = useState([])
     const [data, setData] = useState([])
+    const {token} = useContext(AuthContext)
+
+    dataSearch.sort(function(){
+        return 0.5 - Math.random()
+    })  
+    console.log(dataSearch)
+    dataSearch.length = 6
+
     const Search = (name_food) => {
         axios.get('http://10.0.2.2:8000/api/food/?search='+name_food)
         .then(function (response) {
@@ -24,6 +33,23 @@ function Search(props) {
         })
         
     }
+
+    const getSearchProduct = (categoryId) => {
+        axios.get('http://10.0.2.2:8000/api/food/')
+        .then(function (response) {
+            // handle success
+            setDataSearch(response.data)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+    }
+
+    useEffect(()=>{
+        Search()
+        getSearchProduct()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -49,6 +75,16 @@ function Search(props) {
                                 return <SearchProduct key ={index} name={item.name} image={item.image} price={item.price}/>
                             })
                         }
+                    </View>
+                    <View>
+                        <Text style={{ fontSize: fonts.h3, top: 10, paddingBottom: 10 }}> Sản phẩm gợi ý</Text>
+                        <ScrollView vertical showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+                            {
+                                dataSearch.map((item, index) => {
+                                    return <SuggestedProduct key={index} image={item.image} name={item.name} price={item.price} />
+                                })
+                            }
+                        </ScrollView>
                     </View>
                 </View>
             </ScrollView>
