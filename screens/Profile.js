@@ -20,7 +20,7 @@ function Profile({ navigation }) {
     const [address, setAddress] = useState("")
     const { token, logout } = useContext(AuthContext)
     const editInfo = (name, phone, email, address) => {
-
+        console.log(phone)
         setIsEdit(!isEdit)
         if (isEdit) {
             const first_name = name.split(" ")[0]
