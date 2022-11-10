@@ -13,8 +13,59 @@ const axios = require('axios').default;
 
 function Profile({ navigation }) {
     const [data, setData] = useState({})
+    const [isEdit, setIsEdit] = useState(false)
+    const [name, setName] = useState("")
+    const [phone, setPhone] = useState("")
+    const [email, setEmail] = useState("")
+    const [address, setAddress] = useState("")
     const {token, logout} = useContext(AuthContext)
 
+    const editInfo = (name, phone, email, address) => {
+        
+        setIsEdit(!isEdit)
+        if(isEdit){
+            const first_name = name.split(" ")[0]
+            const last_name = name.split(" ")[1] + " " + name.split(" ")[2]
+            axios.put("http://10.0.2.2:8000/api/user/",
+            {
+                first_name: first_name,
+                last_name: last_name,
+                email: email,
+                phone: phone,
+                address: address
+            },
+            {
+                headers: {
+                    Authorization : "Bearer " + token.access,
+                }
+            }
+            )
+            .then((response) => {
+                axios.get("http://10.0.2.2:8000/api/user/",
+                {
+                    headers: {
+                        Authorization : "Bearer " + token.access,
+                    }
+                }
+                )
+                .then((response) => {
+                    setData(response.data)
+                    setName(response.data.first_name + " " + response.data.last_name)
+                    setPhone(response.data.phone)
+                    setEmail(response.data.email)
+                    setAddress(response.data.address)
+                },
+                (error) => {
+                    alert("Ket noi khong thanh cong!")
+                }
+                )
+            },
+            (error) => {
+                alert("Cap nhat khong thanh cong!")
+            }
+            )
+        }
+    }
     useEffect(()=>{
         axios.get("http://10.0.2.2:8000/api/user/",
             {
@@ -25,6 +76,10 @@ function Profile({ navigation }) {
         )
             .then((response) => {
                 setData(response.data)
+                setName(response.data.first_name + " " + response.data.last_name)
+                setPhone(response.data.phone)
+                setEmail(response.data.email)
+                setAddress(response.data.address)
             },
             (error) => {
                 alert("Ket noi khong thanh cong!")
@@ -51,16 +106,16 @@ function Profile({ navigation }) {
                     <View style={{ borderBottomColor: '#F6F7FC', borderBottomWidth: 20, paddingVertical: 20 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: '8%', marginHorizontal: 10 }}>
                         <TouchableOpacity>
-                            <Ionicons name="receipt-outline" size={30} style={{ paddingHorizontal: 30, color: colors.primary }} />
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>Đơn hàng</Text>
+                            <Ionicons name="receipt-outline" size={30} style={{ paddingHorizontal: 30, color: colors.primary, alignSelf: 'center' }} />
+                            <Text style={{ paddingHorizontal: 15, fontSize: 16, paddingTop: 5 }}>Đơn hàng</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Ionicons name="cart-outline" size={30} style={{ paddingHorizontal: 30, color: colors.primary }} />
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>Giỏ hàng</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                            <Ionicons name="cart-outline" size={30} style={{ paddingHorizontal: 30, color: colors.primary, alignSelf: 'center' }} />
+                            <Text style={{ paddingHorizontal: 15, fontSize: 16, paddingTop: 5 }}>Giỏ hàng</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Ionicons name="location-outline" size={30} style={{ paddingHorizontal: 30, color: colors.primary }} />
-                            <Text style={{ paddingHorizontal: 30, fontSize: 16 }}>Vị trí</Text>
+                        <TouchableOpacity onPress={() => editInfo(name, phone, email, address)}>
+                            <Icon name={isEdit ? "check-bold" : "account-edit"} size={30} style={{ paddingHorizontal: 30, color: colors.primary, alignSelf: 'center' }} />
+                            <Text style={{ paddingHorizontal: 30, fontSize: 16, paddingTop: 5 }}>{isEdit ? "Cập Nhật" : "Chỉnh Sửa"}</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ borderBottomColor: '#F6F7FC', borderBottomWidth: 20, paddingVertical: 20 }} />
@@ -69,49 +124,29 @@ function Profile({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Họ tên</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>{data.first_name + " " + data.last_name}</Text>
+                            <TextInput onChangeText={text => setName(text)} style={{ paddingHorizontal: 15, fontSize: 16, color: 'black' }} editable={isEdit} >{data.first_name + " " + data.last_name}</TextInput>
                         </View>
-                        <TouchableOpacity>
-                            <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />
-                        </TouchableOpacity>
-
                     </View>
                     <View style={{ borderBottomColor: '#CCCCCC', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Số điện thoại</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>{data.phone}</Text>
+                            <TextInput onChangeText={text => setPhone(text)} keyboardType='numeric'  style={{ paddingHorizontal: 15, fontSize: 16, color: 'black' }} editable={isEdit}>{data.phone}</TextInput>
                         </View>
-                        <TouchableOpacity>
-                            <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />
-                        </TouchableOpacity>
-
                     </View>
                     <View style={{ borderBottomColor: '#CCCCCC', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Địa chỉ Email</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>{data.email}</Text>
+                            <TextInput onChangeText={text => setEmail(text)} style={{ paddingHorizontal: 15, fontSize: 16, color: 'black' }} editable={isEdit}>{data.email}</TextInput>
                         </View>
-                        <TouchableOpacity>
-                            <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />
-                        </TouchableOpacity>
-
-                    </View>
-                    <View style={{ borderBottomColor: '#CCCCCC', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
-                    <View style={{ marginHorizontal: 10, paddingVertical: 10 }}>
-                        <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Số dư</Text>
-                        <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>36.327.103đ</Text>
                     </View>
                     <View style={{ borderBottomColor: '#CCCCCC', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Địa chỉ</Text>
-                            <Text style={{ paddingHorizontal: 15, fontSize: 16 }}>{data.address}</Text>
+                            <TextInput onChangeText={text => setAddress(text)} style={{ paddingHorizontal: 15, fontSize: 16, color: 'black' }} editable={isEdit}>{data.address}</TextInput>
                         </View>
-                        <TouchableOpacity>
-                            <FontAwesome name='pencil' size={20} color={'grey'} style={{ paddingVertical: 10, paddingRight: 20 }} />
-                        </TouchableOpacity>
                     </View>
                     <View style={{ paddingVertical: 10, backgroundColor: '#F6F7FC', height: 60 }}>
                         <Text style={{ paddingHorizontal: 10, color: 'grey' }}>Những thông tin trên chỉ hiển thị cho riêng bạn và không được chia sẻ cho bất cứ ai khác</Text>
