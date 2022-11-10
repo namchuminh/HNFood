@@ -18,59 +18,59 @@ function Profile({ navigation }) {
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [address, setAddress] = useState("")
-    const {token, logout} = useContext(AuthContext)
+    const { token, logout } = useContext(AuthContext)
 
     const editInfo = (name, phone, email, address) => {
-        
+
         setIsEdit(!isEdit)
-        if(isEdit){
+        if (isEdit) {
             const first_name = name.split(" ")[0]
             const last_name = name.split(" ")[1] + " " + name.split(" ")[2]
             axios.put("http://10.0.2.2:8000/api/user/",
-            {
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                phone: phone,
-                address: address
-            },
-            {
-                headers: {
-                    Authorization : "Bearer " + token.access,
-                }
-            }
-            )
-            .then((response) => {
-                axios.get("http://10.0.2.2:8000/api/user/",
+                {
+                    first_name: first_name,
+                    last_name: last_name,
+                    email: email,
+                    phone: phone,
+                    address: address
+                },
                 {
                     headers: {
-                        Authorization : "Bearer " + token.access,
+                        Authorization: "Bearer " + token.access,
                     }
                 }
-                )
-                .then((response) => {
-                    setData(response.data)
-                    setName(response.data.first_name + " " + response.data.last_name)
-                    setPhone(response.data.phone)
-                    setEmail(response.data.email)
-                    setAddress(response.data.address)
-                },
-                (error) => {
-                    alert("Ket noi khong thanh cong!")
-                }
-                )
-            },
-            (error) => {
-                alert("Cap nhat khong thanh cong!")
-            }
             )
+                .then((response) => {
+                    axios.get("http://10.0.2.2:8000/api/user/",
+                        {
+                            headers: {
+                                Authorization: "Bearer " + token.access,
+                            }
+                        }
+                    )
+                        .then((response) => {
+                            setData(response.data)
+                            setName(response.data.first_name + " " + response.data.last_name)
+                            setPhone(response.data.phone)
+                            setEmail(response.data.email)
+                            setAddress(response.data.address)
+                        },
+                            (error) => {
+                                alert("Ket noi khong thanh cong!")
+                            }
+                        )
+                },
+                    (error) => {
+                        alert("Cap nhat khong thanh cong!")
+                    }
+                )
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         axios.get("http://10.0.2.2:8000/api/user/",
             {
                 headers: {
-                    Authorization : "Bearer " + token.access,
+                    Authorization: "Bearer " + token.access,
                 }
             }
         )
@@ -81,12 +81,12 @@ function Profile({ navigation }) {
                 setEmail(response.data.email)
                 setAddress(response.data.address)
             },
-            (error) => {
-                alert("Ket noi khong thanh cong!")
-            }
-        )
-    },[])
-    
+                (error) => {
+                    alert("Ket noi khong thanh cong!")
+                }
+            )
+    }, [])
+
     return (
 
         <View style={styles.container}>
@@ -96,7 +96,7 @@ function Profile({ navigation }) {
                         <Text style={{ fontSize: 20, alignSelf: 'center' }}>Thông tin cá nhân</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: '8%', marginHorizontal: 10 }}>
-                        <Image source={{uri: "http://10.0.2.2:8000"+data.avatar }} style={{ width: 80, height: 80, borderRadius: 40 }} />
+                        <Image source={{ uri: "http://10.0.2.2:8000" + data.avatar }} style={{ width: 80, height: 80, borderRadius: 40 }} />
                         <View>
                             <Text style={{ fontSize: 20, paddingHorizontal: 20, paddingTop: 25 }}>{data.first_name + " " + data.last_name}</Text>
                             <Text style={{ fontSize: 14, paddingHorizontal: 20, color: 'grey' }}>{data.email}</Text>
@@ -131,7 +131,7 @@ function Profile({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Số điện thoại</Text>
-                            <TextInput onChangeText={text => setPhone(text)} keyboardType='numeric'  style={{ paddingHorizontal: 15, fontSize: 16, color: 'black' }} editable={isEdit}>{data.phone}</TextInput>
+                            <TextInput onChangeText={text => setPhone(text)} keyboardType='numeric' style={{ paddingHorizontal: 15, fontSize: 16, color: 'black' }} editable={isEdit}>{data.phone}</TextInput>
                         </View>
                     </View>
                     <View style={{ borderBottomColor: '#CCCCCC', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
@@ -158,7 +158,7 @@ function Profile({ navigation }) {
                         </TouchableOpacity>
                     </View>
                     <View style={{ borderBottomColor: '#F6F7FC', borderBottomWidth: 10 }} />
-                    <TouchableOpacity style={{backgroundColor: 'white', paddingVertical: 10}} onPress={() => logout() }>
+                    <TouchableOpacity style={{ backgroundColor: 'white', paddingVertical: 10 }} onPress={() => logout()}>
                         <Text style={{ paddingHorizontal: 15, fontSize: 18, color: 'black', paddingVertical: 10, alignSelf: 'center' }}>Đăng xuất</Text>
                     </TouchableOpacity>
 
