@@ -19,7 +19,6 @@ function Profile({ navigation }) {
     const [email, setEmail] = useState("")
     const [address, setAddress] = useState("")
     const { token, logout } = useContext(AuthContext)
-    console.log(name)
     const editInfo = (name, phone, email, address) => {
 
         setIsEdit(!isEdit)
