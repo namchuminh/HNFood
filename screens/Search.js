@@ -10,7 +10,7 @@ const axios = require('axios').default;
 const { width } = Dimensions.get('screen');
 let ScreenHeight = Dimensions.get("window").height;
 
-function Search(navigation) {
+function Search({ navigation, route }) {
     const [dataSearch, setDataSearch] = useState([])
     const [data, setData] = useState([])
     const {token} = useContext(AuthContext)
@@ -46,10 +46,14 @@ function Search(navigation) {
         })
     }
 
+    
+
     useEffect(()=>{
         Search()
         getSearchProduct()
+
     }, [])
+
 
     return (
         <View style={styles.container}>
@@ -72,7 +76,7 @@ function Search(navigation) {
                     <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column' }}>
                         {
                             data.map((item, index) => {
-                                return <SearchProduct key ={index} name={item.name} image={item.image} price={item.price}/>
+                                return <TouchableOpacity key={index} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}><SearchProduct key ={index} name={item.name} image={item.image} price={item.price}/></TouchableOpacity>
                             })
                         }
                     </View>
@@ -81,7 +85,7 @@ function Search(navigation) {
                         <ScrollView vertical showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                             {
                                 dataSearch.map((item, index) => {
-                                    return <SuggestedProduct key={index} image={item.image} name={item.name} price={item.price} />
+                                    return <TouchableOpacity key={index} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}><SuggestedProduct key={index} image={item.image} name={item.name} price={item.price}  /></TouchableOpacity>
                                 })
                             }
                         </ScrollView>
