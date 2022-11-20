@@ -11,12 +11,11 @@ const axios = require('axios').default;
 function Details({ navigation, route }) {
     const [data, setData] = useState({})
     const [dataRelated, setDataRelated] = useState([])
-    const { itemId, categoryId } = route.params
+    const { itemId } = route.params
     
     dataRelated.sort(function(){
         return 0.5 - Math.random()
     })  
-    console.log(dataRelated)
     dataRelated.length = 4
     
     const getDetailsData = (itemId) => {
@@ -24,18 +23,18 @@ function Details({ navigation, route }) {
         .then(function (response) {
             // handle success
             setData(response.data)
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-    }
 
-    const getRelativeProduct = (categoryId) => {
-        axios.get('http://10.0.2.2:8000/api/food/category/'+data.category+'/')
-        .then(function (response) {
-            // handle success
-            setDataRelated(response.data)
+            //Sau khi có response lần đầu thì mới thực hiện tiếp việc call api
+            axios.get('http://10.0.2.2:8000/api/food/category/'+response.data.category+'/')
+            .then(function (response) {
+                // handle success
+                setDataRelated(response.data)
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+
         })
         .catch(function (error) {
             // handle error
@@ -45,14 +44,10 @@ function Details({ navigation, route }) {
 
     useEffect(()=>{
         getDetailsData(itemId)
-        getRelativeProduct(categoryId)
-        
     }, [])
-    
     
 
     return (
-
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
                 <View style={styles.top}>
@@ -107,11 +102,11 @@ function Details({ navigation, route }) {
                     </View>
                     <View style={{ borderBottomColor: 'grey', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
                     <View>
-                        <Text style={{ fontSize: fonts.h3, top: 10, paddingBottom: 10 }}> Sản phẩm liên quan</Text>
+                        <Text style={{ fontSize: fonts.h3, marginBottom: 10, marginTop: 15 }}> Sản phẩm liên quan</Text>
                         <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                             {
                                 dataRelated.map((item, index) => {
-                                    return <CategoryHome key={index} image={item.image} name={item.name} onPress={() => navigation.navigate('Product', {itemId: item.id, titleCate: item.name})} />
+                                    return <CategoryHome key={index} image={item.image} name={item.name} onPress={() => getDetailsData(item.id)} />
                                 })
                             }
                         </ScrollView>
@@ -156,4 +151,3 @@ const styles = StyleSheet.create({
 })
 
 export default Details
-

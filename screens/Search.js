@@ -6,6 +6,7 @@ import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CategoryHome, SearchProduct, SuggestedProduct } from '../components/index.js'
 import { useState, useEffect, useContext  } from 'react'
 import { AuthContext } from "../context/AuthContext.js";
+import { useIsFocused } from '@react-navigation/native'
 const axios = require('axios').default;
 const { width } = Dimensions.get('screen');
 let ScreenHeight = Dimensions.get("window").height;
@@ -14,11 +15,11 @@ function Search({ navigation, route }) {
     const [dataSearch, setDataSearch] = useState([])
     const [data, setData] = useState([])
     const {token} = useContext(AuthContext)
+    const isFocused = useIsFocused()
 
     dataSearch.sort(function(){
         return 0.5 - Math.random()
     })  
-    console.log(dataSearch)
     dataSearch.length = 6
 
     const Search = (name_food) => {
@@ -34,18 +35,16 @@ function Search({ navigation, route }) {
         
     }
 
-    const getSearchProduct = (categoryId) => {
-        axios.get('http://10.0.2.2:8000/api/food/')
-        .then(function (response) {
-            // handle success
-            setDataSearch(response.data)
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
+    const getSearchProduct = async () => {
+        try{
+            const response = await axios.get('http://10.0.2.2:8000/api/food/')
+            await setDataSearch(response.data)
+        }catch(ex){
+            console.log(ex)
+        }
     }
 
+<<<<<<< HEAD
     
 
     useEffect(()=>{
@@ -53,6 +52,11 @@ function Search({ navigation, route }) {
         getSearchProduct()
 
     }, [])
+=======
+    useEffect(() => {
+        getSearchProduct()
+    }, [isFocused])
+>>>>>>> d3810648a92e7695652939bcf577cc37f3332631
 
 
     return (
@@ -81,7 +85,7 @@ function Search({ navigation, route }) {
                         }
                     </View>
                     <View>
-                        <Text style={{ fontSize: fonts.h3, top: 10, paddingBottom: 10 }}> Sản phẩm gợi ý</Text>
+                        <Text style={{ fontSize: fonts.h3, top: 10, paddingBottom: 20, paddingLeft: 10 }}> Sản phẩm gợi ý</Text>
                         <ScrollView vertical showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                             {
                                 dataSearch.map((item, index) => {
@@ -116,4 +120,3 @@ const styles = StyleSheet.create({
 })
 
 export default Search
-
