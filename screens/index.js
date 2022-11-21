@@ -10,6 +10,7 @@ import Profile from "./Profile.js"
 import Password from "./Password"
 import Cart from "./Cart"
 import Product from "./Product"
+import Repassword from "./Repassword.js"
 export{
     Welcome,
     Intro,
@@ -23,4 +24,5 @@ export{
     Password,
     Cart,
     Product,
+    Repassword,
 }

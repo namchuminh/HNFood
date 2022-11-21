@@ -25,7 +25,7 @@ function Profile({ navigation }) {
 
     const { token, logout } = useContext(AuthContext)
     const editInfo = (name, phone, email, address) => {
-        
+
         setIsEdit(!isEdit)
         if (isEdit) {
             const first_name = name.split(" ")[0]
@@ -161,7 +161,7 @@ function Profile({ navigation }) {
                         <Text style={{ paddingHorizontal: 10, color: 'grey' }}>Những thông tin trên chỉ hiển thị cho riêng bạn và không được chia sẻ cho bất cứ ai khác</Text>
                     </View>
                     <View >
-                        <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
+                        <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }} onPress={() => navigation.navigate('Repassword')}>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey', paddingVertical: 10 }}>Đổi mật khẩu</Text>
                             <Ionicons name="chevron-forward-outline" size={30} style={{ paddingHorizontal: 10, paddingTop: 5, color: 'grey' }} />
                         </TouchableOpacity>
