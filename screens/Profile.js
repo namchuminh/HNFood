@@ -160,9 +160,9 @@ function Profile({ navigation }) {
                     <View style={{ paddingVertical: 10, backgroundColor: '#F6F7FC', height: 60 }}>
                         <Text style={{ paddingHorizontal: 10, color: 'grey' }}>Những thông tin trên chỉ hiển thị cho riêng bạn và không được chia sẻ cho bất cứ ai khác</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
-                        <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey', paddingVertical: 10 }}>Đổi mật khẩu</Text>
-                        <TouchableOpacity>
+                    <View >
+                        <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
+                            <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey', paddingVertical: 10 }}>Đổi mật khẩu</Text>
                             <Ionicons name="chevron-forward-outline" size={30} style={{ paddingHorizontal: 10, paddingTop: 5, color: 'grey' }} />
                         </TouchableOpacity>
                     </View>
