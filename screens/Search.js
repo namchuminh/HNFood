@@ -11,7 +11,7 @@ const axios = require('axios').default;
 const { width } = Dimensions.get('screen');
 let ScreenHeight = Dimensions.get("window").height;
 
-function Search({ navigation, route }) {
+function Search({ navigation }) {
     const [dataSearch, setDataSearch] = useState([])
     const [data, setData] = useState([])
     const {token} = useContext(AuthContext)
@@ -63,9 +63,7 @@ function Search({ navigation, route }) {
     }
 
     useEffect(() => {
-        Search()
         getSearchProduct()
-        addProductToCart(id)
     }, [isFocused])
 
 

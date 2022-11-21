@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView, Keyboard } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView, Keyboard, ActivityIndicator } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -6,71 +6,68 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { fonts, colors, images } from '../constants/index.js'
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.js'
+import Spinner from 'react-native-loading-spinner-overlay';
+
 const axios = require('axios').default;
 
 function Login({ navigation }) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-
-  
-
-    const {login, error} = useContext(AuthContext)
-
-    
-
+    const { login, error, isLoading } = useContext(AuthContext)
     return (
         <KeyboardAwareScrollView showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}>
-            <View style={styles.container}>
-                <View style={styles.top}>
-                    <View>
-                        <Image source={images.logo_food} style={{ width: 100, height: 100, alignSelf: 'center' }} resizeMode={'contain'} />
+                <Spinner visible={isLoading} />
+                <View style={styles.container}>
+                    <View style={styles.top}>
+                        <View>
+                            <Image source={images.logo_food} style={{ width: 100, height: 100, alignSelf: 'center' }} resizeMode={'contain'} />
+                        </View>
+                        <View style={{ alignSelf: 'flex-end' }}>
+                            <Text style={{ fontWeight: '600', fontSize: fonts.h1, color: 'white', paddingTop: 50 }}><Icon name='login' size={17} /> Đăng Nhập</Text>
+                        </View>
                     </View>
-                    <View style={{ alignSelf: 'flex-end' }}>
-                        <Text style={{ fontWeight: '600', fontSize: fonts.h1, color: 'white', paddingTop: 50 }}><Icon name='login' size={17} /> Đăng Nhập</Text>
-                    </View>
-                </View>
 
-                <View style={styles.mid}>
-                    <View style={{ paddingTop: 25 }}>
-                        <View style={styles.searchSection}>
-                            <FontAwesome name='user' size={18} color={'#9c9c9c'} style={{ paddingStart: 15 }} />
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Tài khoản"
-                                value={username}
-                                onChangeText={setUsername}
-                            />
+                    <View style={styles.mid}>
+                        <View style={{ paddingTop: 25 }}>
+                            <View style={styles.searchSection}>
+                                <FontAwesome name='user' size={18} color={'#9c9c9c'} style={{ paddingStart: 15 }} />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Tài khoản"
+                                    value={username}
+                                    onChangeText={setUsername}
+                                />
+                            </View>
+                            <View style={{ paddingTop: 25 }} />
+                            <View style={styles.searchSection}>
+                                <Icon name='key' size={18} color={'#9c9c9c'} style={{ paddingStart: 15 }} />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Mật khẩu"
+                                    secureTextEntry={true}
+                                    value={password}
+                                    onChangeText={setPassword}
+                                />
+                            </View>
+                        </View>
+                        <View style={{ paddingTop: 25, alignSelf: 'flex-end' }}>
+                            <Text style={{ color: '#9c9c9c', fontSize: fonts.h5, fontWeight: '400' }}>Quên mật khẩu ?</Text>
+                        </View>
+                        <View style={{ paddingTop: 25 }}>
+                            <TouchableOpacity style={{ backgroundColor: colors.primary, height: 50, borderRadius: 35, justifyContent: 'center' }}>
+                                <Text style={{ color: 'white', fontSize: fonts.h2, fontWeight: 'bold', alignSelf: 'center' }} onPress={() => login(username, password)}>ĐĂNG NHẬP</Text>
+                            </TouchableOpacity>
                         </View>
                         <View style={{ paddingTop: 25 }} />
-                        <View style={styles.searchSection}>
-                            <Icon name='key' size={18} color={'#9c9c9c'} style={{ paddingStart: 15 }} />
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Mật khẩu"
-                                secureTextEntry={true}
-                                value={password}
-                                onChangeText={setPassword}
-                            />
+                        <View style={{ alignSelf: 'center', paddingBottom: 10 }}>
+                            <Text style={{ color: '#9c9c9c', fontSize: fonts.h5, fontWeight: '400' }}>Bạn chưa có tài khoản?
+                                <Text style={{ color: colors.primary, fontWeight: 'bold' }} onPress={() => navigation.navigate('Register')}> Đăng ký ngay!</Text>
+                            </Text>
                         </View>
-                    </View>
-                    <View style={{ paddingTop: 25, alignSelf: 'flex-end' }}>
-                        <Text style={{ color: '#9c9c9c', fontSize: fonts.h5, fontWeight: '400' }}>Quên mật khẩu ?</Text>
-                    </View>
-                    <View style={{ paddingTop: 25 }}>
-                        <TouchableOpacity style={{ backgroundColor: colors.primary, height: 50, borderRadius: 35, justifyContent: 'center' }}>
-                            <Text style={{ color: 'white', fontSize: fonts.h2, fontWeight: 'bold', alignSelf: 'center' }} onPress={() => login(username, password)}>ĐĂNG NHẬP</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={{ paddingTop: 25 }} />
-                    <View style={{ alignSelf: 'center', paddingBottom: 10 }}>
-                        <Text style={{ color: '#9c9c9c', fontSize: fonts.h5, fontWeight: '400' }}>Bạn chưa có tài khoản?
-                            <Text style={{ color: colors.primary, fontWeight: 'bold' }} onPress={() => navigation.navigate('Register')}> Đăng ký ngay!</Text>
-                        </Text>
                     </View>
                 </View>
 
-            </View>
         </KeyboardAwareScrollView>
     )
 }

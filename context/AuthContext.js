@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
     const [token, setToken] = useState({})
     const [error, setError] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
     const [isLogout, setIsLogout] = useState(false)
 
     const storeData = async (value) => {
@@ -28,7 +29,8 @@ export const AuthProvider = ({children}) => {
     }
 
     const login = (username, password) => {
-        axios.post('http://10.0.2.2:8000/api/user/login/', {
+        setIsLoading(true)
+        axios.post('https://namchuminh.pythonanywhere.com/api/user/login/', {
             username: username,
             password: password
         })
@@ -36,6 +38,7 @@ export const AuthProvider = ({children}) => {
             setToken(response.data)
             setIsLogout(false)
             AsyncStorage.setItem('@token', JSON.stringify(token))
+            setIsLoading(false)
         })
         .catch(function (err) {
             setError("Sai tài khoản hoặc mật khẩu!")
@@ -70,7 +73,8 @@ export const AuthProvider = ({children}) => {
           isLogout,
           login,
           register,
-          logout
+          logout,
+          isLoading
         }
       }>
         {children}
