@@ -8,6 +8,8 @@ import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CategoryDetails } from '../components/index.js'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../context/AuthContext.js";
+import Spinner from 'react-native-loading-spinner-overlay';
+
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
@@ -18,9 +20,12 @@ function Profile({ navigation }) {
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [address, setAddress] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+
+
     const { token, logout } = useContext(AuthContext)
     const editInfo = (name, phone, email, address) => {
-        console.log(phone)
+        
         setIsEdit(!isEdit)
         if (isEdit) {
             const first_name = name.split(" ")[0]
@@ -40,6 +45,7 @@ function Profile({ navigation }) {
                 }
             )
                 .then((response) => {
+                    setIsLoading(true)
                     axios.get("http://10.0.2.2:8000/api/user/",
                         {
                             headers: {
@@ -48,6 +54,7 @@ function Profile({ navigation }) {
                         }
                     )
                         .then((response) => {
+                            setIsLoading(false)
                             setData(response.data)
                             setName(response.data.first_name + " " + response.data.last_name)
                             setPhone(response.data.phone)
@@ -66,6 +73,7 @@ function Profile({ navigation }) {
         }
     }
     useEffect(() => {
+        setIsLoading(true)
         axios.get("http://10.0.2.2:8000/api/user/",
             {
                 headers: {
@@ -79,6 +87,7 @@ function Profile({ navigation }) {
                 setPhone(response.data.phone)
                 setEmail(response.data.email)
                 setAddress(response.data.address)
+                setIsLoading(false)
             },
                 (error) => {
                     alert("Ket noi khong thanh cong!")
@@ -89,6 +98,7 @@ function Profile({ navigation }) {
     return (
 
         <View style={styles.container}>
+            <Spinner visible={isLoading} />
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
                 <View style={styles.top}>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: colors.primary, paddingVertical: 15 }}>
