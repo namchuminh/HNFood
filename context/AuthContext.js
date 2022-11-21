@@ -30,7 +30,7 @@ export const AuthProvider = ({children}) => {
 
     const login = (username, password) => {
         setIsLoading(true)
-        axios.post('http://10.0.2.2:8000/api/user/login/', {
+        axios.post('https://namchuminh.pythonanywhere.com/api/user/login/', {
             username: username,
             password: password
         })
