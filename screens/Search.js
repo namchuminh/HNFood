@@ -44,19 +44,30 @@ function Search({ navigation, route }) {
         }
     }
 
-<<<<<<< HEAD
-    
+    const addProductToCart = (id) => {
+        axios.post('http://10.0.2.2:8000/api/cart/',
+        {
+            product: id,
+        },
+        {
+            headers: {
+                Authorization: "Bearer " + token.access,
+            }
+        })
+        .then(function (response) {
+            alert("Đã thêm sản phẩm vào giỏ hàng!")
+         })
+         .catch(function (error) {
+           console.log(error);
+         });
+    }
 
-    useEffect(()=>{
+    useEffect(() => {
         Search()
         getSearchProduct()
-
-    }, [])
-=======
-    useEffect(() => {
-        getSearchProduct()
+        addProductToCart(id)
     }, [isFocused])
->>>>>>> d3810648a92e7695652939bcf577cc37f3332631
+
 
 
     return (
@@ -80,7 +91,7 @@ function Search({ navigation, route }) {
                     <View style={{ alignSelf: 'center', width: '100%', top: 0, justifyContent: 'space-between', flexDirection: 'column' }}>
                         {
                             data.map((item, index) => {
-                                return <TouchableOpacity key={index} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}><SearchProduct key ={index} name={item.name} image={item.image} price={item.price}/></TouchableOpacity>
+                                return <TouchableOpacity key={index} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}><SearchProduct key ={index} name={item.name} image={item.image} price={item.price} onPress={() => addProductToCart(item.id)}/></TouchableOpacity>
                             })
                         }
                     </View>
@@ -89,7 +100,7 @@ function Search({ navigation, route }) {
                         <ScrollView vertical showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                             {
                                 dataSearch.map((item, index) => {
-                                    return <TouchableOpacity key={index} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}><SuggestedProduct key={index} image={item.image} name={item.name} price={item.price}  /></TouchableOpacity>
+                                    return <TouchableOpacity key={index} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}><SuggestedProduct key={index} image={item.image} name={item.name} price={item.price} onPress={() => addProductToCart(item.id)} /></TouchableOpacity>
                                 })
                             }
                         </ScrollView>
