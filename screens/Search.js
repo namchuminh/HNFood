@@ -67,7 +67,6 @@ function Search({ navigation }) {
     }, [isFocused])
 
 
-
     return (
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
