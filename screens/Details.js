@@ -84,8 +84,6 @@ function Details({ navigation, route }) {
 
     useEffect(()=>{
         getDetailsData(itemId)
-        addProductToCart(id)
-        orderProduct
     }, [isFocused])
     
 
