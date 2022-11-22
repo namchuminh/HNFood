@@ -67,7 +67,7 @@ function Profile({ navigation }) {
                         )
                 },
                     (error) => {
-                        alert("Cap nhat khong thanh cong!")
+                        alert("Vui lòng nhập đủ thông tin!")
                     }
                 )
         }
@@ -107,8 +107,8 @@ function Profile({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: '8%', marginHorizontal: 10 }}>
                         <Image source={{ uri: "http://10.0.2.2:8000" + data.avatar }} style={{ width: 80, height: 80, borderRadius: 40 }} />
                         <View>
-                            <Text style={{ fontSize: 20, paddingHorizontal: 20, paddingTop: 25 }}>{data.first_name + " " + data.last_name}</Text>
-                            <Text style={{ fontSize: 14, paddingHorizontal: 20, color: 'grey' }}>{data.email}</Text>
+                            <Text style={{ fontSize: 20, paddingHorizontal: 20, paddingTop: 25 }}>{ !data.first_name && !data.last_name ? 'Khách Hàng #'+data.id : data.first_name + " " + data.last_name}</Text>
+                            <Text style={{ fontSize: 14, paddingHorizontal: 20, color: 'grey' }}>{ !data.email ? 'Chưa có email' : data.email}</Text>
                         </View>
 
                     </View>
@@ -133,7 +133,7 @@ function Profile({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 10, paddingVertical: 10 }}>
                         <View>
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, color: 'grey' }}>Họ tên</Text>
-                            <TextInput onChangeText={text => setName(text)} style={{ paddingHorizontal: 15, fontSize: 16, color: 'black' }} editable={isEdit} >{data.first_name + " " + data.last_name}</TextInput>
+                            <TextInput onChangeText={text => setName(text)} style={{ paddingHorizontal: 15, fontSize: 16, color: 'black' }} editable={isEdit} >{ !data.first_name && !data.last_name ? 'Khách Hàng #'+data.id : data.first_name + " " + data.last_name}</TextInput>
                         </View>
                     </View>
                     <View style={{ borderBottomColor: '#CCCCCC', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />
