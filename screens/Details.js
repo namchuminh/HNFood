@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard, Picker } from 'react-native'
 import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
 import { TopSearch, CategoryDetails, CategoryHome } from '../components/index.js'
+import { useIsFocused } from '@react-navigation/native'
+import { AuthContext } from "../context/AuthContext.js";
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
@@ -12,6 +14,8 @@ function Details({ navigation, route }) {
     const [data, setData] = useState({})
     const [dataRelated, setDataRelated] = useState([])
     const { itemId } = route.params
+    const isFocused = useIsFocused()
+    const {token} = useContext(AuthContext)
     
     dataRelated.sort(function(){
         return 0.5 - Math.random()
@@ -42,9 +46,47 @@ function Details({ navigation, route }) {
         })
     }
 
+    const addProductToCart = (id) => {
+        axios.post('http://10.0.2.2:8000/api/cart/',
+        {
+            product: id,
+        },
+        {
+            headers: {
+                Authorization: "Bearer " + token.access,
+            }
+        })
+        .then(function (response) {
+            alert("Đã thêm sản phẩm vào giỏ hàng!")
+         })
+         .catch(function (error) {
+           console.log(error);
+         });
+    }
+
+    const orderProduct = (id) => {
+        axios.post('http://10.0.2.2:8000/api/order/',
+        {
+            product: id,
+        },
+        {
+            headers: {
+                Authorization: "Bearer " + token.access,
+            }
+        })
+        .then(function (response) {
+            alert("Đặt hàng thành công!")
+         })
+         .catch(function (error) {
+           console.log(error);
+         });
+    }
+
     useEffect(()=>{
         getDetailsData(itemId)
-    }, [])
+        addProductToCart(id)
+        orderProduct
+    }, [isFocused])
     
 
     return (
@@ -96,7 +138,7 @@ function Details({ navigation, route }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 20, marginHorizontal: 10 }}>
                         <Image source={{uri: "http://10.0.2.2:8000"+data.image }} style={{ width: 50, height: 50, borderRadius: 10 }} />
                         <Text style={{alignSelf: 'center', paddingStart: 2, lineHeight: 20, width: '25%'}}>{data.name}</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => addProductToCart(itemId)}>
                             <Text style={{paddingVertical: 10, borderWidth: 1, paddingHorizontal: 10, marginTop: 10, borderRadius: 5 }}>+ Thêm giỏ hàng</Text>
                         </TouchableOpacity>
                     </View>
@@ -106,13 +148,13 @@ function Details({ navigation, route }) {
                         <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                             {
                                 dataRelated.map((item, index) => {
-                                    return <CategoryHome key={index} image={item.image} name={item.name} onPress={() => getDetailsData(item.id)} />
+                                    return <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => getDetailsData(item.id)} />
                                 })
                             }
                         </ScrollView>
                     </View>
                     <View style={{ paddingHorizontal: 10, paddingVertical: 20 }}>
-                        <TouchableOpacity style={{ borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, paddingVertical: 20, borderColor: colors.primary, backgroundColor: colors.primary }}>
+                        <TouchableOpacity style={{ borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, paddingVertical: 20, borderColor: colors.primary, backgroundColor: colors.primary }} onPress={() => orderProduct(itemId)}>
                             <Text style={{fontSize: fonts.h4, color: 'white', alignSelf: 'center'}}>Đặt hàng</Text>
                         </TouchableOpacity>
 
