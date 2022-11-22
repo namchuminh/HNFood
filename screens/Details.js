@@ -13,16 +13,28 @@ const axios = require('axios').default;
 function Details({ navigation, route }) {
     const [data, setData] = useState({})
     const [dataRelated, setDataRelated] = useState([])
+    const [idProduct, setIdProduct] = useState("")
     const { itemId } = route.params
     const isFocused = useIsFocused()
     const {token} = useContext(AuthContext)
-    
+
     dataRelated.sort(function(){
         return 0.5 - Math.random()
     })  
     dataRelated.length = 4
+
+    const scrollRef = React.useRef();
     
     const getDetailsData = (itemId) => {
+
+        setIdProduct(itemId)
+
+        scrollRef.current?.scrollTo({
+            y: 0,
+            animated: true,
+            
+          });
+
         axios.get('http://10.0.2.2:8000/api/food/'+itemId+'/')
         .then(function (response) {
             // handle success
@@ -82,14 +94,15 @@ function Details({ navigation, route }) {
          });
     }
 
+    
     useEffect(()=>{
         getDetailsData(itemId)
     }, [isFocused])
     
 
     return (
-        <View style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
+        <ScrollView style={styles.container} ref={scrollRef}  showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+            <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                 <View style={styles.top}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                         <TouchableOpacity style={{ borderWidth: 1, borderColor: '#F1F1F1', borderRadius: 5 }} onPress={()=> navigation.goBack()}>
@@ -136,7 +149,7 @@ function Details({ navigation, route }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 20, marginHorizontal: 10 }}>
                         <Image source={{uri: "http://10.0.2.2:8000"+data.image }} style={{ width: 50, height: 50, borderRadius: 10 }} />
                         <Text style={{alignSelf: 'center', paddingStart: 2, lineHeight: 20, width: '25%'}}>{data.name}</Text>
-                        <TouchableOpacity onPress={() => addProductToCart(itemId)}>
+                        <TouchableOpacity onPress={() => addProductToCart(idProduct)}>
                             <Text style={{paddingVertical: 10, borderWidth: 1, paddingHorizontal: 10, marginTop: 10, borderRadius: 5 }}>+ Thêm giỏ hàng</Text>
                         </TouchableOpacity>
                     </View>
@@ -160,7 +173,7 @@ function Details({ navigation, route }) {
                     
                 </View>
             </ScrollView>
-        </View>
+        </ScrollView>
     )
 
 }
