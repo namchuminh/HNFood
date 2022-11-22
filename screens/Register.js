@@ -23,7 +23,7 @@ function Register({navigation}){
                     <TouchableOpacity onPress={()=> navigation.goBack() }>
                         <Icon name='arrow-left'  size={27} />
                     </TouchableOpacity>
-                    <Text style={{color: 'black', fontSize: fonts.h1, fontWeight: 'bold', alignSelf: 'center'}}>Tạo Tài Khoản</Text>
+                    <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold', alignSelf: 'center'}}>Tạo Tài Khoản</Text>
                 <View/>
             </View>
             </View>
