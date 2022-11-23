@@ -11,6 +11,7 @@ import Password from "./Password"
 import Cart from "./Cart"
 import Product from "./Product"
 import Repassword from "./Repassword.js"
+import Pay from "./Pay.js"
 export{
     Welcome,
     Intro,
@@ -25,4 +26,5 @@ export{
     Cart,
     Product,
     Repassword,
+    Pay,
 }

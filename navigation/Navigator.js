@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { Welcome, Intro, Login, Register, Home, Search, Category, Details, Profile, Password, Cart, Product, Repassword} from '../screens';
+import { Welcome, Intro, Login, Register, Home, Search, Category, Details, Profile, Password, Cart, Product, Repassword, Pay} from '../screens';
 import Tabs from './Tabs';
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +22,7 @@ function Navigator(props){
                         <Stack.Screen name="Product" component={Product}/>
                         <Stack.Screen name="Cart" component={Cart}/>
                         <Stack.Screen name="Repassword" component={Repassword}/>
+                        <Stack.Screen name="Pay" component={Pay}/>
                     </>
                     
                 ) : (

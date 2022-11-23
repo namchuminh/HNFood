@@ -14,7 +14,6 @@ function CartProduct(props) {
                 <TouchableOpacity onPress={props.onPress} style={{ alignSelf: 'center', borderWidth: 1, borderRadius: 20, borderColor: colors.primary, paddingHorizontal: 20, paddingVertical: 5, marginBottom: 20, marginRight: 10 }}>
                     <Text style={{ color: colors.primary }}>Xoá</Text>
                 </TouchableOpacity>
-
             </View>
         </View>
     )

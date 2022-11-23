@@ -58,7 +58,7 @@ function Cart({navigation}) {
                         { 
                             data.length  != 0 || data !== undefined ? 
                                 data.map((item, index)=>{
-                                    return <TouchableOpacity key={index} onPress={() => navigation.navigate('Details', {itemId: item.product,})}><CartProduct  onPress={() => deleteProductCart(item.id)} image={item.image} name={item.name} price={item.price}  /></TouchableOpacity>
+                                    return <TouchableOpacity key={index} onPress={() => navigation.navigate('Details', {itemId: item.product,})}><CartProduct  onPress={() => deleteProductCart(item.id)} image={item.image} name={item.name} price={item.price} /></TouchableOpacity>
                                 })
                             : null
                         }
@@ -73,7 +73,7 @@ function Cart({navigation}) {
                                 <Text style={{alignSelf: 'center', color: 'gray' }}>Giỏ hàng của bạn hiện đang trống!</Text>
                             </View>
                         :
-                            <TouchableOpacity style={{ alignSelf: 'center' }}>
+                            <TouchableOpacity style={{ alignSelf: 'center' }} onPress={() => navigation.navigate('Pay')}>
                                 <Text style={styles.order}>Thanh toán</Text>
                             </TouchableOpacity>
                     }
