@@ -53,62 +53,14 @@ function Home({ navigation }) {
     return (
         <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
             <View style={styles.container}>
-<<<<<<< HEAD
-                <View style={styles.top}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
-                        <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Trang Chủ</Text>
-                        <View style={{flex: 1}}/>                            
-                        <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
-                        <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
-                    </View>
-                   
-                </View>
-                <View style={styles.mid}>
-                    <Image source={images.banner} style={{ width: '100%', height: 200, borderRadius: 10, marginBottom: 10 }} />
-                    <View>
-                        <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ ăn nhanh</Text>
-                        <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                        <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                            {
-                                data.map((item, index) => item.category == 1 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}/> : null) 
-                            }
-                        </ScrollView>
-                        </View>
-                        <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ ăn cơm</Text>
-                        <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                        <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                            {
-                                data.map((item, index) => item.category == 3 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}/> : null)
-                            }
-                        </ScrollView>
-                        </View>
-                        <Text style={{ fontSize: fonts.h3, top: 10 }}> Nước giải khát</Text>
-                        <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                        <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                            {
-                                data.map((item, index) => item.category == 4 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}/> : null)
-                            }
-                        </ScrollView>
-                        </View>
-                        <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ tráng miệng</Text>
-                        <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                        <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                            {
-                                data.map((item, index) => item.category == 2 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}/> : null)
-                            }
-                        </ScrollView>
-                        </View>
-                    </View>
-                </View>
-=======
                 {isLoading ? <Spinner visible={isLoading} /> :
                     <>
                         <View style={styles.top}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
                                 <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Trang Chủ</Text>
                                 <View style={{ flex: 1 }} />
-                                <Ionicons name="notifications" size={22} style={{ paddingEnd: 5, }} />
-                                <Ionicons name="ios-cart" size={22} style={{ paddingStart: 5, }} />
+                                <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
+                                <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
                             </View>
 
                         </View>
@@ -119,7 +71,7 @@ function Home({ navigation }) {
                                 <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                                     <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                         {
-                                            data.map((item, index) => item.category == 1 ? <CategoryHome key={index} price={item.price} image={item.image} name={item.name} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
+                                            data.map((item, index) => item.category == 1 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
                                         }
                                     </ScrollView>
                                 </View>
@@ -127,7 +79,7 @@ function Home({ navigation }) {
                                 <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                                     <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                         {
-                                            data.map((item, index) => item.category == 3 ? <CategoryHome key={index} price={item.price} image={item.image} name={item.name} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
+                                            data.map((item, index) => item.category == 3 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
                                         }
                                     </ScrollView>
                                 </View>
@@ -135,7 +87,7 @@ function Home({ navigation }) {
                                 <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                                     <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                         {
-                                            data.map((item, index) => item.category == 4 ? <CategoryHome key={index} price={item.price} image={item.image} name={item.name} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
+                                            data.map((item, index) => item.category == 4 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
                                         }
                                     </ScrollView>
                                 </View>
@@ -143,7 +95,7 @@ function Home({ navigation }) {
                                 <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                                     <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                         {
-                                            data.map((item, index) => item.category == 2 ? <CategoryHome key={index} price={item.price} image={item.image} name={item.name} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
+                                            data.map((item, index) => item.category == 2 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
                                         }
                                     </ScrollView>
                                 </View>
@@ -151,7 +103,6 @@ function Home({ navigation }) {
                         </View>
                     </>
                 }
->>>>>>> b0bf37e9c055c091705fa388bfdb6a2579b9bfa3
             </View>
         </ScrollView>
     )
