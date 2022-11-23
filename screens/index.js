@@ -12,6 +12,7 @@ import Cart from "./Cart"
 import Product from "./Product"
 import Repassword from "./Repassword.js"
 import Pay from "./Pay.js"
+import PayFromDetail from "./PayFromDetail.js"
 export{
     Welcome,
     Intro,
@@ -27,4 +28,5 @@ export{
     Product,
     Repassword,
     Pay,
+    PayFromDetail,
 }

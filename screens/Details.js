@@ -76,24 +76,6 @@ function Details({ navigation, route }) {
          });
     }
 
-    const orderProduct = (id) => {
-        axios.post('http://10.0.2.2:8000/api/order/',
-        {
-            product: id,
-        },
-        {
-            headers: {
-                Authorization: "Bearer " + token.access,
-            }
-        })
-        .then(function (response) {
-            alert("Đặt hàng thành công!")
-         })
-         .catch(function (error) {
-           console.log(error);
-         });
-    }
-
     
     useEffect(()=>{
         getDetailsData(itemId)
@@ -165,7 +147,7 @@ function Details({ navigation, route }) {
                         </ScrollView>
                     </View>
                     <View style={{ paddingHorizontal: 10, paddingVertical: 20 }}>
-                        <TouchableOpacity style={{ borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, paddingVertical: 20, borderColor: colors.primary, backgroundColor: colors.primary }} onPress={() => orderProduct(itemId)}>
+                        <TouchableOpacity style={{ borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, paddingVertical: 20, borderColor: colors.primary, backgroundColor: colors.primary }} onPress={() => navigation.navigate('PayFromDetail', {itemId: item.id})}>
                             <Text style={{fontSize: fonts.h4, color: 'white', alignSelf: 'center'}}>Đặt hàng</Text>
                         </TouchableOpacity>
 
