@@ -45,10 +45,10 @@ function Cart({navigation}) {
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Giỏ hàng</Text>
                         <View style={{ flex: 1 }} />
                         <TouchableOpacity>
-                            <Ionicons name="notifications" size={22} style={{ paddingEnd: 5, }} />
+                            <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
                         </TouchableOpacity>
                         <TouchableOpacity>
-                            <Ionicons name="ios-cart" size={22} style={{ paddingStart: 5, }} />
+                            <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
                         </TouchableOpacity>
 
                     </View>

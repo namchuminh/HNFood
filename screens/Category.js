@@ -30,10 +30,10 @@ function Category({ navigation }) {
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Danh Mục</Text>
                         <View style={{ flex: 1 }} />
                         <TouchableOpacity>
-                            <Ionicons name="notifications" size={22} style={{ paddingEnd: 5, }} />
+                            <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
                         </TouchableOpacity>
                         <TouchableOpacity>
-                            <Ionicons name="ios-cart" size={22} style={{ paddingStart: 5, }} />
+                            <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
                         </TouchableOpacity>
                     </View>
                 </View>
