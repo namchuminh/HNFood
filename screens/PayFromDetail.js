@@ -12,7 +12,7 @@ const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
 function PayFromDetail({navigation, route }) {
-    const [data, setData] = useState([])
+    const [data, setData] = useState({})
     const [total, setTotal] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const isFocused = useIsFocused()
@@ -21,26 +21,17 @@ function PayFromDetail({navigation, route }) {
     
 
     useEffect(()=>{
-        axios.get('http://10.0.2.2:8000/api/food/'+itemId+'/',{
-            headers: {
-                Authorization: "Bearer " + token.access,
-            }
-        })
+        
+        //Sau khi có response lần đầu thì mới thực hiện tiếp việc call api
+        axios.get('http://10.0.2.2:8000/api/food/'+itemId)
         .then(function (response) {
             // handle success
             setData(response.data)
-            var total = 0
-            response.data.map((item, index) => {
-                total = item.price
-            })
-            setTotal(total)
         })
         .catch(function (error) {
             // handle error
             console.log(error);
         })
-
-        
     }, [isLoading,isFocused])
 
     return (
@@ -57,12 +48,14 @@ function PayFromDetail({navigation, route }) {
                 </View>
                 <View style={styles.mid}>
                     <View style={styles.listProduct}>
-                        {data.map((item, index) => <PayProduct key={index} number={item.number} name={item.name} image={item.image} price={item.price} />)}
+                        {
+                            <PayProduct number={1} name={data.name} image={data.image} price={data.price} />
+                        }
                     </View>
                     <View style={{marginTop: 15, marginHorizontal: 15, borderBottomColor: colors.inactive, borderBottomWidth: 1, paddingBottom: 15}}>
                         <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
                             <Text style={{fontSize: 13, color: 'gray'}}>Tạm tính: </Text>
-                            <Text style={{fontSize: 13, color: 'gray'}}>{total}.000đ</Text>
+                            <Text style={{fontSize: 13, color: 'gray'}}>{data.price * 1}.000đ</Text>
                         </View>
                         <View style={{paddingVertical: 5}} />
                         <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
@@ -73,7 +66,7 @@ function PayFromDetail({navigation, route }) {
                     <View style={{marginTop: 15, marginHorizontal: 15, paddingBottom: 15}}>
                         <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
                             <Text style={{fontSize: 13, color: 'black'}}>Tổng tiền: </Text>
-                            <Text style={{fontSize: 13, color: 'black'}}>{total}.000đ</Text>
+                            <Text style={{fontSize: 13, color: 'black'}}>{data.price * 1}.000đ</Text>
                         </View>
                     </View>
                     <TouchableOpacity style={{backgroundColor: colors.primary, justifyContent: 'center', paddingVertical: 10, marginHorizontal: 10, borderRadius: 5}}>

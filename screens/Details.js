@@ -147,7 +147,7 @@ function Details({ navigation, route }) {
                         </ScrollView>
                     </View>
                     <View style={{ paddingHorizontal: 10, paddingVertical: 20 }}>
-                        <TouchableOpacity style={{ borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, paddingVertical: 20, borderColor: colors.primary, backgroundColor: colors.primary }} onPress={() => navigation.navigate('PayFromDetail', {itemId: item.id})}>
+                        <TouchableOpacity style={{ borderWidth: 1, paddingHorizontal: 10, borderRadius: 5, paddingVertical: 20, borderColor: colors.primary, backgroundColor: colors.primary }} onPress={() => navigation.navigate('PayFromDetail', {itemId: idProduct})}>
                             <Text style={{fontSize: fonts.h4, color: 'white', alignSelf: 'center'}}>Đặt hàng</Text>
                         </TouchableOpacity>
 
