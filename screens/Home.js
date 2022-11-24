@@ -14,9 +14,9 @@ function Home({ navigation }) {
     const [isLoading, setIsLoading] = useState(false)
     const { token } = useContext(AuthContext)
 
-    const getDataFood = () => {
+    const getPopularFood = () => {
         setIsLoading(true)
-        axios.get('http://10.0.2.2:8000/api/food/')
+        axios.get('http://10.0.2.2:8000/api/food/popular/')
             .then(function (response) {
                 // handle success
                 setData(response.data)
@@ -45,7 +45,7 @@ function Home({ navigation }) {
 
     useEffect(() => {
         getUserInfo()
-        getDataFood()
+        getPopularFood()
     }, [])
 
     return (
@@ -70,35 +70,12 @@ function Home({ navigation }) {
                         <View style={styles.mid}>
                             <Image source={images.banner} style={{ width: '100%', height: 200, borderRadius: 10, marginBottom: 10 }} />
                             <View>
-                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ ăn nhanh</Text>
+                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Sản phẩm nổi bật</Text>
                                 <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                                     <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                         {
-                                            data.map((item, index) => item.category == 1 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
-                                        }
-                                    </ScrollView>
-                                </View>
-                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ ăn cơm</Text>
-                                <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                                    <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                                        {
-                                            data.map((item, index) => item.category == 3 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
-                                        }
-                                    </ScrollView>
-                                </View>
-                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Nước giải khát</Text>
-                                <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                                    <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                                        {
-                                            data.map((item, index) => item.category == 4 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
-                                        }
-                                    </ScrollView>
-                                </View>
-                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ tráng miệng</Text>
-                                <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
-                                    <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                                        {
-                                            data.map((item, index) => item.category == 2 ? <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Details', { itemId: item.id, })} /> : null)
+                                            data.map((item, index) => {
+                                            return <CategoryHome key={index} image={item.image} name={item.name} price={item.price} onPress={() => navigation.navigate('Details', { itemId: item.id, })} />})
                                         }
                                     </ScrollView>
                                 </View>

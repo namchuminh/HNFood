@@ -17,7 +17,7 @@ function CategoryHome(props){
 const styles = StyleSheet.create({
     product: {
         height: 210,
-        width: width / 2 - 30,
+        width: width / 2 - 20 ,
         elevation: 5,
         backgroundColor: 'white',
         borderRadius: 10,
