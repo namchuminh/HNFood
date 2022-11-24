@@ -13,6 +13,7 @@ import Product from "./Product"
 import Repassword from "./Repassword.js"
 import Pay from "./Pay.js"
 import PayFromDetail from "./PayFromDetail.js"
+import Order from "./Order.js"
 export{
     Welcome,
     Intro,
@@ -29,4 +30,5 @@ export{
     Repassword,
     Pay,
     PayFromDetail,
+    Order
 }

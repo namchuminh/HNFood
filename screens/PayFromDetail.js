@@ -19,7 +19,27 @@ function PayFromDetail({navigation, route }) {
     const {token} = useContext(AuthContext)
     const {itemId} = route.params
     
-
+    const orderProduct = (itemId) => {
+        axios.post('http://10.0.2.2:8000/api/order/', 
+            {
+                product: itemId,
+                user: 1,
+                number: 1
+            },
+            {
+                headers: {
+                    Authorization: "Bearer " + token.access
+                }
+            }
+        )
+        .then(function (response) {
+            navigation.navigate('Order')
+        })
+        .catch(function (error) {
+            // handle error
+            alert('Đặt hàng thất bại!')
+        })
+    }
     useEffect(()=>{
         
         //Sau khi có response lần đầu thì mới thực hiện tiếp việc call api
@@ -69,7 +89,7 @@ function PayFromDetail({navigation, route }) {
                             <Text style={{fontSize: 13, color: 'black'}}>{data.price * 1}.000đ</Text>
                         </View>
                     </View>
-                    <TouchableOpacity style={{backgroundColor: colors.primary, justifyContent: 'center', paddingVertical: 10, marginHorizontal: 10, borderRadius: 5}}>
+                    <TouchableOpacity onPress={() => orderProduct(data.id)} style={{backgroundColor: colors.primary, justifyContent: 'center', paddingVertical: 10, marginHorizontal: 10, borderRadius: 5}}>
                         <Text style={{alignSelf: 'center', color: 'white'}}>Giao Hàng</Text>
                     </TouchableOpacity>
                 </View>
