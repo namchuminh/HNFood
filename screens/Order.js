@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView, Alert } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors} from '../constants/index.js'
 import { AuthContext } from "../context/AuthContext.js";
 import { useIsFocused } from '@react-navigation/native'
 import {OrderProduct} from "../components/index.js";
+import Spinner from 'react-native-loading-spinner-overlay';
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
@@ -17,14 +18,22 @@ function Order({navigation}) {
     const isFocused = useIsFocused()
     const {token} = useContext(AuthContext)
 
+    const cancelOrder = async (itemId) => {
+        const res = await axios.put('http://10.0.2.2:8000/api/order/', {idOrder: itemId, user: 1}, {headers: {
+            Authorization: "Bearer " + token.access,
+        }})
+        await getProductOrder(false)
+    }
 
-    useEffect(()=>{
-        axios.get('http://10.0.2.2:8000/api/order',{
+    const getProductOrder = (allowLoad) =>{
+        setIsLoading(allowLoad)
+        axios.get('http://10.0.2.2:8000/api/order/',{
             headers: {
                 Authorization: "Bearer " + token.access,
             }
         })
         .then(function (response) {
+            setIsLoading(false)
             // handle success
             setData(response.data)
             var total = 0
@@ -39,7 +48,7 @@ function Order({navigation}) {
 
             var isDeliveryCheck = false
             response.data.map((item, index) => {
-                item.isReceived == false ? isDeliveryCheck = true : null
+                item.isReceived == false && item.isCancel == false ? isDeliveryCheck = true : null
             })
 
             setIsDelivery(isDeliveryCheck)
@@ -48,17 +57,21 @@ function Order({navigation}) {
         })
         .catch(function (error) {
             // handle error
+            setIsLoading(false)
             console.log(error);
         })
-        
-    }, [isLoading,isFocused])
+    }
+    useEffect(()=>{
+        getProductOrder(true)
+    }, [isFocused])
 
     return (
         <View style={styles.container}>
+            { isLoading ? <Spinner visible={isLoading} /> :
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                 <View style={styles.top}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
-                    <TouchableOpacity style={{ paddingRight: 20 }} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity style={{ paddingRight: 20 }} onPress={() => navigation.navigate('Home')}>
                             <Ionicons name="arrow-back-outline" size={25} />
                         </TouchableOpacity>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Đơn Hàng</Text>
@@ -83,7 +96,7 @@ function Order({navigation}) {
                                             <View style={styles.listProduct}>
                                                 {
                                                     data.map((item, index)=>{
-                                                        return item.isReceived == false ? <OrderProduct key={index} isReceived={item.isReceived} number={item.number} name={item.name} image={item.image} price={item.price} /> : null
+                                                        return item.isReceived == false && item.isCancel == false ? <OrderProduct onPress={() => cancelOrder(item.id)} key={index} isReceived={item.isReceived} isCancel={item.isCancel} number={item.number} name={item.name} image={item.image} price={item.price} /> : null
                                                     })
                                                 }
                                             </View>
@@ -97,11 +110,11 @@ function Order({navigation}) {
                                     <> 
                                         <View style={{marginVertical: isDelivery == true ? 10 : 0}} />
                                         <View>
-                                            <Text style={{marginHorizontal: 10, paddingBottom: 10, fontSize: 16, borderBottomWidth: 1, borderColor: colors.inactive, marginBottom: 10}}>Đã giao hàng</Text>
+                                            <Text style={{marginHorizontal: 10, paddingBottom: 10, fontSize: 16, borderBottomWidth: 1, borderColor: colors.inactive, marginBottom: 10}}>Lịch sử đơn hàng</Text>
                                             <View style={styles.listProduct}>
                                                 {
                                                     data.map((item, index)=>{
-                                                        return item.isReceived == true ? <OrderProduct key={index} isReceived={item.isReceived} number={item.number} name={item.name} image={item.image} price={item.price} /> : null
+                                                        return item.isReceived == true || item.isCancel == true ? <OrderProduct key={index} isReceived={item.isReceived} isCancel={item.isCancel} number={item.number} name={item.name} image={item.image} price={item.price} /> : null
                                                     })
                                                 }
                                             </View>
@@ -114,6 +127,7 @@ function Order({navigation}) {
                     }
                 </View>
             </ScrollView>
+            }
         </View>
     )
 }

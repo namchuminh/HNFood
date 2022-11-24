@@ -94,7 +94,7 @@ function Profile({ navigation }) {
     return (
 
         <View style={styles.container}>
-            <Spinner visible={isLoading} />
+            { isLoading ? <Spinner visible={isLoading} /> :
             <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
                 <View style={styles.top}>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: colors.primary, paddingVertical: 15 }}>
@@ -169,11 +169,9 @@ function Profile({ navigation }) {
 
                 </View>
             </ScrollView>
+            }
         </View>
-
-
     )
-
 }
 
 const styles = StyleSheet.create({
