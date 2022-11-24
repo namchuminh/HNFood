@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard, Picker } from 'react-native'
-import Octicons from 'react-native-vector-icons/Octicons'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { fonts, colors, images } from '../constants/index.js'
-import { TopSearch, CartProduct } from '../components/index.js'
+import { fonts, colors } from '../constants/index.js'
+import {CartProduct } from '../components/index.js'
 import { AuthContext } from "../context/AuthContext.js";
 import { useIsFocused } from '@react-navigation/native'
 const { width } = Dimensions.get('screen');

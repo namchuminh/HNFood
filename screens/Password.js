@@ -1,11 +1,7 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard, Picker } from 'react-native'
-import Octicons from 'react-native-vector-icons/Octicons'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { fonts, colors, images } from '../constants/index.js'
-import { TopSearch, CategoryDetails } from '../components/index.js'
+import { fonts, colors} from '../constants/index.js'
 const { width } = Dimensions.get('screen');
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 

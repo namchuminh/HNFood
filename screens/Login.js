@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView, Keyboard, ActivityIndicator } from 'react-native'
-import Octicons from 'react-native-vector-icons/Octicons'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput} from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { fonts, colors, images } from '../constants/index.js'
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext.js'
 import Spinner from 'react-native-loading-spinner-overlay';
 

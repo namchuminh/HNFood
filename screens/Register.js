@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, KeyboardAvoidingView, Keyboard } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import Octicons from 'react-native-vector-icons/Octicons'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import {fonts, colors, images} from '../constants/index.js'
+import {fonts, colors} from '../constants/index.js'
 import { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext.js'
 

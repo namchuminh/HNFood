@@ -1,9 +1,7 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard } from 'react-native'
-import Octicons from 'react-native-vector-icons/Octicons'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions, ScrollView} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors, images } from '../constants/index.js'
-import { TopSearch, CategoryHome } from '../components/index.js'
+import {CategoryHome } from '../components/index.js'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext.js'
 import Spinner from 'react-native-loading-spinner-overlay';

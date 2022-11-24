@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard, Picker } from 'react-native'
-import Octicons from 'react-native-vector-icons/Octicons'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Dimensions, ScrollView} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { fonts, colors, images } from '../constants/index.js'
-import { TopSearch, CategoryDetails } from '../components/index.js'
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {colors} from '../constants/index.js'
 import { AuthContext } from "../context/AuthContext.js";
 import Spinner from 'react-native-loading-spinner-overlay';
 

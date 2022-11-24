@@ -1,9 +1,7 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard } from 'react-native'
-import Octicons from 'react-native-vector-icons/Octicons'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Dimensions, ScrollView} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { fonts, colors, images } from '../constants/index.js'
-import { TopSearch, CategoryHome, SearchProduct, SuggestedProduct } from '../components/index.js'
+import { fonts, colors} from '../constants/index.js'
+import {SearchProduct, SuggestedProduct } from '../components/index.js'
 import { useState, useEffect, useContext  } from 'react'
 import { AuthContext } from "../context/AuthContext.js";
 import { useIsFocused } from '@react-navigation/native'
