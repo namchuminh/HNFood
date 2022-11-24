@@ -59,8 +59,13 @@ function Home({ navigation }) {
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
                                 <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Trang Chủ</Text>
                                 <View style={{ flex: 1 }} />
-                                <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
-                                <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
+                                <TouchableOpacity>
+                                    <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                                    <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
+                                </TouchableOpacity>
+                                
                             </View>
 
                         </View>

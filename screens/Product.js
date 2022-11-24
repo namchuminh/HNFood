@@ -59,7 +59,7 @@ function Product({ navigation, route }) {
                         <TouchableOpacity>
                             <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
                             <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
                         </TouchableOpacity>
                     </View>

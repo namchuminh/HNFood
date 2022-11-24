@@ -74,8 +74,12 @@ function Search({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Tìm Kiếm</Text>
                         <View style={{ flex: 1 }} />
-                        <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
-                        <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
+                        <TouchableOpacity>
+                            <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                            <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
+                        </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1 }}>
                         <View style={{ backgroundColor: 'white', justifyContent: 'flex-start', flexDirection: 'row', paddingStart: 20, borderRadius: 30, borderWidth: 1, borderColor: colors.inactive, marginBottom: 10 }}>

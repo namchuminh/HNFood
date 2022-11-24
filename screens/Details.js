@@ -91,8 +91,8 @@ function Details({ navigation, route }) {
                             <Ionicons name="arrow-back-outline" size={22} style={{ paddingHorizontal: 5, paddingVertical: 5, color: colors.primary }} />
                         </TouchableOpacity>
                         <Text style={{ fontSize: 20 }}>Chi tiết đồ ăn</Text>
-                        <TouchableOpacity>
-                            <Ionicons name="cart-outline" size={30} style={{ color: colors.primary }} />
+                        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                            <Ionicons name="cart-outline" size={30} style={{ color: colors.primary }}/>
                         </TouchableOpacity>
                     </View>
                 </View>
