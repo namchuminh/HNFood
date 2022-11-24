@@ -14,6 +14,7 @@ function Order({navigation}) {
     const [total, setTotal] = useState(0)
     const [isReceived, setIsReceived] = useState(false)
     const [isDelivery, setIsDelivery] = useState(true)
+    const [isCancel, setIsCancel] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const isFocused = useIsFocused()
     const {token} = useContext(AuthContext)
@@ -51,8 +52,14 @@ function Order({navigation}) {
                 item.isReceived == false && item.isCancel == false ? isDeliveryCheck = true : null
             })
 
+            var isCancelCheck = false
+            response.data.map((item, index) => {
+                item.isCancel == true ? isCancelCheck = true : null
+            })
+
             setIsDelivery(isDeliveryCheck)
             setIsReceived(isReceivedCheck)
+            setIsCancel(isCancelCheck)
             setTotal(total)
         })
         .catch(function (error) {
@@ -106,7 +113,7 @@ function Order({navigation}) {
                             }
                             
                             {
-                                isReceived == true ?
+                                isReceived == true || isCancel == true?
                                     <> 
                                         <View style={{marginVertical: isDelivery == true ? 10 : 0}} />
                                         <View>
