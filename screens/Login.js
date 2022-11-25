@@ -23,7 +23,7 @@ function Login({ navigation }) {
                             <Image source={images.logo_food} style={{ width: 100, height: 100, alignSelf: 'center' }} resizeMode={'contain'} />
                         </View>
                         <View style={{ alignSelf: 'flex-end' }}>
-                            <Text style={{ fontWeight: '600', fontSize: fonts.h1, color: 'white', paddingTop: 50 }}><Icon name='login' size={17} /> Đăng Nhập</Text>
+                            <Text style={{ fontWeight: '600', fontSize: fonts.h1, color: 'white', paddingTop: 10, paddingBottom: 10 }}><Icon name='login' size={17} /> Đăng Nhập</Text>
                         </View>
                     </View>
 
