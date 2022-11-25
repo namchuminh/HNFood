@@ -19,7 +19,7 @@ function Login({ navigation }) {
                 <Spinner visible={isLoading} />
                 <View style={styles.container}>
                     <View style={styles.top}>
-                        <View>
+                        <View style={{marginTop: 10}}>
                             <Image source={images.logo_food} style={{ width: 100, height: 100, alignSelf: 'center' }} resizeMode={'contain'} />
                         </View>
                         <View style={{ alignSelf: 'flex-end' }}>
@@ -54,8 +54,8 @@ function Login({ navigation }) {
                             <Text style={{ color: '#9c9c9c', fontSize: fonts.h5, fontWeight: '400' }}>Quên mật khẩu ?</Text>
                         </View>
                         <View style={{ paddingTop: 25 }}>
-                            <TouchableOpacity style={{ backgroundColor: colors.primary, height: 50, borderRadius: 35, justifyContent: 'center' }}>
-                                <Text style={{ color: 'white', fontSize: fonts.h2, fontWeight: 'bold', alignSelf: 'center' }} onPress={() => login(username, password)}>ĐĂNG NHẬP</Text>
+                            <TouchableOpacity onPress={() => login(username, password)} style={{ backgroundColor: colors.primary, height: 50, borderRadius: 35, justifyContent: 'center' }}>
+                                <Text style={{ color: 'white', fontSize: fonts.h2, fontWeight: 'bold', alignSelf: 'center' }} >ĐĂNG NHẬP</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={{ paddingTop: 25 }} />

@@ -14,7 +14,7 @@ function Product({ navigation, route }) {
 
 
     useEffect(()=>{
-        axios.get('http://10.0.2.2:8000/api/food/category/'+itemId+'/')
+        axios.get('https://namchuminh.pythonanywhere.com/api/food/category/'+itemId+'/')
         .then(function (response) {
             // handle success
             setData(response.data)
@@ -26,7 +26,7 @@ function Product({ navigation, route }) {
     }, [])
 
     const addProductToCart = (id) => {
-        axios.post('http://10.0.2.2:8000/api/cart/',
+        axios.post('https://namchuminh.pythonanywhere.com/api/cart/',
         {
             product: id,
         },
@@ -54,7 +54,7 @@ function Product({ navigation, route }) {
                         </TouchableOpacity>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>{titleCate}</Text>
                         <View style={{ flex: 1 }} />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
                             <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => navigation.navigate('Cart')}>

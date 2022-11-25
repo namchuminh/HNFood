@@ -15,37 +15,31 @@ function Home({ navigation }) {
     const { token } = useContext(AuthContext)
 
     const getDataFood = () => {
-        setIsLoading(true)
-        axios.get('http://10.0.2.2:8000/api/food/')
+        axios.get('https://namchuminh.pythonanywhere.com/api/food/')
             .then(function (response) {
                 // handle success
                 setData(response.data)
-                setIsLoading(false)
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
-                setIsLoading(false)
             })
     }
 
     const getPopularFood = () => {
-        setIsLoading(true)
-        axios.get('http://10.0.2.2:8000/api/food/popular/')
+        axios.get('https://namchuminh.pythonanywhere.com/api/food/popular/')
             .then(function (response) {
                 // handle success
                 setData(response.data)
-                setIsLoading(false)
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
-                setIsLoading(false)
             })
     }
 
     const getUserInfo = () => {
-        axios.get('http://10.0.2.2:8000/api/user/', {
+        axios.get('https://namchuminh.pythonanywhere.com/api/user/', {
             headers: {
                 Authorization: "Bearer " + token.access,
             }

@@ -9,7 +9,7 @@ const axios = require('axios').default;
 function Category({ navigation }) {
     const [data, setData] = useState([])
     useEffect(()=>{
-        axios.get('http://10.0.2.2:8000/api/food/category/')
+        axios.get('https://namchuminh.pythonanywhere.com/api/food/category/')
         .then(function (response) {
             // handle success
             setData(response.data)
@@ -27,10 +27,10 @@ function Category({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Danh Mục</Text>
                         <View style={{ flex: 1 }} />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
                             <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
                             <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
                         </TouchableOpacity>
                     </View>

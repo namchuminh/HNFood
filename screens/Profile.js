@@ -26,7 +26,7 @@ function Profile({ navigation }) {
         if (isEdit) {
             const first_name = name.split(" ")[0]
             const last_name = name.split(" ")[1] + " " + name.split(" ")[2]
-            axios.put("http://10.0.2.2:8000/api/user/",
+            axios.put("https://namchuminh.pythonanywhere.com/api/user/",
                 {
                     first_name: first_name,
                     last_name: last_name,
@@ -42,7 +42,7 @@ function Profile({ navigation }) {
             )
                 .then((response) => {
                     setIsLoading(true)
-                    axios.get("http://10.0.2.2:8000/api/user/",
+                    axios.get("https://namchuminh.pythonanywhere.com/api/user/",
                         {
                             headers: {
                                 Authorization: "Bearer " + token.access,
@@ -70,7 +70,7 @@ function Profile({ navigation }) {
     }
     useEffect(() => {
         setIsLoading(true)
-        axios.get("http://10.0.2.2:8000/api/user/",
+        axios.get("https://namchuminh.pythonanywhere.com/api/user/",
             {
                 headers: {
                     Authorization: "Bearer " + token.access,
@@ -101,7 +101,7 @@ function Profile({ navigation }) {
                         <Text style={{ fontSize: 20, alignSelf: 'center' }}>Thông tin cá nhân</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: '8%', marginHorizontal: 10 }}>
-                        <Image source={{ uri: "http://10.0.2.2:8000" + data.avatar }} style={{ width: 80, height: 80, borderRadius: 40 }} />
+                        <Image source={{ uri: "https://namchuminh.pythonanywhere.com" + data.avatar }} style={{ width: 80, height: 80, borderRadius: 40 }} />
                         <View>
                             <Text style={{ fontSize: 20, paddingHorizontal: 20, paddingTop: 25 }}>{ !data.first_name && !data.last_name ? 'Khách Hàng #'+data.id : data.first_name + " " + data.last_name}</Text>
                             <Text style={{ fontSize: 14, paddingHorizontal: 20, color: 'grey' }}>{ !data.email ? 'Chưa có email' : data.email}</Text>

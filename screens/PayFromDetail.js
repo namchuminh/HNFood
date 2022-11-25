@@ -17,7 +17,7 @@ function PayFromDetail({navigation, route }) {
     const {itemId} = route.params
     
     const orderProduct = (itemId) => {
-        axios.post('http://10.0.2.2:8000/api/order/', 
+        axios.post('https://namchuminh.pythonanywhere.com/api/order/', 
             {
                 product: itemId,
                 user: 1,
@@ -40,7 +40,7 @@ function PayFromDetail({navigation, route }) {
     useEffect(()=>{
         
         //Sau khi có response lần đầu thì mới thực hiện tiếp việc call api
-        axios.get('http://10.0.2.2:8000/api/food/'+itemId+'/')
+        axios.get('https://namchuminh.pythonanywhere.com/api/food/'+itemId+'/')
         .then(function (response) {
             // handle success
             setData(response.data)

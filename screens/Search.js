@@ -21,7 +21,7 @@ function Search({ navigation }) {
     dataSearch.length = 6
 
     const Search = (name_food) => {
-        axios.get('http://10.0.2.2:8000/api/food/?search='+name_food)
+        axios.get('https://namchuminh.pythonanywhere.com/api/food/?search='+name_food)
         .then(function (response) {
             // handle success
             setData(response.data)
@@ -35,7 +35,7 @@ function Search({ navigation }) {
 
     const getSearchProduct = async () => {
         try{
-            const response = await axios.get('http://10.0.2.2:8000/api/food/')
+            const response = await axios.get('https://namchuminh.pythonanywhere.com/api/food/')
             await setDataSearch(response.data)
         }catch(ex){
             console.log(ex)
@@ -43,7 +43,7 @@ function Search({ navigation }) {
     }
 
     const addProductToCart = (id) => {
-        axios.post('http://10.0.2.2:8000/api/cart/',
+        axios.post('https://namchuminh.pythonanywhere.com/api/cart/',
         {
             product: id,
         },
@@ -72,7 +72,7 @@ function Search({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Tìm Kiếm</Text>
                         <View style={{ flex: 1 }} />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
                             <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => navigation.navigate('Cart')}>

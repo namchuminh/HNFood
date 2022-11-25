@@ -5,7 +5,7 @@ function OrderProduct(props) {
     return (
         <View style={styles.product}>
             <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
-                <Image source={{uri: "http://10.0.2.2:8000"+props.image }} style={{width: 40, height: 40}}  />
+                <Image source={{uri: "https://namchuminh.pythonanywhere.com"+props.image }} style={{width: 40, height: 40}}  />
                 <View style={{paddingLeft: 15, width: '55%'}}>
                     <Text style={{fontSize: 13}}>{props.name}</Text>
                     <View style={{paddingVertical: 1}}/>

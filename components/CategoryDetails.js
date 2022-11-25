@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard } from 'react-native'
-import { colors } from '../constants/index.js'
+import { StyleSheet, View, Image, Dimensions } from 'react-native'
 const { width } = Dimensions.get('screen');
 
 function CategoryDetails(props) {
