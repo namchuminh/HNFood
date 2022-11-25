@@ -1,8 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard } from 'react-native'
-import Octicons from 'react-native-vector-icons/Octicons'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { fonts, colors, images } from '../constants/index.js'
-
+import { StyleSheet, Text, View, Image } from 'react-native'
 function PayProduct(props) {
     return (
         <View style={styles.product}>

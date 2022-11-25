@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { Welcome, Intro, Login, Register, Home, Search, Category, Details, Profile, Password, Cart, Product, Repassword, Pay, PayFromDetail, Order} from '../screens';
+import { Welcome, Intro, Login, Register, Details, Cart, Product, Repassword, Pay, PayFromDetail, Order} from '../screens';
 import Tabs from './Tabs';
 
 const Stack = createNativeStackNavigator();

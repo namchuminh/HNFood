@@ -1,7 +1,5 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard } from 'react-native'
-import Octicons from 'react-native-vector-icons/Octicons'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { fonts, colors, images } from '../constants/index.js'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions, } from 'react-native'
+import {colors} from '../constants/index.js'
 const { width } = Dimensions.get('screen');
 
 function SuggestedProduct(props) {

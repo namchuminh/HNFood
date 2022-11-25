@@ -1,8 +1,6 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, Dimensions, FlatList, ScrollView, Keyboard } from 'react-native'
-import Octicons from 'react-native-vector-icons/Octicons'
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { StyleSheet, Text, View, TextInput} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import {fonts, colors, images} from '../constants/index.js'
+import {fonts, colors} from '../constants/index.js'
 
 function TopSearch(props){
     return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, TextInput, ScrollView} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors} from '../constants/index.js'
