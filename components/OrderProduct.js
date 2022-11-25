@@ -12,7 +12,7 @@ function OrderProduct(props) {
                     <Text style={{fontSize: 13}}>{props.name}</Text>
                     <View style={{paddingVertical: 1}}/>
                     <Text style={{color: 'gray', fontSize: 12}}>Số lượng x {props.number}</Text>
-                    <View style={{paddingTop: 2, marginTop: 2, backgroundColor: '#FDD7E4', alignSelf: 'stretch', textAlign: 'center', width: props.isReceived == false && props.isCancel == false ? '55%' : props.isReceived == true && props.isCancel == false ? '50%' : '41%'}}>
+                    <View style={{paddingTop: 2, marginTop: 2, backgroundColor: '#FDD7E4', alignSelf: 'stretch', textAlign: 'center', width: props.isReceived == false && props.isCancel == false ? '55%' : props.isReceived == true && props.isCancel == false ? '50%' : '42%'}}>
                         <Text style={{color: 'gray', fontSize: 12, borderWidth: 1, borderColor: colors.inactive, borderRadius: 2, paddingLeft: props.isReceived == false ? 2 : 5}}>{props.isReceived == false && props.isCancel == false ? 'Đang giao hàng' : props.isReceived == true && props.isCancel == false ? 'Đã giao hàng' : 'Đã hủy đơn'}</Text>
                     </View>
                     
