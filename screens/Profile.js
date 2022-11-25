@@ -110,7 +110,7 @@ function Profile({ navigation }) {
                     </View>
                     <View style={{ borderBottomColor: '#F6F7FC', borderBottomWidth: 20, paddingVertical: 20 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: '8%', marginHorizontal: 10 }}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
                             <Ionicons name="receipt-outline" size={30} style={{ paddingHorizontal: 30, color: colors.primary, alignSelf: 'center' }} />
                             <Text style={{ paddingHorizontal: 15, fontSize: 16, paddingTop: 5 }}>Đơn hàng</Text>
                         </TouchableOpacity>
