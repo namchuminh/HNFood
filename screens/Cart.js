@@ -43,7 +43,7 @@ function Cart({navigation}) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Giỏ hàng</Text>
                         <View style={{ flex: 1 }} />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
                             <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
                         </TouchableOpacity>
                         <TouchableOpacity>

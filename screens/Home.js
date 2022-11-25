@@ -15,14 +15,17 @@ function Home({ navigation }) {
     const { token } = useContext(AuthContext)
 
     const getDataFood = () => {
+        setIsLoading(true)
         axios.get('https://namchuminh.pythonanywhere.com/api/food/')
             .then(function (response) {
                 // handle success
                 setData(response.data)
+                setIsLoading(false)
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
+                setIsLoading(false)
             })
     }
 
