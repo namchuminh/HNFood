@@ -14,6 +14,9 @@ import Repassword from "./Repassword.js"
 import Pay from "./Pay.js"
 import PayFromDetail from "./PayFromDetail.js"
 import Order from "./Order.js"
+import Delivery from "./Delivery"
+import DeliveryDetail from "./DeliveryDetail.js"
+import MapDelivery from "./MapDelivery.js"
 export{
     Welcome,
     Intro,
@@ -30,5 +33,8 @@ export{
     Repassword,
     Pay,
     PayFromDetail,
-    Order
+    Order,
+    Delivery,
+    DeliveryDetail,
+    MapDelivery
 }

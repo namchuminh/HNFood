@@ -61,6 +61,7 @@ function Home({ navigation }) {
         getDataFood()
     }, [])
 
+
     return (
         <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} >
             <View style={styles.container}>

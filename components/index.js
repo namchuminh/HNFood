@@ -8,6 +8,7 @@ import SearchProduct from "./SearchProduct"
 import SuggestedProduct from "./SuggestedProduct"
 import PayProduct from "./PayProduct"
 import OrderProduct from "./OrderProduct"
+import DeliveryPerson from "./DeliveryPerson"
 export{
     TopSearch,
     CategoryHome,
@@ -18,5 +19,6 @@ export{
     SearchProduct,
     SuggestedProduct,
     PayProduct,
-    OrderProduct
+    OrderProduct,
+    DeliveryPerson
 }

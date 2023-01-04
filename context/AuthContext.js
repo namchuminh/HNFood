@@ -9,7 +9,7 @@ export const AuthProvider = ({children}) => {
     const [error, setError] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [isLogout, setIsLogout] = useState(false)
-
+    const [isAdmin, setIsAdmin] = useState(false)
     const storeData = async (value) => {
         try {
             const jsonValue = JSON.stringify(value)
@@ -28,6 +28,25 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+
+    const checkIsAdmin = (token) => {
+      axios.get("https://namchuminh.pythonanywhere.com/api/user/",
+            {
+                headers: {
+                    Authorization: "Bearer " + token.access,
+                }
+            }
+        )
+        .then((response) => {
+            setIsAdmin(response.data.is_superuser)
+            console.log(response.data.is_superuser)
+        },
+            (error) => {
+                alert("Ket noi khong thanh cong!")
+            }
+        )
+    }
+
     const login = (username, password) => {
         setIsLoading(true)
         axios.post('https://namchuminh.pythonanywhere.com/api/user/login/', {
@@ -36,6 +55,7 @@ export const AuthProvider = ({children}) => {
         })
         .then(function (response) {
             setToken(response.data)
+            checkIsAdmin(response.data)
             setIsLogout(false)
             AsyncStorage.setItem('@token', JSON.stringify(token))
             setIsLoading(false)
@@ -75,7 +95,8 @@ export const AuthProvider = ({children}) => {
           login,
           register,
           logout,
-          isLoading
+          isLoading,
+          isAdmin,
         }
       }>
         {children}
