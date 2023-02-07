@@ -13,10 +13,11 @@ function Home({ navigation }) {
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const { token } = useContext(AuthContext)
+    const {isAdmin} = useContext(AuthContext)
 
     const getDataFood = () => {
         setIsLoading(true)
-        axios.get('https://namchuminh.pythonanywhere.com/api/food/')
+        axios.get('https://namchuminh.pythonanywhere.com/api/food/') //lấy ra tất cả đồ ăn
             .then(function (response) {
                 // handle success
                 setData(response.data)
@@ -71,12 +72,19 @@ function Home({ navigation }) {
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
                                 <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Trang Chủ</Text>
                                 <View style={{ flex: 1 }} />
-                                <TouchableOpacity onPress={() => navigation.navigate('Order')}>
-                                    <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-                                    <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
-                                </TouchableOpacity>
+                                {
+                                    isAdmin == false? 
+                                        <>
+                                            <TouchableOpacity onPress={() => navigation.navigate('Order')}>
+                                                <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
+                                            </TouchableOpacity>
+                                            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                                                <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
+                                            </TouchableOpacity>
+                                        </>
+                                    :
+                                    null
+                                }
                                 
                             </View>
 
@@ -92,7 +100,7 @@ function Home({ navigation }) {
                                         }
                                     </ScrollView>
                                 </View>
-                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ ăn nhanh</Text>
+                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Trà hoa hồng</Text>
                                 <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                                     <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                         {
@@ -100,7 +108,7 @@ function Home({ navigation }) {
                                         }
                                     </ScrollView>
                                 </View>
-                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ ăn cơm</Text>
+                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Trà sữa thường</Text>
                                 <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                                     <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                         {
@@ -108,7 +116,7 @@ function Home({ navigation }) {
                                         }
                                     </ScrollView>
                                 </View>
-                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Nước giải khát</Text>
+                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Trà sữa trân châu</Text>
                                 <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                                     <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                         {
@@ -116,7 +124,7 @@ function Home({ navigation }) {
                                         }
                                     </ScrollView>
                                 </View>
-                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Đồ tráng miệng</Text>
+                                <Text style={{ fontSize: fonts.h3, top: 10 }}> Trà sữa đặc biệt</Text>
                                 <View style={{ alignSelf: 'center', width: '100%', paddingTop: 30, justifyContent: 'space-between', flexDirection: 'row', }}>
                                     <ScrollView horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                                         {

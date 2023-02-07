@@ -6,6 +6,9 @@ import { AuthContext } from "../context/AuthContext.js";
 import { useIsFocused } from '@react-navigation/native'
 import { PayProduct } from "../components/index.js";
 import Spinner from 'react-native-loading-spinner-overlay';
+import MapViewDirections from 'react-native-maps-directions';
+import * as Location from 'expo-location';
+import getDirections from 'react-native-google-maps-directions'
 
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
@@ -14,10 +17,14 @@ function DeliveryDetail({ navigation, route }) {
     const [data, setData] = useState([])
     const [total, setTotal] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
+    const [location, setLocation] = useState(null);
+    const [userLocation, setUserLocation] = useState({})
+    const [errorMsg, setErrorMsg] = useState(null);
     const isFocused = useIsFocused()
     const { token } = useContext(AuthContext)
     const { itemId } = route.params
-    
+
+    console.log(itemId)
     const orderProduct = async () => {
         for (var i = 0; i < data.length; i++) {
             axios.post('https://namchuminh.pythonanywhere.com/api/order/',
@@ -35,22 +42,48 @@ function DeliveryDetail({ navigation, route }) {
         await navigation.navigate('Order')
     }
 
-    useEffect(() => {
+    const getLocation = async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+            setErrorMsg('Permission to access location was denied');
+            return;
+        }
+
+        let location = await Location.getCurrentPositionAsync({});
+        await setLocation(location);
+
+    }
+
+    const getDataDelivery = () => {
         setIsLoading(true)
-        axios.get('https://namchuminh.pythonanywhere.com/api/order/?user='+itemId, {
+        axios.get('https://namchuminh.pythonanywhere.com/api/order/?user=' + itemId, {
             headers: {
                 Authorization: "Bearer " + token.access,
             }
         })
             .then(function (response) {
                 // handle success
+                console.log()
+
                 setData(response.data)
                 var total = 0
                 response.data.map((item, index) => {
                     total += parseInt(item.price * item.number)
                 })
                 setTotal(total)
-                setIsLoading(false)
+
+                axios.get("http://api.positionstack.com/v1/forward?access_key=10f8b14400faccd03545a2584ba13249&query=" + response.data[0].addressOrder)
+                    .then((res) => {
+                        setUserLocation({
+                            latitude: res.data.data[0].latitude,
+                            longitude: res.data.data[0].longitude
+                        })
+                        setIsLoading(false)
+                    })
+                    .catch((err) => {
+                        alert("Địa chỉ không hợp lệ, vui lòng liên hệ trực tiếp với khách hàng!")
+                    })
+
             })
             .catch(function (error) {
                 // handle error
@@ -58,8 +91,39 @@ function DeliveryDetail({ navigation, route }) {
                 setIsLoading(false)
             })
 
+    }
 
+
+
+    useEffect(() => {
+        getLocation()
+        getDataDelivery()
     }, [isFocused])
+
+    handleGetDirections = () => {
+        const dataDelivery = {
+            source: {
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude
+            },
+            destination: {
+                latitude: userLocation.latitude,
+                longitude: userLocation.longitude
+            },
+            params: [
+                {
+                    key: "travelmode",
+                    value: "driving"        // may be "walking", "bicycling" or "transit" as well
+                },
+                {
+                    key: "dir_action",
+                    value: "navigate"       // this instantly initializes navigation using the given travel mode
+                }
+            ],
+        }
+        getDirections(dataDelivery)
+    }
+
     return (
         <View style={styles.container}>
             {isLoading ? <Spinner visible={isLoading} /> :
@@ -105,11 +169,11 @@ function DeliveryDetail({ navigation, route }) {
                                             <Text style={{ fontSize: 13, color: 'black' }}>{total}.000đ</Text>
                                         </View>
                                     </View>
-                                    <TouchableOpacity onPress={() => navigation.navigate('MapDelivery', {itemId: data[0].user})} style={{ backgroundColor: colors.primary, justifyContent: 'center', paddingVertical: 10, marginHorizontal: 10, borderRadius: 5 }}>
+                                    <TouchableOpacity onPress={() => handleGetDirections()} style={{ backgroundColor: colors.primary, justifyContent: 'center', paddingVertical: 10, marginHorizontal: 10, borderRadius: 5 }}>
                                         <Text style={{ alignSelf: 'center', color: 'white' }}>Xem Map</Text>
                                     </TouchableOpacity>
-                                    <View style={{marginVertical: 5}} />
-                                    <TouchableOpacity onPress={() => navigation.navigate('MapDelivery', {itemId: data[0].user})} style={{ backgroundColor: "gray", justifyContent: 'center', paddingVertical: 10, marginHorizontal: 10, borderRadius: 5 }}>
+                                    <View style={{ marginVertical: 5 }} />
+                                    <TouchableOpacity >
                                         <Text style={{ alignSelf: 'center', color: 'white' }}>Xác Nhận Đã Giao Hàng</Text>
                                     </TouchableOpacity>
                                 </View>

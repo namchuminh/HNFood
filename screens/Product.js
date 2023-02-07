@@ -11,6 +11,7 @@ function Product({ navigation, route }) {
     const {itemId, titleCate} = route.params
     const [data, setData] = useState([])
     const {token} = useContext(AuthContext)
+    const {isAdmin} = useContext(AuthContext)
 
 
     useEffect(()=>{
@@ -54,12 +55,20 @@ function Product({ navigation, route }) {
                         </TouchableOpacity>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>{titleCate}</Text>
                         <View style={{ flex: 1 }} />
-                        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
-                            <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-                            <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
-                        </TouchableOpacity>
+                        {
+                            isAdmin == false? 
+                                <>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Order')}>
+                                        <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                                        <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
+                                    </TouchableOpacity>
+                                </>
+                            :
+                            null
+                        }
+                        
                     </View>
                 </View>
                 <View style={styles.mid}>

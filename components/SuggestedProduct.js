@@ -1,20 +1,32 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions, } from 'react-native'
 import {colors} from '../constants/index.js'
 const { width } = Dimensions.get('screen');
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 function SuggestedProduct(props) {
+
+
+
     return (
-        <View style={styles.product} onPress={props.onPress}>
-            <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={styles.product} >
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Image source={{uri: "https://namchuminh.pythonanywhere.com"+props.image}} style={styles.cardImages} />
-                <View style={{ paddingTop: 10, width: '40%', paddingLeft: 5, }}>
-                    <Text style={{ fontSize: 16, overflow: 'hidden' }}>{props.name}</Text>
+                <View style={{ paddingTop: 0, width: '50%', paddingLeft: 1, }}>
+                    <Text style={{ fontSize: 14, overflow: 'hidden' }}>{props.name}</Text>
                     <Text style={{ color: colors.primary }}>{props.price}</Text>
                 </View>
-                <TouchableOpacity onPress={props.onPress} style={{ alignSelf: 'center', borderWidth: 1, borderRadius: 20, borderColor: colors.primary, paddingHorizontal: 20, paddingVertical: 5, marginBottom: 20, marginRight: 10 }}>
-                    <Text style={{ color: colors.primary }}>Thêm</Text>
-                </TouchableOpacity>
-
+                <View style={{ alignSelf: 'center', paddingVertical: 5, marginBottom: 20, marginRight: 10, flexDirection: 'row' }}>
+                    <TouchableOpacity onPress={props.onPress1}>
+                        <FontAwesome5 name="pen" size={14} style={{ paddingStart: 5, color: colors.primary}} />
+                    </TouchableOpacity>
+                    
+                    <View style={{ marginRight: 10,}} />
+                    
+                    <TouchableOpacity onPress={props.onPress}>
+                        <FontAwesome5 name="trash" size={14} style={{ paddingStart: 5, color: 'red'}} />
+                    </TouchableOpacity>
+                    
+                </View>
             </View>
         </View>
     )
@@ -22,20 +34,14 @@ function SuggestedProduct(props) {
 
 const styles = StyleSheet.create({
     cardImages: {
-        height: 70,
-        width: 70,
-        borderRadius: 10
-
+        height: 50,
+        width: 50,
     },
     product: {
-        elevation: 5,
         backgroundColor: 'white',
-        borderRadius: 10,
         margin: 5,
         paddingHorizontal: 5,
-        borderWidth: 1,
-        marginHorizontal: 10,
-        borderColor: colors.inactive,
+        marginHorizontal: 5,
         paddingBottom: 10, 
     },
 })

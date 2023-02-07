@@ -17,6 +17,9 @@ import Order from "./Order.js"
 import Delivery from "./Delivery"
 import DeliveryDetail from "./DeliveryDetail.js"
 import MapDelivery from "./MapDelivery.js"
+import Food from "./Food.js"
+import AddFood from "./AddFood.js"
+import UpdateFood from "./UpdateFood.js"
 export{
     Welcome,
     Intro,
@@ -36,5 +39,8 @@ export{
     Order,
     Delivery,
     DeliveryDetail,
-    MapDelivery
+    MapDelivery,
+    Food,
+    AddFood,
+    UpdateFood
 }

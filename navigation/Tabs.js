@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Home, Profile, Search, Cart, Category, Delivery } from '../screens';
+import { Home, Profile, Search, Cart, Category, Delivery, Food } from '../screens';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { colors } from '../constants';
 import { AuthContext } from '../context/AuthContext';
@@ -24,13 +24,24 @@ function Tabs() {
             <Ionicons name="cube-sharp" color={color} size={size} />
           ),
         }}/>
-      <Tab.Screen name="Search" component={Search} 
-        options={{
-          tabBarLabel: 'Tìm Kiếm',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" color={color} size={size} />
-          ),
-        }}/>
+      {
+        isAdmin == true ? 
+          <Tab.Screen name="Food" component={Food} 
+          options={{
+            tabBarLabel: 'Đồ Ăn',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="fast-food" color={color} size={size} />
+            ),
+          }}/>
+        :
+          <Tab.Screen name="Search" component={Search} 
+          options={{
+            tabBarLabel: 'Tìm Kiếm',
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="search" color={color} size={size} />
+            ),
+          }}/>
+      }
       <Tab.Screen name="Home" component={Home} 
         options={{
           tabBarLabel: 'Trang Chủ',

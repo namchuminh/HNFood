@@ -14,7 +14,8 @@ function Delivery({navigation}) {
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const isFocused = useIsFocused()
-    const {token} = useContext(AuthContext)
+    const {token, isAdmin} = useContext(AuthContext)
+
 
     const getDataFood = async () => {
         try{
@@ -36,12 +37,19 @@ function Delivery({navigation}) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Giao Hàng</Text>
                         <View style={{ flex: 1 }} />
-                        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
-                            <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
-                        </TouchableOpacity>
+                        {
+                            isAdmin == false? 
+                                <>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Order')}>
+                                        <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                                        <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
+                                    </TouchableOpacity>
+                                </>
+                            :
+                            null
+                        }
 
                     </View>
                 </View>
@@ -62,7 +70,7 @@ function Delivery({navigation}) {
                             <View style={{justifyContent: 'center'}}>
                                 <Icon name="cart-plus" size={100} color={'#f1f1f1'} style={{alignSelf: 'center'}}/>
                                 <View  style={{paddingVertical: 15}} />
-                                <Text style={{alignSelf: 'center', color: 'gray' }}>Giỏ hàng của bạn hiện đang trống!</Text>
+                                <Text style={{alignSelf: 'center', color: 'gray' }}>Hiện chưa có đơn hàng nào!</Text>
                             </View>
                         :
                             null

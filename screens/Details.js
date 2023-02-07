@@ -14,7 +14,7 @@ function Details({ navigation, route }) {
     const [idProduct, setIdProduct] = useState("")
     const { itemId } = route.params
     const isFocused = useIsFocused()
-    const {token} = useContext(AuthContext)
+    const {token, isAdmin} = useContext(AuthContext)
 
     dataRelated.sort(function(){
         return 0.5 - Math.random()
@@ -88,10 +88,20 @@ function Details({ navigation, route }) {
                         <TouchableOpacity style={{ borderWidth: 1, borderColor: '#F1F1F1', borderRadius: 5 }} onPress={()=> navigation.goBack()}>
                             <Ionicons name="arrow-back-outline" size={22} style={{ paddingHorizontal: 5, paddingVertical: 5, color: colors.primary }} />
                         </TouchableOpacity>
-                        <Text style={{ fontSize: 20 }}>Chi tiết đồ ăn</Text>
-                        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-                            <Ionicons name="cart-outline" size={30} style={{ color: colors.primary }}/>
-                        </TouchableOpacity>
+                        <Text style={{ fontSize: 20 }}>Chi tiết trà sữa</Text>
+                        {
+                            isAdmin == false? 
+                                <>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                                        <Ionicons name="cart-outline" size={30} style={{ color: colors.primary }}/>
+                                    </TouchableOpacity>
+                                </>
+                            :
+                            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                                
+                            </TouchableOpacity>
+                        }
+                        
                     </View>
                 </View>
                 <View style={styles.mid}>
@@ -130,7 +140,15 @@ function Details({ navigation, route }) {
                         <Image source={{uri: "https://namchuminh.pythonanywhere.com"+data.image }} style={{ width: 50, height: 50, borderRadius: 10 }} />
                         <Text style={{alignSelf: 'center', paddingStart: 2, lineHeight: 20, width: '25%'}}>{data.name}</Text>
                         <TouchableOpacity onPress={() => addProductToCart(idProduct)}>
-                            <Text style={{paddingVertical: 10, borderWidth: 1, paddingHorizontal: 10, marginTop: 10, borderRadius: 5 }}>+ Thêm giỏ hàng</Text>
+                            {
+                                isAdmin == false? 
+                                    <>
+                                        <Text style={{paddingVertical: 10, borderWidth: 1, paddingHorizontal: 10, marginTop: 10, borderRadius: 5 }}>+ Thêm giỏ hàng</Text>
+                                    </>
+                                :
+                                null
+                            }
+                            
                         </TouchableOpacity>
                     </View>
                     <View style={{ borderBottomColor: 'grey', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10 }} />

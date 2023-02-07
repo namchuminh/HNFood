@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { fonts, colors} from '../constants/index.js'
 import {CategoryProduct} from '../components/index.js'
+import { AuthContext } from "../context/AuthContext.js";
 const { width } = Dimensions.get('screen');
 const axios = require('axios').default;
 
 function Category({ navigation }) {
     const [data, setData] = useState([])
+    const {isAdmin} = useContext(AuthContext)
+
+    console.log(isAdmin)
     useEffect(()=>{
         axios.get('https://namchuminh.pythonanywhere.com/api/food/category/')
         .then(function (response) {
@@ -27,12 +31,19 @@ function Category({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15 }}>
                         <Text style={{ fontSize: fonts.h2, fontWeight: '400', color: 'black' }}>Danh Mục</Text>
                         <View style={{ flex: 1 }} />
-                        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
-                            <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-                            <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
-                        </TouchableOpacity>
+                        {
+                            isAdmin == false? 
+                                <>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Order')}>
+                                        <Ionicons name="receipt-outline" size={22} style={{ paddingEnd: 5, }} />
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+                                        <Ionicons name="cart-outline" size={22} style={{ paddingStart: 5, }} />
+                                    </TouchableOpacity>
+                                </>
+                            :
+                            null
+                        }
                     </View>
                 </View>
                 <View style={styles.mid}>
