@@ -17,7 +17,7 @@ function Home({ navigation }) {
 
     const getDataFood = () => {
         setIsLoading(true)
-        axios.get('https://namchuminh.pythonanywhere.com/api/food/') //lấy ra tất cả đồ ăn
+        axios.get('http://10.0.2.2:8000/api/food/') //lấy ra tất cả đồ ăn
             .then(function (response) {
                 // handle success
                 setData(response.data)
@@ -31,7 +31,7 @@ function Home({ navigation }) {
     }
 
     const getPopularFood = () => {
-        axios.get('https://namchuminh.pythonanywhere.com/api/food/popular/')
+        axios.get('http://10.0.2.2:8000/api/food/popular/')
             .then(function (response) {
                 // handle success
                 setData(response.data)
@@ -43,7 +43,7 @@ function Home({ navigation }) {
     }
 
     const getUserInfo = () => {
-        axios.get('https://namchuminh.pythonanywhere.com/api/user/', {
+        axios.get('http://10.0.2.2:8000/api/user/', {
             headers: {
                 Authorization: "Bearer " + token.access,
             }

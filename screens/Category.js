@@ -13,7 +13,7 @@ function Category({ navigation }) {
 
     console.log(isAdmin)
     useEffect(()=>{
-        axios.get('https://namchuminh.pythonanywhere.com/api/food/category/')
+        axios.get('http://10.0.2.2:8000/api/food/category/')
         .then(function (response) {
             // handle success
             setData(response.data)

@@ -49,7 +49,7 @@ function UpdateFood({ navigation, route }) {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get('https://namchuminh.pythonanywhere.com/api/food/' + itemId + '/')
+        axios.get('http://10.0.2.2:8000/api/food/' + itemId + '/')
             .then(function (response) {
                 // handle success
                 setData(response.data)
@@ -60,19 +60,19 @@ function UpdateFood({ navigation, route }) {
                 setdeFaultSelect(response.data.category == 1 ? 0 : response.data.category - 1)
 
                 setImage({
-                    uri: "https://namchuminh.pythonanywhere.com" + response.data.image
+                    uri: "http://10.0.2.2:8000" + response.data.image
                 })
 
                 setImage1({
-                    uri: "https://namchuminh.pythonanywhere.com" + response.data.image1
+                    uri: "http://10.0.2.2:8000" + response.data.image1
                 })
 
                 setImage2({
-                    uri: "https://namchuminh.pythonanywhere.com" + response.data.image2
+                    uri: "http://10.0.2.2:8000" + response.data.image2
                 })
 
                 setImage3({
-                    uri: "https://namchuminh.pythonanywhere.com" + response.data.image3
+                    uri: "http://10.0.2.2:8000" + response.data.image3
                 })
                 setIsLoading(false)
             })
@@ -93,7 +93,7 @@ function UpdateFood({ navigation, route }) {
         formData.append("price_sale", priceSale);
         formData.append("category", cate);
 
-        fetch('https://namchuminh.pythonanywhere.com/api/food/', {
+        fetch('http://10.0.2.2:8000/api/food/', {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

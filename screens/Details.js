@@ -33,13 +33,13 @@ function Details({ navigation, route }) {
             
           });
 
-        axios.get('https://namchuminh.pythonanywhere.com/api/food/'+itemId+'/')
+        axios.get('http://10.0.2.2:8000/api/food/'+itemId+'/')
         .then(function (response) {
             // handle success
             setData(response.data)
 
             //Sau khi có response lần đầu thì mới thực hiện tiếp việc call api
-            axios.get('https://namchuminh.pythonanywhere.com/api/food/category/'+response.data.category+'/')
+            axios.get('http://10.0.2.2:8000/api/food/category/'+response.data.category+'/')
             .then(function (response) {
                 // handle success
                 setDataRelated(response.data)
@@ -57,7 +57,7 @@ function Details({ navigation, route }) {
     }
 
     const addProductToCart = (id) => {
-        axios.post('https://namchuminh.pythonanywhere.com/api/cart/',
+        axios.post('http://10.0.2.2:8000/api/cart/',
         {
             product: id,
         },
@@ -107,13 +107,13 @@ function Details({ navigation, route }) {
                 <View style={styles.mid}>
                     <ScrollView style={{ alignSelf: 'center', width: '100%',}} horizontal showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
                             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                <Image source={{uri: "https://namchuminh.pythonanywhere.com"+data.image1}} style={styles.cardImages}  />
+                                <Image source={{uri: "http://10.0.2.2:8000"+data.image1}} style={styles.cardImages}  />
                             </View>
                             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }} >
-                                <Image source={{uri: "https://namchuminh.pythonanywhere.com"+data.image2}} style={styles.cardImages} />
+                                <Image source={{uri: "http://10.0.2.2:8000"+data.image2}} style={styles.cardImages} />
                             </View>
                             <View style={{ paddingTop: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                <Image source={{uri: "https://namchuminh.pythonanywhere.com"+data.image3}} style={styles.cardImages} />
+                                <Image source={{uri: "http://10.0.2.2:8000"+data.image3}} style={styles.cardImages} />
                             </View>
                     </ScrollView>
                 </View>
@@ -137,7 +137,7 @@ function Details({ navigation, route }) {
                     </View>
                     <View style={{ borderBottomColor: 'grey', borderBottomWidth: StyleSheet.hairlineWidth, marginHorizontal: 10, paddingVertical: 10 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 20, marginHorizontal: 10 }}>
-                        <Image source={{uri: "https://namchuminh.pythonanywhere.com"+data.image }} style={{ width: 50, height: 50, borderRadius: 10 }} />
+                        <Image source={{uri: "http://10.0.2.2:8000"+data.image }} style={{ width: 50, height: 50, borderRadius: 10 }} />
                         <Text style={{alignSelf: 'center', paddingStart: 2, lineHeight: 20, width: '25%'}}>{data.name}</Text>
                         <TouchableOpacity onPress={() => addProductToCart(idProduct)}>
                             {

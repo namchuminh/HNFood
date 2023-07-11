@@ -7,7 +7,7 @@ function CategoryDetailsProduct(props) {
         <View style={styles.product} onPress={props.onPress}>
             <View>
                 <View style={{ paddingVertical: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Image source={{uri: "https://namchuminh.pythonanywhere.com"+props.image}} style={styles.cardImages} />
+                    <Image source={{uri: "http://10.0.2.2:8000"+props.image}} style={styles.cardImages} />
                     <View style={{ paddingTop: 10, textAlign: 'left', alignSelf: 'flex-start'}}>
                         <Text style={{ fontSize: 16, overflow: 'hidden',}}>{props.name}</Text>
                         <Text style={{ color: colors.primary }}>{props.price}</Text>

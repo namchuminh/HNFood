@@ -17,7 +17,7 @@ function Cart({navigation}) {
 
     const getDataFood = async () => {
         try{
-            const response = await axios.get('https://namchuminh.pythonanywhere.com/api/cart/',{headers: {Authorization: "Bearer " + token.access}})
+            const response = await axios.get('http://10.0.2.2:8000/api/cart/',{headers: {Authorization: "Bearer " + token.access}})
             await setData(response.data)
         }catch(ex){
             console.log(ex)
@@ -30,7 +30,7 @@ function Cart({navigation}) {
 
     const deleteProductCart = async (itemId) => {
         try{
-            const deleteFoodCart = await axios.delete('https://namchuminh.pythonanywhere.com/api/cart/'+itemId, {headers: {Authorization: "Bearer " + token.access}})
+            const deleteFoodCart = await axios.delete('http://10.0.2.2:8000/api/cart/'+itemId, {headers: {Authorization: "Bearer " + token.access}})
             await setIsLoading(!isLoading)
         }catch (error) {
             await setIsLoading(!isLoading)

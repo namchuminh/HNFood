@@ -15,7 +15,7 @@ function Product({ navigation, route }) {
 
 
     useEffect(()=>{
-        axios.get('https://namchuminh.pythonanywhere.com/api/food/category/'+itemId+'/')
+        axios.get('http://10.0.2.2:8000/api/food/category/'+itemId+'/')
         .then(function (response) {
             // handle success
             setData(response.data)
@@ -27,7 +27,7 @@ function Product({ navigation, route }) {
     }, [])
 
     const addProductToCart = (id) => {
-        axios.post('https://namchuminh.pythonanywhere.com/api/cart/',
+        axios.post('http://10.0.2.2:8000/api/cart/',
         {
             product: id,
         },

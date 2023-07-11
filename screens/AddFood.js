@@ -59,7 +59,7 @@ function AddFood({ navigation }) {
         
         console.log(formData)
         
-        fetch('https://namchuminh.pythonanywhere.com/api/food/', {
+        fetch('http://10.0.2.2:8000/api/food/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

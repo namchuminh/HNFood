@@ -30,7 +30,7 @@ export const AuthProvider = ({children}) => {
 
 
     const checkIsAdmin = (token) => {
-      axios.get("https://namchuminh.pythonanywhere.com/api/user/",
+      axios.get("http://10.0.2.2:8000/api/user/",
             {
                 headers: {
                     Authorization: "Bearer " + token.access,
@@ -49,7 +49,7 @@ export const AuthProvider = ({children}) => {
 
     const login = (username, password) => {
         setIsLoading(true)
-        axios.post('https://namchuminh.pythonanywhere.com/api/user/login/', {
+        axios.post('http://10.0.2.2:8000/api/user/login/', {
             username: username,
             password: password
         })
@@ -68,7 +68,7 @@ export const AuthProvider = ({children}) => {
     }
 
     const register = (username, password, phone) => {
-        axios.post('https://namchuminh.pythonanywhere.com/api/user/register/', {
+        axios.post('http://10.0.2.2:8000/api/user/register/', {
             username: username,
             password: password,
             phone: phone

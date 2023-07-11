@@ -19,7 +19,7 @@ function Delivery({navigation}) {
 
     const getDataFood = async () => {
         try{
-            const response = await axios.get('https://namchuminh.pythonanywhere.com/api/delivery/',{headers: {Authorization: "Bearer " + token.access}})
+            const response = await axios.get('http://10.0.2.2:8000/api/delivery/',{headers: {Authorization: "Bearer " + token.access}})
             await setData(response.data)
         }catch(ex){
             console.log(ex)

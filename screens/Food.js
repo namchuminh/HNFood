@@ -23,7 +23,7 @@ function Food({ navigation }) {
             'Xóa sản phẩm này?', // <- this part is optional, you can pass an empty string
             [
               {text: 'Xóa', onPress: () => {
-                axios.delete('https://namchuminh.pythonanywhere.com/api/food/', { data: {
+                axios.delete('http://10.0.2.2:8000/api/food/', { data: {
                     pk: id
                 }} )
                 let filterData = data.filter(item => item.id != id)
@@ -37,7 +37,7 @@ function Food({ navigation }) {
     const getSearchProduct = async () => {
         setIsLoading(true)
         try{
-            const response = await axios.get('https://namchuminh.pythonanywhere.com/api/food/')
+            const response = await axios.get('http://10.0.2.2:8000/api/food/')
             await setData(response.data)
             setIsLoading(false)
         }catch(ex){

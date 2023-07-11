@@ -26,7 +26,7 @@ function Repassword({ navigation }) {
                 alert('Mật khẩu nhập lại không trùng khớp!')
             } else {
                 setIsLoading(true)
-                axios.put('https://namchuminh.pythonanywhere.com/api/user/password/',
+                axios.put('http://10.0.2.2:8000/api/user/password/',
                     {
                         password: password,
                     },

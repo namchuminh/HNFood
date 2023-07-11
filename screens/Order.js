@@ -20,7 +20,7 @@ function Order({navigation}) {
     const {token} = useContext(AuthContext)
 
     const cancelOrder = async (itemId) => {
-        const res = await axios.put('https://namchuminh.pythonanywhere.com/api/order/', {idOrder: itemId, user: 1}, {headers: {
+        const res = await axios.put('http://10.0.2.2:8000/api/order/', {idOrder: itemId, user: 1}, {headers: {
             Authorization: "Bearer " + token.access,
         }})
         await getProductOrder(false)
@@ -28,7 +28,7 @@ function Order({navigation}) {
 
     const getProductOrder = (allowLoad) =>{
         setIsLoading(allowLoad)
-        axios.get('https://namchuminh.pythonanywhere.com/api/order/',{
+        axios.get('http://10.0.2.2:8000/api/order/',{
             headers: {
                 Authorization: "Bearer " + token.access,
             }

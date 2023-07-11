@@ -28,7 +28,7 @@ function MapDelivery({ navigation, route }) {
     }
 
     useEffect(()=>{
-        axios.get('https://namchuminh.pythonanywhere.com/api/user/?user='+itemId, {
+        axios.get('http://10.0.2.2:8000/api/user/?user='+itemId, {
             headers: {
                 Authorization: "Bearer " + token.access,
             }

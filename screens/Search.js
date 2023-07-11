@@ -21,7 +21,7 @@ function Search({ navigation }) {
     dataSearch.length = 6
 
     const Search = (name_food) => {
-        axios.get('https://namchuminh.pythonanywhere.com/api/food/?search='+name_food)
+        axios.get('http://10.0.2.2:8000/api/food/?search='+name_food)
         .then(function (response) {
             // handle success
             setData(response.data)
@@ -35,7 +35,7 @@ function Search({ navigation }) {
 
     const getSearchProduct = async () => {
         try{
-            const response = await axios.get('https://namchuminh.pythonanywhere.com/api/food/')
+            const response = await axios.get('http://10.0.2.2:8000/api/food/')
             await setDataSearch(response.data)
         }catch(ex){
             console.log(ex)
@@ -43,7 +43,7 @@ function Search({ navigation }) {
     }
 
     const addProductToCart = (id) => {
-        axios.post('https://namchuminh.pythonanywhere.com/api/cart/',
+        axios.post('http://10.0.2.2:8000/api/cart/',
         {
             product: id,
         },
@@ -93,16 +93,6 @@ function Search({ navigation }) {
                                 return <TouchableOpacity key={index} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}><SearchProduct key ={index} name={item.name} image={item.image} price={item.price} onPress={() => addProductToCart(item.id)}/></TouchableOpacity>
                             })
                         }
-                    </View>
-                    <View>
-                        <Text style={{ fontSize: fonts.h3, top: 10, paddingBottom: 20, paddingLeft: 10 }}> Sản phẩm gợi ý</Text>
-                        <ScrollView vertical showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
-                            {
-                                dataSearch.map((item, index) => {
-                                    return <TouchableOpacity key={index} onPress={()=>navigation.navigate('Details', {itemId: item.id,})}><SuggestedProduct key={index} image={item.image} name={item.name} price={item.price} onPress={() => addProductToCart(item.id)} /></TouchableOpacity>
-                                })
-                            }
-                        </ScrollView>
                     </View>
                 </View>
             </ScrollView>

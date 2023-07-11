@@ -17,7 +17,7 @@ function Pay({ navigation }) {
 
     const orderProduct = async () => {
         for (var i = 0; i < data.length; i++) {
-            axios.post('https://namchuminh.pythonanywhere.com/api/order/',
+            axios.post('http://10.0.2.2:8000/api/order/',
                 {
                     product: data[i].product,
                     number: data[i].number,
@@ -33,7 +33,7 @@ function Pay({ navigation }) {
     }
 
     useEffect(() => {
-        axios.get('https://namchuminh.pythonanywhere.com/api/cart/', {
+        axios.get('http://10.0.2.2:8000/api/cart/', {
             headers: {
                 Authorization: "Bearer " + token.access,
             }

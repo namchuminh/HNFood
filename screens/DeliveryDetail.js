@@ -27,7 +27,7 @@ function DeliveryDetail({ navigation, route }) {
     console.log(itemId)
     const orderProduct = async () => {
         for (var i = 0; i < data.length; i++) {
-            axios.post('https://namchuminh.pythonanywhere.com/api/order/',
+            axios.post('http://10.0.2.2:8000/api/order/',
                 {
                     product: data[i].product,
                     number: data[i].number,
@@ -56,7 +56,7 @@ function DeliveryDetail({ navigation, route }) {
 
     const getDataDelivery = () => {
         setIsLoading(true)
-        axios.get('https://namchuminh.pythonanywhere.com/api/order/?user=' + itemId, {
+        axios.get('http://10.0.2.2:8000/api/order/?user=' + itemId, {
             headers: {
                 Authorization: "Bearer " + token.access,
             }
